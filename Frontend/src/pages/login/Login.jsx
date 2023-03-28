@@ -1,38 +1,48 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react'
 import './login.css'
+import Axios from 'axios'
 
-const Login = () => {
 
-  const [loginData, setLoginData] = useState({
-    name :"",
-    password: ""
-  })
-  const [signupData, setsignupData] = useState({
-    name :"",
-    email: "",
-    password: "",
-    passwordConfirm: "",
-  })
+function Login_Signup() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginData, setLoginData] = useState("");
+  const [signupData, setSignupData] = useState("");
 
-  function handleloginChange(event) {
-    const {name, value} = event.target
-    setLoginData(prevFormData => ({
-        ...prevFormData,
-        [name]:  value
-    }))
-}
-  function handleSignupChange(event) {
-    const {name, value} = event.target
-    setsignupData(prevsignData => ({
-        ...prevsignData,
-        [name]:  value
-    }))
-    
-}
+  const signup = (e) => {
+    e.preventDefault();
+    Axios.post("http://localhost:5000/signup", {
+      username: name,
+      email: email,
+      password: password,
+    }).then((response) => {
+      if (response.data.message) {
+        setSignupData(response.data.message);
+        console.log(response.data.message);
+      } else {
+        console.log("Signup Successfull");
+      }
+    });
+  };
+  const login = (e) => {
+    e.preventDefault();
+    Axios.post("http://localhost:5000/login", {
+      name: name,
+      password: password,
+    }).then((response) => {
+      if (response.data.message) {
+        setLoginData(response.data.message);
+        console.log(response.data.message);
+      } else {
+        setLoginData(response.data[0].email);
+        console.log("login Successfull");
+      }
+    });
+  };
 
-  function handleLogin (){
-    console.log("hello")
-  }
+
 
 
 
@@ -70,26 +80,27 @@ const Login = () => {
                       type="text"
                       name="name"
                       value={loginData.name}
-                      onChange={handleloginChange}
+                      onChange={(e) => setName(e.target.value)}
                       placeholder="Enter your Name"
-                      required 
+                      required
                     />
                   </div>
                   <div className="input-box">
                     <i className="fas fa-lock"></i>
                     <input
+                      
                       type="password"
                       name="password"
                       value={loginData.password}
-                      onChange={handleloginChange} 
+                      onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
                       required
                     />
                   </div>
                   <div className="text"><a href="#">Forgot password?</a></div>
                   <div className="button input-box">
-                    <input type="submit" name="login" value="Login" 
-                     onClick={handleLogin}
+                    <input className="button1" type="submit" name="login" value="Login"
+                      onClick={login}
                     />
                   </div>
                   <div className="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label></div>
@@ -104,14 +115,14 @@ const Login = () => {
               <form action="" method="POST">
                 <div className="input-boxes">
                   <div className="input-box">
-                    
+
                     <input
                       type="text"
                       pattern=".{3,}"
                       title="User Name Must Be Larger Than 3 Characters"
-                      name="name"
-                      value={signupData.name}
-                      onChange={handleSignupChange} 
+                      name="username"
+                      value={signupData.username}
+                      onChange={(e) => setName(e.target.value)}
                       placeholder="Enter your Name" required
                     />
                   </div>
@@ -121,32 +132,32 @@ const Login = () => {
                       type="email"
                       name="email"
                       value={signupData.email}
-                      onChange={handleSignupChange} 
+                      onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email"
                       required
                     />
                   </div>
                   <div className="input-box">
-                    
+
                     <input
                       type="password"
                       minlength="4"
                       name="password"
                       value={signupData.password}
-                      onChange={handleSignupChange} 
+                      onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
                       required
                     />
                   </div>
                   <div className="input-box">
-                    
+
                     <input
                       type="password"
                       minlength="4"
                       name="passwordConfirm"
                       value={signupData.passwordConfirm}
-                      onChange={handleSignupChange}  
-                      placeholder="Enter your password again" 
+                      onChange={signupData.passwordConfirm}
+                      placeholder="Enter your password again"
                       required
                     />
                   </div>
@@ -156,6 +167,7 @@ const Login = () => {
                       type="submit"
                       name="signup"
                       value="Sign up"
+                      onClick={signup}
                     />
                   </div>
                   <div className="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
@@ -170,4 +182,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login_Signup
