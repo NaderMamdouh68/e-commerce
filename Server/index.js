@@ -1,12 +1,12 @@
-const express = require('express');
-const mysql = require('mysql');
-const cors = require('cors');
+import express, { json } from 'express';
+import { createConnection } from 'mysql';
+import cors from 'cors';
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(json());
 
-const db = mysql.createConnection({
+const db = createConnection({
     user: 'root',
     host: 'localhost',
     password: '',
@@ -35,15 +35,13 @@ app.post('/login', (req, res) => {
 
     db.query("SELECT * FROM users WHERE name = ? AND password = ?", [username, password], 
     (err, result) => {
-        if (result) {
-            res.setEncoding({err:err});
-        } else {
+        
             if (result.length > 0) {
                 res.send(result);
             } else {
                 res.send({message: "Wrong username/password combination"});
             }
-        }
+        
     });
 });
 
