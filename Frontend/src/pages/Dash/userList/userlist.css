@@ -1,3 +1,16 @@
 .userList{
     flex: 4;
 }
+.edit{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #3bb077;
+    color: white;
+    cursor: pointer;
+}
+.delete{
+    color:red;
+    cursor: pointer;
+    margin-left: 5px;
+}

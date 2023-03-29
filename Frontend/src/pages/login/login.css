@@ -3,6 +3,7 @@
     display: grid;
     grid-template-columns: 80%;
     place-content: center;
+
 }
 
 .container {
@@ -38,10 +39,16 @@
     width: 100%;
     backface-visibility: hidden;
 }
-
-.text-3{
+.front,
+.back
+{
+    background-image: url(../../images/images.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
     
 }
+
+
 
 .cover .back {
     transform: rotateY(180deg);

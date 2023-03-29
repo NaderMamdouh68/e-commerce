@@ -11,8 +11,10 @@ const Sidebar = () => {
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem active">
-              <LineStyle className='sidebarIcon'/>
-              Home
+               <a href='/dashboard'>
+                <LineStyle className='sidebarIcon'/>
+                Home
+              </a>
             </li>
             <li className="sidebarListItem">
               <Timeline className='sidebarIcon'/>
@@ -26,8 +28,10 @@ const Sidebar = () => {
           <h3 className="sidebarTitle">Control</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem ">
+            <a href="/dashboard/manageUsers">
               <AccountCircleOutlined className='sidebarIcon'/>
-              <a href="/dashboard/manageUsers">users</a>
+              users
+            </a>
             </li>
             <li className="sidebarListItem">
               <Storefront className='sidebarIcon'/>
