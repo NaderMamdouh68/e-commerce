@@ -2,6 +2,7 @@ import './sidebar.css'
 import { AccountCircleOutlined, Category, Feedback, LineStyle, Mail, Storefront, Timeline } from '@mui/icons-material'
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
   return (
@@ -11,10 +12,10 @@ const Sidebar = () => {
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem active">
-               <a href='/dashboard'>
+               <Link to='/dashboard'>
                 <LineStyle className='sidebarIcon'/>
                 Home
-              </a>
+              </Link>
             </li>
             <li className="sidebarListItem">
               <Timeline className='sidebarIcon'/>
@@ -28,10 +29,10 @@ const Sidebar = () => {
           <h3 className="sidebarTitle">Control</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem ">
-            <a href="/dashboard/manageUsers">
+            <Link to="/dashboard/manageUsers">
               <AccountCircleOutlined className='sidebarIcon'/>
               users
-            </a>
+            </Link>
             </li>
             <li className="sidebarListItem">
               <Storefront className='sidebarIcon'/>

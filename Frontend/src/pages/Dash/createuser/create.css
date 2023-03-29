@@ -1,0 +1,12 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    justify-content: center;
+}

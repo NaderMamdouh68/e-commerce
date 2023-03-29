@@ -10,7 +10,9 @@ const dashboard = () => {
         <Topbar/>
         <div className="containerr">
           <Sidebar/>
+          <div className="otherpages">
           <Outlet/>
+          </div>
         </div>
     </div>
   )
