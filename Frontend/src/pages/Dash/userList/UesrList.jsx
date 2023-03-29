@@ -11,7 +11,7 @@ const UesrList = () => {
 
   const [data, setData] =useState([])
   useEffect(()=>{
-      axios.get('')
+      axios.get('http://localhost:5000/users')
       .then(res => setData(res.data))
       .catch(err => console.log(err))
   },
@@ -88,16 +88,16 @@ const UesrList = () => {
         </tr>
       </thead>
       <tbody>
-        {userrows.map((user, index) =>{
+        {data.map((user, index) =>{
           return(
             <tr key={index}>
               <td>{user.id}</td>
-              <td>{user.username}</td>
-              <td>{user.status}</td>
+              <td>{user.name}</td>
+              <td>{user.password}</td>
               <td>{user.email}</td>
-              <td>{user.phone}</td>
+              <td>{user.email}</td>
               <td className='actions'>
-                <Link  to={`/dashboard/manageUsers/readu/${user.id}`} className='edit'>show</Link>
+                <Link  to={`/dashboard/manageUsers/readu`} className='edit'>show</Link>
                 <button className='edit'>edit</button>
                 <DeleteOutline className='delete'/>
               </td>
