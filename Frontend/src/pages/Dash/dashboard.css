@@ -1,3 +1,6 @@
 .containerr{
     display: flex;
 }
+.otherpages{
+    flex: 4;
+}

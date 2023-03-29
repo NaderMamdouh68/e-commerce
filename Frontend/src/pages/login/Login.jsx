@@ -2,9 +2,12 @@
 import React, { useState } from 'react'
 import './login.css'
 import Axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+
 
 
 function Login_Signup() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,6 +41,7 @@ function Login_Signup() {
       } else {
         setLoginData(response.data[0].email);
         console.log("login Successfull");
+        navigate ("/");
       }
     });
   };
