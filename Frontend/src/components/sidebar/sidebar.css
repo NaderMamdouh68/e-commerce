@@ -40,3 +40,11 @@
     margin-right: 5px;
     font-size: 20px !important;
 }
+
+a{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
