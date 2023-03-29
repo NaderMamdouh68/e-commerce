@@ -13,7 +13,7 @@ function Login_Signup() {
 
   const signup = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:5000/signup", {
+    Axios.post("http://localhost:5000/users/signup", {
       username: name,
       email: email,
       password: password,
