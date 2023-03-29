@@ -16,7 +16,7 @@ function Login_Signup() {
 
   const signup = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:5000/signup", {
+    Axios.post("http://localhost:5000/users/signup", {
       username: name,
       email: email,
       password: password,
@@ -105,7 +105,7 @@ function Login_Signup() {
                   <div className="button input-box">
                     <input className="button1" type="submit" name="login" value="Login"
                       onClick={login}
-                    />
+                    /> 
                   </div>
                   <div className="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label></div>
                 </div>
