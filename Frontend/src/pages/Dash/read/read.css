@@ -1,0 +1,17 @@
+.readuser{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.card{
+    margin: auto;    
+    height: 80vh;
+    width: 70%;
+    border-radius: 15px;
+    border: 2px solid gray;
+    display: flex;
+    flex-direction: column;
+}
+span{
+    font-size: 3rem;
+}
