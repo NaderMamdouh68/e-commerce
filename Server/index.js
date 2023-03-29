@@ -2,6 +2,7 @@ import express, { json } from 'express';
 import { createConnection } from 'mysql';
 import cors from 'cors';
 import Users from './controller/userCRUD.js';
+import Products from './controller/productCRUD.js';
 import db from './controller/DB_Con.js';
 
 const app = express();
@@ -11,6 +12,7 @@ app.use(json());
 
 
 app.use('/users', Users);
+app.use('/product',Products)
 
 app.post('/login', (req, res) => {
     const username = req.body.name;
