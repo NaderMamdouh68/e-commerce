@@ -4,7 +4,6 @@ import './userlist.css'
 import {DeleteOutline} from '@mui/icons-material'
 // import { DataGrid, renderActionsCell } from '@mui/x-data-grid';
 // import Avatar from "@mui/material/Avatar";
-import { userrows } from '../../../dummyData/dummyData';
 import axios from 'axios';
 
 const UesrList = () => {
@@ -18,9 +17,6 @@ const UesrList = () => {
  []
   )
 
-  const handleDelete =() =>{
-    console.log("ok")
-  }
   // const columns = [
   //   { field: "id", headerName: "ID", width: 70 },
   //   {
@@ -97,7 +93,7 @@ const UesrList = () => {
               <td>{user.email}</td>
               <td>{user.email}</td>
               <td className='actions'>
-                <Link  to={`/dashboard/manageUsers/readu`} className='edit'>show</Link>
+                <Link  to={`/dashboard/manageUsers/readu/${user.id}`} className='edit'>show</Link>
                 <button className='edit'>edit</button>
                 <DeleteOutline className='delete'/>
               </td>

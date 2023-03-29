@@ -24,8 +24,10 @@ function Login_Signup() {
       if (response.data.message) {
         setSignupData(response.data.message);
         console.log(response.data.message);
+        
       } else {
         console.log("Signup Successfull");
+        navigate("/login");
       }
     });
   };

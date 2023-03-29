@@ -38,7 +38,7 @@ const Router = createBrowserRouter([
           element:<Createuser/>,  
         },
         {
-          path:"/dashboard/manageUsers/readu",
+          path:"/dashboard/manageUsers/readu/:id",
           element:<Readuser/>,  
         },
       ]

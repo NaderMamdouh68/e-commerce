@@ -4,25 +4,25 @@ import { useParams } from 'react-router-dom'
 import './read.css'
 
 const Readuser = () => {
-   const {id} = useParams();
-   const [student, setStudent] = useState([])
+   const { id } = useParams();
+   const [user, setUser] = useState([])
+   
    useEffect(()=>{
-    axios.get(''+id)
+    axios.get('http://localhost:5000/users/read/'+id)
     .then(res =>{
         console.log(res)
-        setStudent(res.data);
+        setUser(res.data[0]);
     })
     .catch(err => console.log(err))
-   },[]) 
+    
+   }, [id]) 
   return (
     <div className='readuser'>
-        <h2>user.username</h2>
+        <h2>{user.name}</h2>
         <div className="card">
-            <span>`name mik`</span>
-            <span>`phone 012`</span>
-            <span>`email @gmail .com`</span>
-            <span>`status actiie`</span>
-            <span>`password 12323`</span>
+            <span>{user.name}</span>
+            <span>{user.password}</span>
+            <span>{user.email}</span>
         </div>
     </div>
   )
