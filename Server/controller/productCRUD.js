@@ -7,6 +7,7 @@ import db from "./DB_Con.js";
 const Products = express();
 
 Products.use(cors());
+Products.use(bodyParser.urlencoded({ extended: false }))
 Products.use(bodyParser.json());
 
 Products.get('/', (req, res) => {
