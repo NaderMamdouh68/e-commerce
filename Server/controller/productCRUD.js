@@ -11,7 +11,7 @@ Products.use(bodyParser.urlencoded({ extended: false }))
 Products.use(bodyParser.json());
 
 Products.get('/', (req, res) => {
-    const sqlSelect = "SELECT * FROM products";
+    const sqlSelect = "SELECT * FROM product";
     db.query(sqlSelect, (err, result) => {
         if (err) {
             console.log(err);
@@ -22,8 +22,8 @@ Products.get('/', (req, res) => {
 });
 
 Products.post('/create', (req, res) => {
-    const sqlInsert = "INSERT INTO products (pro_name, des, price) VALUES (?,?,?)";
-    const values = [req.body.pro_name, req.body.des, req.body.price];
+    const sqlInsert = "INSERT INTO product ( product_name, price, description, image, category_id)VALUES (?,?,?,?,?)";
+    const values = [req.body.product_name, req.body.pcrie, req.body.description ,req.body.image,req.body.category_id];
     db.query(sqlInsert, values, (err, result) => {
         if (err) {
             console.log(err);
@@ -34,8 +34,8 @@ Products.post('/create', (req, res) => {
 });
 
 Products.get('/read/:id', (req, res) => {
-    const sqlRead = "SELECT * FROM products WHERE id = ?";
-    const values = [req.params.id];
+    const sqlRead = "SELECT * FROM product WHERE id = ?";
+    const values = [req.params.product_id];
     db.query(sqlRead, values, (err, result) => {
         if (err) {
             console.log(err);
@@ -46,8 +46,8 @@ Products.get('/read/:id', (req, res) => {
 });
 
 Products.put('/update/:id', (req, res) => {
-    const sqlUpdate = "UPDATE products SET pro_name = ?, des = ?, price = ? WHERE id = ?";
-    const values = [req.body.pro_name, req.body.des, req.body.price, req.params.id];
+    const sqlUpdate = "UPDATE product SET name = ?, price = ?, des = ? WHERE id = ?";
+    const values = [req.body.product_name, req.body.price, req.body.description, req.params.product_id];
     db.query(sqlUpdate, values, (err, result) => {
         if (err) {
             console.log(err);
@@ -60,8 +60,8 @@ Products.put('/update/:id', (req, res) => {
 
 
 Products.delete('/delete/:id', (req, res) => {
-    const sqlDelete = "DELETE FROM products WHERE id = ?";
-    const values = [req.params.id];
+    const sqlDelete = "DELETE FROM product WHERE id = ?";
+    const values = [req.params.product_id];
     db.query(sqlDelete, values, (err, result) => {
         if (err) {
             console.log(err);
