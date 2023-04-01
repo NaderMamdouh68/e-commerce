@@ -1,0 +1,12 @@
+nav{
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+nav-icons{
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    gap: .5rem;
+}

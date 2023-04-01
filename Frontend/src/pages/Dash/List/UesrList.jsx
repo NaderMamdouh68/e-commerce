@@ -94,7 +94,7 @@ const UesrList = () => {
               <td>{user.email}</td>
               <td className='actions'>
                 <Link  to={`/dashboard/manageUsers/readu/${user.id}`} className='edit'>show</Link>
-                <button className='edit'>edit</button>
+                <Link to={`/dashboard/manageUsers/edituser/${user.id}`}  className='edit'>edit</Link>
                 <DeleteOutline className='delete'/>
               </td>
             </tr>

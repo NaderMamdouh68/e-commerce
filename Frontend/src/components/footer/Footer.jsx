@@ -22,7 +22,7 @@ const Footer = () => {
 
         <p>ENJOY SHOPPING</p>
         
-        <a href="mailto:mikelhfzy@gmail.com" className='btn'>E-MAIL US</a>
+        <a href="mailto:mikelhfzy@gmail.com" className='butn'>E-MAIL US</a>
         <p>&copy; 2023 </p>
       </div>
       <div className="right section">

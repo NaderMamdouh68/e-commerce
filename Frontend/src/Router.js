@@ -1,4 +1,3 @@
-import { Edit } from "@mui/icons-material";
 import {
     createBrowserRouter,
   } from "react-router-dom";
@@ -7,10 +6,16 @@ import App from './App'
 import Createuser from "./pages/Dash/createuser/Createuser";
 import Dashboard from './pages/Dash/Dashboard'
 import Home from "./pages/Dash/dashHome/Home";
-import Edituser from "./pages/Dash/edituser/Edituser";
+import Edituser from "./pages/Dash/Edit/Edituser";
+import Editproduct from "./pages/Dash/Edit/Editproduct";
 import Readuser from "./pages/Dash/read/Readuser";
-import UesrList from "./pages/Dash/userList/UesrList";
+import Readproduct from "./pages/Dash/read/Readproduct";
+import Readcategory from "./pages/Dash/read/Readcategory";
+import CategoryList from "./pages/Dash/List/CategoryList";
+import ProductList from "./pages/Dash/List/ProductList";
+import UesrList from "./pages/Dash/List/UesrList";
 import Login from "./pages/login/Login";
+import Editcategory from "./pages/Dash/Edit/Editcategory";
 
 const Router = createBrowserRouter([
     {
@@ -30,8 +35,24 @@ const Router = createBrowserRouter([
           element:<UesrList/>,  
         },
         {
-          path:"/dashboard/manageUsers/edituser",
+          path:"/dashboard/manageProducts",
+          element:<ProductList/>,  
+        },
+        {
+          path:"/dashboard/manageCategories",
+          element:<CategoryList/>,  
+        },
+        {
+          path:"/dashboard/manageUsers/edituser/:id",
           element:<Edituser/>,  
+        },
+        {
+          path:"/dashboard/manageProducts/editproduct/:id",
+          element:<Editproduct />,  
+        },
+        {
+          path:"/dashboard/manageProducts/editcategory/:id",
+          element:<Editcategory />,  
         },
         {
           path:"/dashboard/manageUsers/createu",
@@ -40,6 +61,14 @@ const Router = createBrowserRouter([
         {
           path:"/dashboard/manageUsers/readu/:id",
           element:<Readuser/>,  
+        },
+        {
+          path:"/dashboard/manageUsers/readp/:id",
+          element:<Readproduct/>,  
+        },
+        {
+          path:"/dashboard/manageUsers/readc/:id",
+          element:<Readcategory/>,  
         },
       ]
     },
