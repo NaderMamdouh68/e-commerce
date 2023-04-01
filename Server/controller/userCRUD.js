@@ -7,11 +7,13 @@ import db from "./DB_Con.js";
 
 const Users = express();
 Users.use(cors());
+Users.use(bodyParser.urlencoded({ extended: false }));
+
 Users.use(bodyParser.json());
 
 
 Users.get('/', (req, res) => {
-    const sqlSelect = "SELECT * FROM users";
+    const sqlSelect = "SELECT * FROM user";
     db.query(sqlSelect, (err, result) => {
         if (err) {
             console.log(err);
@@ -22,8 +24,8 @@ Users.get('/', (req, res) => {
 });
 
 Users.post('/signup', (req, res) => {
-    const sqlInsert = "INSERT INTO users (name, password, email) VALUES (?,?,?)";
-    const values = [req.body.username, req.body.password, req.body.email];
+    const sqlInsert = "INSERT INTO user (user_name, email, password, phonenumber)VALUES (?,?,?,?)";
+    const values = [req.body.name, req.body.email, req.body.password ,req.body.phonenumber];
     db.query(sqlInsert, values, (err, result) => {
         if (err) {
             console.log(err);
@@ -33,8 +35,10 @@ Users.post('/signup', (req, res) => {
     });
 });
 
-Users.get('/read/:id', (req, res) => {
-    const sqlRead = "SELECT * FROM users WHERE id = ?";
+
+
+Users.get('/userdetails/:id', (req, res) => {
+    const sqlRead = "SELECT * FROM user WHERE user_id  = ?";
     const values = [req.params.id];
     db.query(sqlRead, values, (err, result) => {
         if (err) {
@@ -45,9 +49,9 @@ Users.get('/read/:id', (req, res) => {
     });
 });
 
-Users.put('/update/:id', (req, res) => {
-    const sqlUpdate = "UPDATE users SET name = ?, password = ?, email = ? WHERE id = ?";
-    const values = [req.body.username, req.body.password, req.body.email, req.params.id];
+Users.put('/userupdate/:id', (req, res) => {
+    const sqlUpdate = "UPDATE user SET user_name = ?, email = ?, password = ?,phonenumber = ? WHERE user_id = ?";
+    const values = [req.body.username, req.body.password, req.body.email,req.body.phonenumber , req.params.id];
     db.query(sqlUpdate, values, (err, result) => {
         if (err) {
             console.log(err);
@@ -57,8 +61,8 @@ Users.put('/update/:id', (req, res) => {
     });
 });
 
-Users.delete('/delete/:id', (req, res) => {
-    const sqlDelete = "DELETE FROM users WHERE id = ?";
+Users.delete('/userdelete/:id', (req, res) => {
+    const sqlDelete = "DELETE FROM user WHERE user_id = ?";
     const values = [req.params.id];
     db.query(sqlDelete, values, (err, result) => {
         if (err) {
