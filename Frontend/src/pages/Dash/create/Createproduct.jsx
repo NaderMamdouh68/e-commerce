@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom'
 import './create.css'
 const CreateProduct = () => {
 
-    const [data, setData] =useState([])
-    useEffect(()=>{
+    const [data, setData] = useState([])
+    useEffect(() => {
         axios.get('')
-        .then(res => setData(res.data))
-        .catch(err => console.log(err))
+            .then(res => setData(res.data))
+            .catch(err => console.log(err))
     },
-   []
+        []
     )
 
     const [values, setValues] = useState({
@@ -43,10 +43,12 @@ const CreateProduct = () => {
                 <>
                     <label htmlFor='category_name'>category_name</label>
                     <select name="cars" id="cars">
-                    {data.map((product, index) =>{
-                        return(
-                        <option value={product.product_id}>{product.product_name}</option>
-                        )}   
+                        {data.map((category, index) => {
+                            return (
+                                <option value={category.category_id}>{category.category_name}</option>
+                            )
+                        }
+                        )}
                     </select>
                 </>
                 <>
