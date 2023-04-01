@@ -12,7 +12,7 @@ Products.use(bodyParser.urlencoded({ extended: false }))
 Products.use(bodyParser.json());
 
 const storage = multer.diskStorage({
-    destination: '../images/uploadProductImg',
+    destination: './images/uploadProductImg',
     filename (req, file, cb) {
        return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
     }
