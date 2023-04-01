@@ -6,7 +6,6 @@ import './edituser.css'
 const Editcategory = () => {
 
   const {id} = useParams();
-  const [user, setUser] = useState([])
   const navigate = useNavigate()
 
   useEffect(()=>{

@@ -5,12 +5,13 @@ import {DeleteOutline} from '@mui/icons-material'
 // import { DataGrid, renderActionsCell } from '@mui/x-data-grid';
 // import Avatar from "@mui/material/Avatar";
 import axios from 'axios';
+import img from '../../../../server/images/uploadProductImg/image_1680322113120.jpg'
 
 const ProductList = () => {
 
   const [data, setData] =useState([])
   useEffect(()=>{
-      axios.get('')
+      axios.get('http://localhost:5000/products')
       .then(res => setData(res.data))
       .catch(err => console.log(err))
   },
@@ -76,10 +77,11 @@ const ProductList = () => {
       <thead>
         <tr>
           <th>ID</th>
-          <th>Name</th>
-          <th>category</th>
+          <th>product_name</th>
+          <th>Image</th>
           <th>price</th>
           <th>description</th>
+          <th>category_name</th>
           <th>action</th>
         </tr>
       </thead>
@@ -87,11 +89,12 @@ const ProductList = () => {
         {data.map((product, index) =>{
           return(
             <tr key={index}>
-              <td>{product.id}</td>
-              <td>{product.name}</td>
-              <td>{product.password}</td>
-              <td>{product.email}</td>
-              <td>{product.email}</td>
+              <td>{product.product_id}</td>
+              <td>{product.product_name}</td>
+              <td><img src={img} alt="" srcset="" /></td>
+              <td>{product.price}</td>
+              <td>{product.description}</td>
+              <td>{product.category_name}</td>
               <td className='actions'>
                 <Link  to={`/dashboard/manageProducts/readp/${product.id}`} className='edit'>show</Link>
                 <button className='edit'>edit</button>

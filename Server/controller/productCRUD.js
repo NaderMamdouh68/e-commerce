@@ -39,7 +39,7 @@ const upload = multer({
 
 
 Products.get('/', (req, res) => {
-    const sqlSelect = "SELECT * FROM product";
+    const sqlSelect = "SELECT product.product_id, product.product_name, product.price, product.description, product.image, category.category_name FROM product INNER JOIN category ON product.category_id = category.category_id";
     db.query(sqlSelect, (err, result) => {
         if (err) {
             console.log(err);
