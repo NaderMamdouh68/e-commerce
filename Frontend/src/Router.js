@@ -16,6 +16,7 @@ import UesrList from "./pages/Dash/List/UesrList";
 import Login from "./pages/login/Login";
 import Editcategory from "./pages/Dash/Edit/Editcategory";
 import CreateCategory from "./pages/Dash/create/Createcategory";
+import CreateProduct from "./pages/Dash/create/Createproduct";
 
 const Router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const Router = createBrowserRouter([
         element: <ProductList />,
       },
       {
+        path: "/dashboard/manageProducts/:id",
+        element: <ProductList />,
+      },
+      {
         path: "/dashboard/manageCategories",
         element: <CategoryList />,
       },
@@ -51,7 +56,7 @@ const Router = createBrowserRouter([
         element: <Editproduct />,
       },
       {
-        path: "/dashboard/manageProducts/editcategory/:id",
+        path: "/dashboard/manageCategories/editcategory/:id",
         element: <Editcategory />,
       },
       {
@@ -59,15 +64,19 @@ const Router = createBrowserRouter([
         element: <CreateCategory />,
       },
       {
+        path: "/dashboard/manageUsers/createProduct",
+        element: <CreateProduct />,
+      },
+      {
         path: "/dashboard/manageUsers/readu/:id",
         element: <Readuser />,
       },
       {
-        path: "/dashboard/manageUsers/readp/:id",
+        path: "/dashboard/manageProducts/readp/:id",
         element: <Readproduct />,
       },
       {
-        path: "/dashboard/manageUsers/readc/:id",
+        path: "/dashboard/manageCategories/readc/:id",
         element: <Readcategory />,
       },
     ]

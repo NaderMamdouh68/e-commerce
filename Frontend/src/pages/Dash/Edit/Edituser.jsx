@@ -6,7 +6,6 @@ import './edituser.css'
 const Edituser = () => {
 
   const {id} = useParams();
-  const [user, setUser] = useState([])
   const navigate = useNavigate()
 
   useEffect(()=>{
@@ -22,6 +21,7 @@ const Edituser = () => {
     })
     .catch(err => console.log(err))
     
+   // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [id]) 
 
   const [values, setValues] = useState({

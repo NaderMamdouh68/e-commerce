@@ -17,12 +17,13 @@ const UesrList = () => {
  []
   )
 
-  const handleDelete =(id) =>{
-    axios.delete(''+id)
-    .then(res => {
-      window.location.reload();
-    })
-    .catch(err => console.log(err))
+const handleDelete =(id) =>{
+  alert('Are you sure you want to delete this product?')
+  axios.delete('http://localhost:5000/users/userdelete/'+id)
+  .then(res => {
+    window.location.reload();
+  })
+  .catch(err => console.log(err))
 }
 
 

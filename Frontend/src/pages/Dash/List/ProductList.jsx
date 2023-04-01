@@ -1,5 +1,5 @@
 import React, { useEffect , useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link,useParams} from 'react-router-dom'
 import './userlist.css'
 import {DeleteOutline} from '@mui/icons-material'
 // import { DataGrid, renderActionsCell } from '@mui/x-data-grid';
@@ -7,7 +7,6 @@ import {DeleteOutline} from '@mui/icons-material'
 import axios from 'axios';
 
 const ProductList = () => {
-
   const [data, setData] =useState([])
   useEffect(()=>{
       axios.get('http://localhost:5000/products')
@@ -18,12 +17,27 @@ const ProductList = () => {
   )
 
   const handleDelete =(id) =>{
-    axios.delete(''+id)
+    alert('Are you sure you want to delete this product?')
+    axios.delete('http://localhost:5000/products/delete/'+id)
     .then(res => {
       window.location.reload();
     })
     .catch(err => console.log(err))
 }
+const {id} = useParams();
+
+const handleSearch = (id) => {
+  if(id){
+  axios.get('http://localhost:5000/products/productfilter/'+id)
+  .then(res => setData(res.data))
+  .catch(err => console.log(err))
+  }else{
+    axios.get('http://localhost:5000/products')
+    .then(res => setData(res.data))
+    .catch(err => console.log(err))
+  }
+}
+
 
   // const columns = [
   //   { field: "id", headerName: "ID", width: 70 },
@@ -72,12 +86,14 @@ const ProductList = () => {
   //   }
 
   // ];
-  
   return (
     <div className="userList">
       <h2>Product List</h2>
       <div>
-        <Link to="/dashboard/manageUsers/createu" className='edit'>Create +</Link>
+        <Link to="/dashboard/manageUsers/createProduct" className='edit'>Create +</Link>
+      </div>
+      <div>
+        <input type="text" name="search" id="search" onChange={handleSearch(id)} hidden />
       </div>
       <div className="tableContainer">
       <table>
@@ -103,8 +119,8 @@ const ProductList = () => {
               <td>{product.description}</td>
               <td>{product.category_name}</td>
               <td className='actions'>
-                <Link  to={`/dashboard/manageProducts/readp/${product.id}`} className='edit'>show</Link>
-                <button className='edit'>edit</button>
+                <Link  to={`/dashboard/manageProducts/readp/${product.product_id}`} className='edit'>show</Link>
+                <Link  to={`/dashboard/manageProducts/editproduct/${product.product_id}`} className='edit'>Edit</Link>
                 <DeleteOutline onClick={() => handleDelete (product.category_id)} className='delete'/>
               </td>
             </tr>
@@ -119,5 +135,9 @@ const ProductList = () => {
     </div>
   )
 }
+
+
+
+
 
 export default ProductList

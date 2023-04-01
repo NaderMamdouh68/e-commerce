@@ -8,7 +8,7 @@ const Readproduct = () => {
    const [product, setProduct] = useState([])
    
    useEffect(()=>{
-    axios.get(''+id)
+    axios.get('http://localhost:5000/products/readproduct/'+id)
     .then(res =>{
         console.log(res)
         setProduct(res.data[0]);
@@ -18,11 +18,12 @@ const Readproduct = () => {
    }, [id]) 
   return (
     <div className='readuser'>
-        <h2>{product.name}</h2>
+        <h2>{product.product_name}</h2>
         <div className="card">
-            <span>{product.name}</span>
-            <span>{product.password}</span>
-            <span>{product.email}</span>
+            <span>{product.product_name}</span>
+            <span>{product.description}</span>
+            <span>{product.price}</span>
+            <span>{product.category_name}</span>
         </div>
     </div>
   )

@@ -21,11 +21,18 @@ const CategoryList = () => {
   )
 
   const handleDelete =(id) =>{
-      axios.delete(''+id)
-      .then(res => {
+    alert('Are you sure you want to delete this category?')
+      axios.delete('http://localhost:5000/categories/categorydelete/'+id)
+      .then((res) => {
+        console.log(res)
+        axios.get('http://localhost:5000/categories/categorydetails/'+id)
+        .then(res => alert( res.data.message))
         window.location.reload();
       })
+      
       .catch(err => console.log(err))
+
+      
   }
 
   // const columns = [
@@ -102,8 +109,9 @@ const CategoryList = () => {
               <td>{category.title}</td>
               <td>{category.description}</td>
               <td className='actions'>
-                <Link  to={`/dashboard/manageUsers/readc/${category.category_id}`} className='edit'>show</Link>
-                <Link to={`/dashboard/manageProducts/editcategory/${category.category_id}`}  className='edit'>edit</Link >
+                <Link  to={`/dashboard/manageCategories/readc/${category.category_id}`} className='edit'>show</Link>
+                <Link  to={`/dashboard/manageProducts/${category.category_id}`} className='edit'>show Product</Link>
+                <Link to={`/dashboard/manageCategories/editcategory/${category.category_id}`}  className='edit'>edit</Link >
                 <DeleteOutline onClick={() => handleDelete (category.category_id)} className='delete'/>
               </td>
             </tr>
