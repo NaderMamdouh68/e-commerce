@@ -23,7 +23,7 @@ const CategoryList = () => {
   const handleDelete =(id) =>{
       axios.delete(''+id)
       .then(res => {
-        location.reload();
+        window.location.reload();
       })
       .catch(err => console.log(err))
   }

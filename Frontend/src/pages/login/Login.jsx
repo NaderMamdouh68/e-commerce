@@ -8,18 +8,20 @@ import { useNavigate } from 'react-router-dom';
 
 function Login_Signup() {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
+  const [user_name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phonenumber, setPhonenumber] = useState("");
   const [loginData, setLoginData] = useState("");
   const [signupData, setSignupData] = useState("");
 
   const signup = (e) => {
     e.preventDefault();
     Axios.post("http://localhost:5000/users/signup", {
-      username: name,
+      user_name: user_name,
       email: email,
       password: password,
+      phonenumber: phonenumber,
     }).then((response) => {
       if (response.data.message) {
         setSignupData(response.data.message);
@@ -28,22 +30,27 @@ function Login_Signup() {
       } else {
         console.log("Signup Successfull");
         navigate("/login");
+        window.location.reload();
       }
     });
   };
   const login = (e) => {
     e.preventDefault();
     Axios.post("http://localhost:5000/login", {
-      name: name,
+      user_name: user_name,
       password: password,
     }).then((response) => {
       if (response.data.message) {
         setLoginData(response.data.message);
         console.log(response.data.message);
       } else {
-        setLoginData(response.data[0].email);
+        if(response.data[0].type === 1){
+          navigate("/dashboard");
+          console.log("login Successfull");
+      }else{
+        navigate("/");
         console.log("login Successfull");
-        navigate ("/");
+      }
       }
     });
   };
@@ -84,8 +91,8 @@ function Login_Signup() {
                     <i className="fas fa-envelope"></i>
                     <input
                       type="text"
-                      name="name"
-                      value={loginData.name}
+                      name="user_name"
+                      value={loginData.user_name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Enter your Name"
                       required
@@ -126,8 +133,8 @@ function Login_Signup() {
                       type="text"
                       pattern=".{3,}"
                       title="User Name Must Be Larger Than 3 Characters"
-                      name="username"
-                      value={signupData.username}
+                      name="user_name"
+                      value={signupData.user_name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Enter your Name" required
                     />
@@ -140,6 +147,17 @@ function Login_Signup() {
                       value={signupData.email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email"
+                      required
+                    />
+                  </div>
+                  <div className="input-box">
+
+                    <input
+                      type="text"
+                      name="phonenumber"
+                      value={signupData.phonenumber}
+                      onChange={(e) => setPhonenumber(e.target.value)}
+                      placeholder="Enter your phonenumber"
                       required
                     />
                   </div>

@@ -12,6 +12,11 @@ Users.use(bodyParser.urlencoded({ extended: false }));
 Users.use(bodyParser.json());
 
 
+
+
+
+
+
 Users.get('/', (req, res) => {
     const sqlSelect = "SELECT * FROM user";
     db.query(sqlSelect, (err, result) => {
@@ -25,7 +30,7 @@ Users.get('/', (req, res) => {
 
 Users.post('/signup', (req, res) => {
     const sqlInsert = "INSERT INTO user (user_name, email, password, phonenumber)VALUES (?,?,?,?)";
-    const values = [req.body.name, req.body.email, req.body.password ,req.body.phonenumber];
+    const values = [req.body.user_name, req.body.email, req.body.password ,req.body.phonenumber];
     db.query(sqlInsert, values, (err, result) => {
         if (err) {
             console.log(err);

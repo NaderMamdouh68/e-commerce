@@ -17,10 +17,10 @@ app.use('/products', Products);
 app.use('/categories', Category);
 
 app.post('/login', (req, res) => {
-    const username = req.body.name;
+    const user_name = req.body.user_name;
     const password = req.body.password;
 
-    db.query("SELECT * FROM users WHERE name = ? AND password = ?", [username, password], 
+    db.query("SELECT * FROM user WHERE user_name = ? AND password = ?", [user_name, password], 
     (err, result) => {
         
             if (result.length > 0) {
