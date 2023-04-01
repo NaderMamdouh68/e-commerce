@@ -99,7 +99,7 @@ Products.put('/productUpdate/:id',(req, res) => {
 
 
 
-Products.delete('/delete/:id', (req, res) => {
+Products.delete('/productsdelete/:id', (req, res) => {
     const sqlDelete = "DELETE FROM product WHERE product_id  = ?";
     const values = [req.params.id];
     db.query(sqlDelete, values, (err, result) => {

@@ -18,7 +18,7 @@ const ProductList = () => {
 
   const handleDelete =(id) =>{
     alert('Are you sure you want to delete this product?')
-    axios.delete('http://localhost:5000/products/delete/'+id)
+    axios.delete('http://localhost:5000/productsdelete/'+id)
     .then(res => {
       window.location.reload();
     })
@@ -121,7 +121,7 @@ const handleSearch = (id) => {
               <td className='actions'>
                 <Link  to={`/dashboard/manageProducts/readp/${product.product_id}`} className='edit'>show</Link>
                 <Link  to={`/dashboard/manageProducts/editproduct/${product.product_id}`} className='edit'>Edit</Link>
-                <DeleteOutline onClick={() => handleDelete (product.category_id)} className='delete'/>
+                <DeleteOutline onClick={() => handleDelete (product.product_id)} className='delete'/>
               </td>
             </tr>
           )

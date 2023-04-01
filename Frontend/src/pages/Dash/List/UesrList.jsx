@@ -105,7 +105,7 @@ const handleDelete =(id) =>{
               <td className='actions'>
                 <Link  to={`/dashboard/manageUsers/readu/${user.user_id}`} className='edit'>show</Link>
                 <Link to={`/dashboard/manageUsers/edituser/${user.user_id}`}  className='edit'>edit</Link>
-                <DeleteOutline onClick={() => handleDelete (user.category_id)} className='delete'/>
+                <DeleteOutline onClick={() => handleDelete (user.user_id)} className='delete'/>
               </td>
             </tr>
           )
