@@ -18,6 +18,14 @@ const ProductList = () => {
  []
   )
 
+  const handleDelete =(id) =>{
+    axios.delete(''+id)
+    .then(res => {
+      location.reload();
+    })
+    .catch(err => console.log(err))
+}
+
   // const columns = [
   //   { field: "id", headerName: "ID", width: 70 },
   //   {
@@ -98,7 +106,7 @@ const ProductList = () => {
               <td className='actions'>
                 <Link  to={`/dashboard/manageProducts/readp/${product.id}`} className='edit'>show</Link>
                 <button className='edit'>edit</button>
-                <DeleteOutline className='delete'/>
+                <DeleteOutline onClick={() => handleDelete (product.category_id)} className='delete'/>
               </td>
             </tr>
           )

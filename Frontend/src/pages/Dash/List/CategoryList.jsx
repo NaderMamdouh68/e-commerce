@@ -15,7 +15,18 @@ const CategoryList = () => {
       .catch(err => console.log(err))
   },
  []
+
+  
+ 
   )
+
+  const handleDelete =(id) =>{
+      axios.delete(''+id)
+      .then(res => {
+        location.reload();
+      })
+      .catch(err => console.log(err))
+  }
 
   // const columns = [
   //   { field: "id", headerName: "ID", width: 70 },
@@ -93,7 +104,7 @@ const CategoryList = () => {
               <td className='actions'>
                 <Link  to={`/dashboard/manageUsers/readc/${category.category_id}`} className='edit'>show</Link>
                 <Link to={`/dashboard/manageProducts/editcategory/${category.category_id}`}  className='edit'>edit</Link >
-                <DeleteOutline className='delete'/>
+                <DeleteOutline onClick={() => handleDelete (category.category_id)} className='delete'/>
               </td>
             </tr>
           )
