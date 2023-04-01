@@ -8,7 +8,7 @@ const Readuser = () => {
    const [user, setUser] = useState([])
    
    useEffect(()=>{
-    axios.get('http://localhost:5000/users/read/'+id)
+    axios.get('http://localhost:5000/users/userdetails/'+id)
     .then(res =>{
         console.log(res)
         setUser(res.data[0]);
@@ -18,11 +18,13 @@ const Readuser = () => {
    }, [id]) 
   return (
     <div className='readuser'>
-        <h2>{user.name}</h2>
+        <h2>{user.user_name}</h2>
         <div className="card">
-            <span>{user.name}</span>
-            <span>{user.password}</span>
-            <span>{user.email}</span>
+              <span>{user.user_id}</span>
+              <span>{user.user_name}</span>
+              <span>{user.status}</span>
+              <span>{user.email}</span>
+              <span>{user.phonenumber}</span>
         </div>
     </div>
   )

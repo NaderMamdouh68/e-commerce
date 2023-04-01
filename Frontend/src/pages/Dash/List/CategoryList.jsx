@@ -10,7 +10,7 @@ const CategoryList = () => {
 
   const [data, setData] =useState([])
   useEffect(()=>{
-      axios.get('http://localhost:5000/users')
+      axios.get('http://localhost:5000/categories')
       .then(res => setData(res.data))
       .catch(err => console.log(err))
   },
@@ -69,7 +69,7 @@ const CategoryList = () => {
     <div className="userList">
       <h2>Category List</h2>
       <div>
-        <Link to="/dashboard/manageUsers/createu" className='edit'>Create +</Link>
+        <Link to="/dashboard/manageCategories/createCategory" className='edit'>Create +</Link>
       </div>
       <div className="tableContainer">
       <table>
@@ -86,13 +86,13 @@ const CategoryList = () => {
         {data.map((category, index) =>{
           return(
             <tr key={index}>
-              <td>{category.id}</td>
-              <td>{category.name}</td>
+              <td>{category.category_id}</td>
+              <td>{category.category_name}</td>
               <td>{category.title}</td>
               <td>{category.description}</td>
               <td className='actions'>
-                <Link  to={`/dashboard/manageUsers/readc/${category.id}`} className='edit'>show</Link>
-                <Link to={`/dashboard/manageProducts/editcategory/${category.id}`}  className='edit'>edit</Link >
+                <Link  to={`/dashboard/manageUsers/readc/${category.category_id}`} className='edit'>show</Link>
+                <Link to={`/dashboard/manageProducts/editcategory/${category.category_id}`}  className='edit'>edit</Link >
                 <DeleteOutline className='delete'/>
               </td>
             </tr>

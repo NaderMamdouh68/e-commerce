@@ -8,7 +8,7 @@ const Readcategory = () => {
    const [category, setCategory] = useState([])
    
    useEffect(()=>{
-    axios.get(''+id)
+    axios.get('http://localhost:5000/categories/categorydetails/'+id)
     .then(res =>{
         console.log(res)
         setCategory(res.data[0]);
@@ -18,11 +18,11 @@ const Readcategory = () => {
    }, [id]) 
   return (
     <div className='readuser'>
-        <h2>{category.name}</h2>
+        <h2>{category.category_name}</h2>
         <div className="card">
-            <span>{category.name}</span>
-            <span>{category.password}</span>
-            <span>{category.email}</span>
+            <span>{category.category_name}</span>
+            <span>{category.title}</span>
+            <span>{category.description}</span>
         </div>
     </div>
   )

@@ -10,11 +10,11 @@ const Editcategory = () => {
   const navigate = useNavigate()
 
   useEffect(()=>{
-    axios.get(''+id)
+    axios.get('http://localhost:5000/categories/categorydetails/'+id)
     .then(res =>{
         console.log(res)
         setValues({...values,
-          name: res.data[0].name,
+          category_name: res.data[0].category_name,
           title: res.data[0].title,
           description: res.data[0].description,
           
@@ -25,7 +25,7 @@ const Editcategory = () => {
    }, [id]) 
 
   const [values, setValues] = useState({
-    name: '',
+    category_name: '',
     title: '',
     description: '',
     
@@ -33,10 +33,10 @@ const Editcategory = () => {
 
   const handleUpdate = (event)=>{
     event.preventDefault()
-    axios.put(''+id, values)
+    axios.put('http://localhost:5000/categories/categoryupdate/'+id, values)
     .then(res =>{
       console.log(res);
-      navigate('/manageCategories')
+      navigate('/dashboard/manageCategories')
     }
     )
     .catch (err => console.log(err))
@@ -53,12 +53,12 @@ const Editcategory = () => {
         <h2>update User</h2>
         <form onSubmit={handleUpdate}>
             <>
-            <label htmlFor='name'>Name</label>
+            <label htmlFor='category_name'>category_name</label>
             <input
               type="text"
-              name='name'
-              value={values.name}
-              onChange={e=> setValues({...values, name: e.target.value})}
+              name='category_name'
+              value={values.category_name}
+              onChange={e=> setValues({...values, category_name: e.target.value})}
             />
             </>
             <>

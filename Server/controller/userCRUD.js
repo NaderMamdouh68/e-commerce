@@ -51,7 +51,7 @@ Users.get('/userdetails/:id', (req, res) => {
 
 Users.put('/userupdate/:id', (req, res) => {
     const sqlUpdate = "UPDATE user SET user_name = ?, email = ?, password = ?,phonenumber = ? WHERE user_id = ?";
-    const values = [req.body.username, req.body.password, req.body.email,req.body.phonenumber , req.params.id];
+    const values = [req.body.user_name, req.body.password, req.body.email,req.body.phonenumber , req.params.id];
     db.query(sqlUpdate, values, (err, result) => {
         if (err) {
             console.log(err);

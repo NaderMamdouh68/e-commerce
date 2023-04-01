@@ -10,15 +10,14 @@ const Edituser = () => {
   const navigate = useNavigate()
 
   useEffect(()=>{
-    axios.get(''+id)
+    axios.get('http://localhost:5000/users/userdetails/'+id)
     .then(res =>{
         console.log(res)
         setValues({...values,
-          name: res.data[0].name,
+          user_name: res.data[0].user_name,
           email: res.data[0].email,
-          status: res.data[0].status,
+          phonenumber: res.data[0].phonenumber,
           password: res.data[0].password,
-          phone: res.data[0].phone,
         })
     })
     .catch(err => console.log(err))
@@ -26,16 +25,15 @@ const Edituser = () => {
    }, [id]) 
 
   const [values, setValues] = useState({
-    name: '',
+    user_name: '',
     email: '',
-    status: '',
     password: '',
-    phone: '',
+    phonenumber: '',
   })
 
   const handleUpdate = (event)=>{
     event.preventDefault()
-    axios.put(''+id, values)
+    axios.put('http://localhost:5000/users/userupdate/'+id, values)
     .then(res =>{
       console.log(res);
       navigate('/dashboard/manageUsers')
@@ -53,18 +51,9 @@ const Edituser = () => {
             <label htmlFor='username'>Name</label>
             <input
               type="text"
-              name='username'
-              value={values.name}
-              onChange={e=> setValues({...values, name: e.target.value})}
-            />
-            </>
-            <>
-            <label htmlFor='status'>Status</label>
-            <input
-              type="text"
-              name='status'
-              value={values.status}
-              onChange={e=> setValues({...values, status: e.target.value})}
+              name='user_name'
+              value={values.user_name}
+              onChange={e=> setValues({...values, user_name: e.target.value})}
             />
             </>
             <>
@@ -81,8 +70,8 @@ const Edituser = () => {
             <input
               type="text"
               name='phone'
-              value={values.phone}
-              onChange={e=> setValues({...values, phone: e.target.value})}
+              value={values.phonenumber}
+              onChange={e=> setValues({...values, phonenumber: e.target.value})}
             />
             </>
             <>

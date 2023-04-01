@@ -87,14 +87,14 @@ const UesrList = () => {
         {data.map((user, index) =>{
           return(
             <tr key={index}>
-              <td>{user.id}</td>
-              <td>{user.name}</td>
-              <td>{user.password}</td>
+              <td>{user.user_id}</td>
+              <td>{user.user_name}</td>
+              <td>{user.status}</td>
               <td>{user.email}</td>
-              <td>{user.email}</td>
+              <td>{user.phonenumber}</td>
               <td className='actions'>
-                <Link  to={`/dashboard/manageUsers/readu/${user.id}`} className='edit'>show</Link>
-                <Link to={`/dashboard/manageUsers/edituser/${user.id}`}  className='edit'>edit</Link>
+                <Link  to={`/dashboard/manageUsers/readu/${user.user_id}`} className='edit'>show</Link>
+                <Link to={`/dashboard/manageUsers/edituser/${user.user_id}`}  className='edit'>edit</Link>
                 <DeleteOutline className='delete'/>
               </td>
             </tr>

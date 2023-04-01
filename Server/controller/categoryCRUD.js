@@ -22,7 +22,7 @@ Category.get('/', (req, res) => {
     });
 });
 
-Category.post('/create', (req, res) => {
+Category.post('/categorycreate', (req, res) => {
     const sqlInsert = "INSERT INTO category (category_name, title, description) VALUES (?,?,?)";
     const values = [req.body.category_name, req.body.title, req.body.description];
     db.query(sqlInsert, values, (err, result) => {
