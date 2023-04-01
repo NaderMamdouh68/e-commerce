@@ -62,7 +62,7 @@ Products.post('/create',upload ,(req, res) => {
 });
 
 Products.get('/read/:id', (req, res) => {
-    const sqlRead = "SELECT * FROM product WHERE id = ?";
+    const sqlRead = "SELECT * FROM product WHERE product_id  = ?";
     const values = [req.params.product_id];
     db.query(sqlRead, values, (err, result) => {
         if (err) {
@@ -74,8 +74,8 @@ Products.get('/read/:id', (req, res) => {
 });
 
 Products.put('/update/:id', (req, res) => {
-    const sqlUpdate = "UPDATE product SET name = ?, price = ?, des = ? WHERE id = ?";
-    const values = [req.body.product_name, req.body.price, req.body.description, req.params.product_id];
+    const sqlUpdate = "UPDATE product SET product_name = ?, price = ?, description = ? , image =? ,  WHERE id = ?";
+    const values = [req.body.product_name, req.body.price, req.body.description, req.file.filename , req.params.product_id];
     db.query(sqlUpdate, values, (err, result) => {
         if (err) {
             console.log(err);
@@ -88,7 +88,7 @@ Products.put('/update/:id', (req, res) => {
 
 
 Products.delete('/delete/:id', (req, res) => {
-    const sqlDelete = "DELETE FROM product WHERE id = ?";
+    const sqlDelete = "DELETE FROM product WHERE product_id  = ?";
     const values = [req.params.product_id];
     db.query(sqlDelete, values, (err, result) => {
         if (err) {
