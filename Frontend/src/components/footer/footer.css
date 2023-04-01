@@ -27,14 +27,15 @@ a{
     font-size: 1.5rem;
     margin: .5rem 1rem;
 }
-.btn{
+.butn{
     border: 1px solid black;
     width: 60%;
     margin: auto;
     padding: .3rem 0;
     transition: .6s ease;
+    text-align: center;
 }
-.btn:hover{
+.butn:hover{
     background-color: black;
     color: white;
 }
