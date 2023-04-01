@@ -22,7 +22,7 @@ const upload = multer({
     storage: storage,
 
     fileFilter: (req, file, cb) => {
-        const fileTypes = /jpeg|jpg|png|gif/;
+        const fileTypes = /jpeg|jpg|png|webp|gif/;
         const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
         const mimetype = fileTypes.test(file.mimetype);
 
@@ -73,9 +73,9 @@ Products.get('/read/:id', (req, res) => {
     });
 });
 
-Products.put('/update/:id', (req, res) => {
-    const sqlUpdate = "UPDATE product SET product_name = ?, price = ?, description = ? , image =? ,  WHERE id = ?";
-    const values = [req.body.product_name, req.body.price, req.body.description, req.file.filename , req.params.product_id];
+Products.put('/update/:id',upload ,(req, res) => {
+    const sqlUpdate = "UPDATE product SET product_name = ?, price = ?, description = ? , image =?, category_id =?   WHERE product_id = ?";
+    const values = [req.body.product_name, req.body.price, req.body.description, req.file.filename , req.body.category_id ,req.params.id];
     db.query(sqlUpdate, values, (err, result) => {
         if (err) {
             console.log(err);
