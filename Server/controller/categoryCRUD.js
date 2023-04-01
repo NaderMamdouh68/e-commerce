@@ -7,14 +7,14 @@ import db from "./DB_Con.js";
 
 const Category = express();
 Category.use(cors());
+Category.use(bodyParser.urlencoded({ extended: false }));
 Category.use(bodyParser.json());
 
 
 Category.get('/', (req, res) => {
-    const sqlSelect = "SELECT * FROM categories";
+    const sqlSelect = "SELECT * FROM category";
     db.query(sqlSelect, (err, result) => {
         if (err) {
-            console.log(err);
             res.json(err);
         } else {
             res.json(result);
@@ -23,47 +23,47 @@ Category.get('/', (req, res) => {
 });
 
 Category.post('/create', (req, res) => {
-    const sqlInsert = "INSERT INTO categories (cat_name, titel, description) VALUES (?,?,?)";
-    const values = [req.body.cat_name, req.body.titel, req.body.description];
+    const sqlInsert = "INSERT INTO category (category_name, title, description) VALUES (?,?,?)";
+    const values = [req.body.category_name, req.body.title, req.body.description];
     db.query(sqlInsert, values, (err, result) => {
         if (err) {
-            console.log(err);
+            res.json(err);
         } else {
             res.json(result);
         }
     });
 });
 
-Category.get('/read/:id', (req, res) => {
-    const sqlRead = "SELECT * FROM categories WHERE id = ?";
+Category.get('/categorydetails/:id', (req, res) => {
+    const sqlRead = "SELECT * FROM category WHERE category_id = ?";
     const values = [req.params.id];
     db.query(sqlRead, values, (err, result) => {
         if (err) {
-            console.log(err);
+            res.json(err);
         } else {
             res.json(result);
         }
     });
 });
 
-Category.put('/update/:id', (req, res) => {
-    const sqlUpdate = "UPDATE Category SET cat_name = ?, titel = ?, description = ? WHERE id = ?";
-    const values = [req.body.cat_name, req.body.titel, req.body.description, req.params.id];
+Category.put('/categoryupdate/:id', (req, res) => {
+    const sqlUpdate = "UPDATE Category SET category_name = ?, title = ?, description = ? WHERE category_id = ?";
+    const values = [req.body.category_name, req.body.title, req.body.description, req.params.id];
     db.query(sqlUpdate, values, (err, result) => {
         if (err) {
-            console.log(err);
+            res.json(err);
         } else {
             res.json(result);
         }
     });
 });
 
-Category.delete('/delete/:id', (req, res) => {
-    const sqlDelete = "DELETE FROM Category WHERE id = ?";
+Category.delete('/categorydelete/:id', (req, res) => {
+    const sqlDelete = "DELETE FROM Category WHERE category_id = ?";
     const values = [req.params.id];
     db.query(sqlDelete, values, (err, result) => {
         if (err) {
-            console.log(err);
+            res.json(err);
         } else {
             res.json(result);
         }
