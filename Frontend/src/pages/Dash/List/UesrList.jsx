@@ -2,8 +2,8 @@ import React, { useEffect , useState} from 'react'
 import {Link} from 'react-router-dom'
 import './userlist.css'
 import {DeleteOutline} from '@mui/icons-material'
-// import { DataGrid, renderActionsCell } from '@mui/x-data-grid';
-// import Avatar from "@mui/material/Avatar";
+import { DataGrid, renderActionsCell } from '@mui/x-data-grid';
+import Avatar from "@mui/material/Avatar";
 import axios from 'axios';
 
 const UesrList = () => {
@@ -27,58 +27,58 @@ const handleDelete =(id) =>{
 }
 
 
-  // const columns = [
-  //   { field: "id", headerName: "ID", width: 70 },
-  //   {
-  //     field: "username",
-  //     headerName: "User",
-  //     width: 100,
-  //   },
-  //   {
-  //     field: 'avatar',
-  //     headerName: 'avatar',
-  //     width: 60,
-  //     editable: true,
-  //     renderCell: (params) => <Avatar src={params.value}/> // renderCell will render the component
-  //   },
-  //   { 
-  //     field: "email",
-  //     headerName: "E-mail",
-  //     width: 150
-  //   },
-  //   {
-  //     field: "status",
-  //     headerName: "Status",
-  //     width: 90
-  //   },
-  //   {
-  //     field: "phone",
-  //     headerName: "phone",
-  //     width: 150
-  //   },
-  //   {
-  //     field: "actions",
-  //     headerName: "actions",
-  //     width: 150,
-  //     renderCell:(params)=>{
-  //       return(
-  //       <>
-  //         <Link to={"/user/"+params.row.id}>
-  //           <button className='edit'>Edit</button>
-  //         </Link>
+  const columns = [
+    { field: "id", headerName: "ID", width: 70 },
+    {
+      field: "username",
+      headerName: "User",
+      width: 100,
+    },
+    {
+      field: 'avatar',
+      headerName: 'avatar',
+      width: 60,
+      editable: true,
+      renderCell: (params) => <Avatar src={params.value}/> // renderCell will render the component
+    },
+    { 
+      field: "email",
+      headerName: "E-mail",
+      width: 150
+    },
+    {
+      field: "status",
+      headerName: "Status",
+      width: 90
+    },
+    {
+      field: "phone",
+      headerName: "phone",
+      width: 150
+    },
+    {
+      field: "actions",
+      headerName: "actions",
+      width: 150,
+      renderCell:(params)=>{
+        return(
+        <>
+          <Link to={"/user/"+params.row.id}>
+            <button className='edit'>Edit</button>
+          </Link>
           
-  //         <DeleteOutline className='delete' onClick={handleDelete}/>
-  //       </>
-  //       )
-  //     }
-  //   }
+          <DeleteOutline className='delete' onClick={handleDelete}/>
+        </>
+        )
+      }
+    }
 
-  // ];
+  ];
   
   return (
     <div className="userList">
       <h2 className='table-title'>Uesr List</h2>
-      <div className="tableContainer">
+      {/* <div className="tableContainer">
       <table>
       <thead>
         <tr>
@@ -111,9 +111,11 @@ const handleDelete =(id) =>{
         )}
       </tbody>
     </table>
-      </div>
+      </div> */}
 
-    {/* <DataGrid rows={userrows} columns={columns} pageSize={20} disableRowSelectionOnClick rowsPerPageOptions={[5]} checkboxSelection /> */}
+      <DataGrid rows={data[0]} columns={columns} pageSize={20} disableRowSelectionOnClick rowsPerPageOptions={[5]} checkboxSelection />
+
+    {/* <DataGrid rows={data[]} columns={columns} pageSize={20} disableRowSelectionOnClick rowsPerPageOptions={[5]} checkboxSelection /> */}
     </div>
   )
 }
