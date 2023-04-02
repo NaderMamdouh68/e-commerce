@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
 }
-h2{
+.table-title{
     margin-bottom: 20px;
 }
 table{
@@ -14,13 +14,21 @@ table{
 }
 .edit{
     width: fit-content;
-    border: none;
+    border: 1px solid #3bb077;
     border-radius: 10px;
     padding: 5px 10px;
     background-color: #3bb077;
     color: white;
     cursor: pointer;
     margin-left: 5px;
+    transition: 320ms ease;
+}
+.edit:hover{
+    width: fit-content;
+    border: 1px solid green;
+    background-color: aliceblue;
+    color: #3bb077;
+    
 }
 .delete{
     color:red;

@@ -49,9 +49,9 @@ const Editcategory = () => {
     <div>
           <div className='editu'>
           <div className='wrapper'>
-        <h2>update User</h2>
+        <h2 className='table-title'>update Category</h2>
         <form onSubmit={handleUpdate}>
-            <>
+            <div className='feild'>
             <label htmlFor='category_name'>category_name</label>
             <input
               type="text"
@@ -59,8 +59,8 @@ const Editcategory = () => {
               value={values.category_name}
               onChange={e=> setValues({...values, category_name: e.target.value})}
             />
-            </>
-            <>
+            </div>
+            <div className='feild'>
             <label htmlFor='title'>Title</label>
             <input
               type="text"
@@ -68,8 +68,8 @@ const Editcategory = () => {
               value={values.title}
               onChange={e=> setValues({...values, title: e.target.value})}
             />
-            </>
-            <>
+            </div>
+            <div className='feild'>
             <label htmlFor='description'>Description</label>
             <input
               type="text"
@@ -77,8 +77,8 @@ const Editcategory = () => {
               value={values.description}
               onChange={e=> setValues({...values, description: e.target.value})}
             />
-            </>
-            <button>Edit</button>
+            </div>
+            <button className='edit'>Edit</button>
         </form>
     </div>
     </div>

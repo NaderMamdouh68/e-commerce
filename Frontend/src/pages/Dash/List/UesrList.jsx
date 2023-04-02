@@ -77,10 +77,7 @@ const handleDelete =(id) =>{
   
   return (
     <div className="userList">
-      <h2>Uesr List</h2>
-      <div>
-        <Link to="/dashboard/manageUsers/createu" className='edit'>Create +</Link>
-      </div>
+      <h2 className='table-title'>Uesr List</h2>
       <div className="tableContainer">
       <table>
       <thead>

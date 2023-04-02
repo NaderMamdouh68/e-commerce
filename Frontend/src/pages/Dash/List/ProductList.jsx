@@ -85,7 +85,7 @@ const ProductList = () => {
   // ];
   return (
     <div className="userList">
-      <h2>Product List</h2>
+      <h2 className='table-title'>Product List</h2>
       <div>
         <Link to="/dashboard/manageProducts/createProduct" className='edit'>Create +</Link>
       </div>

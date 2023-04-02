@@ -83,12 +83,12 @@ function Login_Signup() {
         </div>
         <div className="forms">
           <div className="form-content">
-            <div className="login-form">
+            <div className="login-form form">
               <div className="title">Login</div>
               <form action="" >
                 <div className="input-boxes">
                   <div className="input-box">
-                    <i className="fas fa-envelope"></i>
+                    
                     <input
                       type="text"
                       name="user_name"
@@ -99,7 +99,7 @@ function Login_Signup() {
                     />
                   </div>
                   <div className="input-box">
-                    <i className="fas fa-lock"></i>
+                    
                     <input
                       
                       type="password"
@@ -111,8 +111,12 @@ function Login_Signup() {
                     />
                   </div>
                   <div className="text"><a href="#">Forgot password?</a></div>
-                  <div className="button input-box">
-                    <input className="button1" type="submit" name="login" value="Login"
+                  <div >
+                    <input 
+                      className="button"
+                      type="submit"
+                      name="login" 
+                      value="Login"
                       onClick={login}
                     /> 
                   </div>

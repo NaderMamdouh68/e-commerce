@@ -1,3 +1,27 @@
-.editu{
-    flex: 4;
+form{
+    display: flex;
+    gap: 2rem;
+}
+.feild{
+    display: flex;
+    flex-direction: column;
+}
+
+.edit{
+    width: fit-content;
+    border: 1px solid #3bb077;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #3bb077;
+    color: white;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: 320ms ease;
+}
+.edit:hover{
+    width: fit-content;
+    border: 1px solid green;
+    background-color: aliceblue;
+    color: #3bb077;
+    
 }
