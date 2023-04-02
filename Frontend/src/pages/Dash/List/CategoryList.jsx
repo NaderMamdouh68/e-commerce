@@ -25,8 +25,6 @@ const CategoryList = () => {
       axios.delete('http://localhost:5000/categories/categorydelete/'+id)
       .then((res) => {
         console.log(res)
-        axios.get('http://localhost:5000/categories/categorydetails/'+id)
-        .then(res => alert( res.data.message))
         window.location.reload();
       })
       

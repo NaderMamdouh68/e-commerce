@@ -8,35 +8,32 @@ import axios from 'axios';
 
 const ProductList = () => {
   const [data, setData] =useState([])
+  const {id} = useParams();
+
   useEffect(()=>{
-      axios.get('http://localhost:5000/products')
+    if(id){
+      axios.get('http://localhost:5000/products/productfilter/'+id)
       .then(res => setData(res.data))
       .catch(err => console.log(err))
+      }else{
+        axios.get('http://localhost:5000/products')
+        .then(res => setData(res.data))
+        .catch(err => console.log(err))
+      }
   },
- []
+ [id]
   )
 
   const handleDelete =(id) =>{
     alert('Are you sure you want to delete this product?')
-    axios.delete('http://localhost:5000/productsdelete/'+id)
+    axios.delete('http://localhost:5000/products/productsdelete/'+id)
     .then(res => {
-      window.location.reload();
+       window.location.reload();
     })
     .catch(err => console.log(err))
 }
-const {id} = useParams();
 
-const handleSearch = (id) => {
-  if(id){
-  axios.get('http://localhost:5000/products/productfilter/'+id)
-  .then(res => setData(res.data))
-  .catch(err => console.log(err))
-  }else{
-    axios.get('http://localhost:5000/products')
-    .then(res => setData(res.data))
-    .catch(err => console.log(err))
-  }
-}
+
 
 
   // const columns = [
@@ -90,11 +87,9 @@ const handleSearch = (id) => {
     <div className="userList">
       <h2>Product List</h2>
       <div>
-        <Link to="/dashboard/manageUsers/createProduct" className='edit'>Create +</Link>
+        <Link to="/dashboard/manageProducts/createProduct" className='edit'>Create +</Link>
       </div>
-      <div>
-        <input type="text" name="search" id="search" onChange={handleSearch(id)} hidden />
-      </div>
+      
       <div className="tableContainer">
       <table>
       <thead>
