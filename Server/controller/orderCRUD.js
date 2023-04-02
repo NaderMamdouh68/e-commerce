@@ -5,9 +5,9 @@ import db from "./DB_Con.js";
 
 
 const Order = express();
-Category.use(cors());
-Category.use(bodyParser.urlencoded({ extended: false }));
-Category.use(bodyParser.json());
+Order.use(cors());
+Order.use(bodyParser.urlencoded({ extended: false }));
+Order.use(bodyParser.json());
 
 
 

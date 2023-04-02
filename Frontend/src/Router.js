@@ -64,7 +64,7 @@ const Router = createBrowserRouter([
         element: <CreateCategory />,
       },
       {
-        path: "/dashboard/manageUsers/createProduct",
+        path: "/dashboard/manageProducts/createProduct",
         element: <CreateProduct />,
       },
       {

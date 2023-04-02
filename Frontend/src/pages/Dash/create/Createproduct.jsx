@@ -31,7 +31,7 @@ const CreateProduct = () => {
 
     return (
         <div className='wrapper'>
-            <h2>Create New Category</h2>
+            <h2>Create New Product</h2>
             <form onSubmit={handleSubmit}>
                 <>
                     <label htmlFor='product_name'>product_name</label>
