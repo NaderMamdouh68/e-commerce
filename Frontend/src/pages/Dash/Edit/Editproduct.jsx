@@ -61,7 +61,7 @@ const Editproduct = () => {
     <div>
       <div className='editu'>
         <div className='wrapper'>
-          <h2>update User</h2>
+          <h2 className='table-title'>update User</h2>
           <form onSubmit={handleUpdate}>
             <>
               <label htmlFor='username'>Name</label>

@@ -45,7 +45,7 @@ const Edituser = () => {
   return (
     <div className='editu'>
           <div className='wrapper'>
-        <h2>update User</h2>
+        <h2 className='table-title'>update User</h2>
         <form onSubmit={handleUpdate}>
             <>
             <label htmlFor='username'>Name</label>
@@ -83,7 +83,7 @@ const Edituser = () => {
               onChange={e=> setValues({...values, password: e.target.value})}
             />
             </>
-            <button>Edit</button>
+            <button className='edit'>Edit</button>
         </form>
     </div>
     </div>

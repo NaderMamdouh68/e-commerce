@@ -89,7 +89,7 @@ const handleSearch = (id) => {
   // ];
   return (
     <div className="userList">
-      <h2>Orders List</h2>
+      <h2 className='table-title'>Orders List</h2>
       <div>
         <input type="text" name="search" id="search" onChange={handleSearch(id)} hidden />
       </div>

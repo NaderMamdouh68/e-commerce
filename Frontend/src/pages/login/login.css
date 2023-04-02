@@ -1,7 +1,7 @@
 .login {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 80%;
+    grid-template-columns: 60%;
     place-content: center;
 
 }
@@ -12,6 +12,7 @@
     padding: 40px 30px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     perspective: 2700px;
+    
 }
 
 .container .cover {
@@ -47,7 +48,10 @@
     background-size:cover;
     
 }
+.login{
 
+    background-color: rgb(218, 236, 250);
+}
 
 
 .cover .back {
@@ -170,6 +174,9 @@
 .form-content .input-box input:focus,
 .form-content .input-box input:valid {
     border-color: var(--green);
+}
+.input-boxes{
+    width: 150%;
 }
 
 .form-content .input-box i {

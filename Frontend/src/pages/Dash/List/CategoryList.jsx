@@ -83,7 +83,7 @@ const CategoryList = () => {
   
   return (
     <div className="userList">
-      <h2>Category List</h2>
+      <h2 className='table-title'>Category List</h2>
       <div>
         <Link to="/dashboard/manageCategories/createCategory" className='edit'>Create +</Link>
       </div>
