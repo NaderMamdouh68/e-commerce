@@ -16,7 +16,7 @@ app.use(json());
 app.use('/users', Users);
 app.use('/products', Products);
 app.use('/categories', Category);
-app.use('/order', Order);
+app.use('/orders', Order);
 
 app.post('/login', (req, res) => {
     const user_name = req.body.user_name;

@@ -10,10 +10,11 @@ Order.use(bodyParser.urlencoded({ extended: false }));
 Order.use(bodyParser.json());
 
  Order.get('/', (req, res) => {
-    const sqlSelect = "SELECT * FROM order INNER JOIN product ON order.product_id  = product.product_id INNER JOIN user ON order.user_id = user.user_id ";
+    const sqlSelect = "SELECT order_id, user_id, product_id, order_date , product.product_name, user.user_name FROM order INNER JOIN USING (user_id) INNER JOIN product USING (product_id)";
     db.query(sqlSelect, (err, result) => {
         if (err) {
             console.log(err);
+            res.json(err);
         } else {
             res.json(result);
         }
