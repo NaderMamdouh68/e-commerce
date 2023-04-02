@@ -95,11 +95,12 @@ const handleDelete =(id) =>{
       </thead>
       <tbody>
         {data.map((user, index) =>{
+          // (user.status === 0) ? user.status = 'non-active' : user.status = 'active'
           return(
             <tr key={index}>
               <td>{user.user_id}</td>
               <td>{user.user_name}</td>
-              <td>{user.status}</td>
+              <td>{(user.status)? 'active': 'non-active' } </td>
               <td>{user.email}</td>
               <td>{user.phonenumber}</td>
               <td className='actions'>

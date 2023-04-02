@@ -4,6 +4,7 @@ import cors from 'cors';
 import Users from './controller/userCRUD.js';
 import Products from './controller/productCRUD.js';
 import Category from './controller/categoryCRUD.js';
+import Order from './controller/orderCRUD.js';
 import db from './controller/DB_Con.js';
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(json());
 app.use('/users', Users);
 app.use('/products', Products);
 app.use('/categories', Category);
+app.use('/order', Order);
 
 app.post('/login', (req, res) => {
     const user_name = req.body.user_name;
