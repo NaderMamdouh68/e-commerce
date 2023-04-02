@@ -91,9 +91,6 @@ const handleSearch = (id) => {
     <div className="userList">
       <h2>Orders List</h2>
       <div>
-        <Link to="/dashboard/manageUsers/createProduct" className='edit'>Create +</Link>
-      </div>
-      <div>
         <input type="text" name="search" id="search" onChange={handleSearch(id)} hidden />
       </div>
       <div className="tableContainer">
@@ -101,7 +98,6 @@ const handleSearch = (id) => {
       <thead>
         <tr>
           <th>ID</th>
-          <th>order_name</th>
           {/* <th>Image</th> */}
           <th>user_name</th>
           <th>product_name</th>
