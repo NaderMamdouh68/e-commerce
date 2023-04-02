@@ -1,5 +1,5 @@
 import './sidebar.css'
-import { AccountCircleOutlined, Category, Feedback, LineStyle, Mail, Storefront, Timeline } from '@mui/icons-material'
+import { AccountCircleOutlined, AddShoppingCart, Category, Feedback, LineStyle, Mail, Storefront, Timeline } from '@mui/icons-material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -45,6 +45,12 @@ const Sidebar = () => {
                 Categories
               </Link>
             </li>
+            <li className="sidebarListItem">
+              <Link to="/dashboard/manageOrders">
+                <AddShoppingCart className='sidebarIcon' />
+                orders
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -67,4 +73,12 @@ const Sidebar = () => {
   )
 }
 
+
+
+
+
 export default Sidebar
+
+
+
+

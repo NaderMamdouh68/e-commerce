@@ -17,6 +17,7 @@ import Login from "./pages/login/Login";
 import Editcategory from "./pages/Dash/Edit/Editcategory";
 import CreateCategory from "./pages/Dash/create/Createcategory";
 import CreateProduct from "./pages/Dash/create/Createproduct";
+import OrderList from "./pages/Dash/List/OrderList";
 
 const Router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const Router = createBrowserRouter([
       {
         path: "/dashboard/manageProducts",
         element: <ProductList />,
+      },
+      {
+        path: "/dashboard/manageOrders",
+        element: <OrderList />,
       },
       {
         path: "/dashboard/manageProducts/:id",
@@ -64,7 +69,7 @@ const Router = createBrowserRouter([
         element: <CreateCategory />,
       },
       {
-        path: "/dashboard/manageProducts/createProduct",
+        path: "/dashboard/manageUsers/createProduct",
         element: <CreateProduct />,
       },
       {
@@ -88,3 +93,4 @@ const Router = createBrowserRouter([
 ]);
 
 export default Router
+
