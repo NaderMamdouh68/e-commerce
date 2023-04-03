@@ -40,3 +40,8 @@ table{
     align-items: center;
     justify-content: center;
 }
+
+.product-img{
+    width: 40px;
+    height: 40px;
+}

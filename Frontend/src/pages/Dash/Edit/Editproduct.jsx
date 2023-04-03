@@ -20,6 +20,7 @@ const Editproduct = () => {
           price: res.data[0].price,
           description: res.data[0].description,
           category_name: res.data[0].category_name,
+          image: res.data[0].image,
 
         })
       })
@@ -32,7 +33,7 @@ const Editproduct = () => {
     price: '',
     description: '',
     category_name: '',
-
+    image:''
   })
 
   const [data, setData] = useState([])
@@ -61,7 +62,7 @@ const Editproduct = () => {
     <div>
       <div className='editu'>
         <div className='wrapper'>
-          <h2 className='table-title'>update User</h2>
+          <h2 className='table-title'>update Product</h2>
           <form onSubmit={handleUpdate}>
             <>
               <label htmlFor='username'>Name</label>
@@ -100,6 +101,16 @@ const Editproduct = () => {
                 value={values.description}
                 onChange={e => setValues({ ...values, description: e.target.value })}
               />
+            </>
+            <>
+              <label htmlFor='description'>Description</label>
+              <input
+                type="file"
+                name='image'
+                onChange={e => setValues({ ...values, image: e.target.value })}
+
+              />
+              <p>{values.image}</p>
             </>
 
             <button>Edit</button>

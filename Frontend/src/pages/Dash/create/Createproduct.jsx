@@ -62,6 +62,16 @@ const CreateProduct = () => {
                         onChange={e => setValues({ ...values, price: e.target.value })}
                     />
                 </>
+                <>
+              <label htmlFor='description'>Description</label>
+              <input
+                type="file"
+                name='image'
+                onChange={e => setValues({ ...values, image: e.target.value })}
+                
+              />
+              <p>{values.image}</p>
+            </>
                 <button>submit</button>
             </form>
         </div>

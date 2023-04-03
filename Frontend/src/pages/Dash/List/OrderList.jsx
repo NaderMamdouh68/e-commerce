@@ -98,7 +98,7 @@ const handleSearch = (id) => {
       <thead>
         <tr>
           <th>ID</th>
-          {/* <th>Image</th> */}
+          <th>Image</th>
           <th>user_name</th>
           <th>product_name</th>
           <th>date</th>
@@ -111,13 +111,13 @@ const handleSearch = (id) => {
             <tr key={index}>
               <td>{}</td>
               <td>{}</td>
-              {/* <td><img src={require('../../../../server/images/uploadProductImg/image_1680322113120.jpg')} alt="" srcset="" /></td>*/}
+              <td ><img className='product-img' src={require('../../../images/download.jpeg')} alt=""  /></td>
               <td>{}</td> 
               <td>{}</td>
               <td>{}</td>
               <td className='actions'>
-                <Link  to={`/dashboard/manageProducts/readp/${product.product_id}`} className='edit'>show</Link>
-                <Link  to={`/dashboard/manageProducts/editproduct/${product.product_id}`} className='edit'>Edit</Link>
+                <Link  to={`/dashboard/manageProducts/reado/${product.product_id}`} className='edit'>show</Link>
+                <Link  to={`/dashboard/manageorder/editorder/${product.product_id}`} className='edit'>Edit</Link>
                 <DeleteOutline onClick={() => handleDelete (product.product_id)} className='delete'/>
               </td>
             </tr>
