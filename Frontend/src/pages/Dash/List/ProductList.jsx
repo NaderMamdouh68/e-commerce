@@ -96,7 +96,7 @@ const ProductList = () => {
         <tr>
           <th>ID</th>
           <th>product_name</th>
-          {/* <th>Image</th> */}
+          <th>Image</th>
           <th>price</th>
           <th>description</th>
           <th>category_name</th>
@@ -109,7 +109,7 @@ const ProductList = () => {
             <tr key={index}>
               <td>{product.product_id}</td>
               <td>{product.product_name}</td>
-              {/* <td><img src={require('../../../../server/images/uploadProductImg/image_1680322113120.jpg')} alt="" srcset="" /></td>*/}
+              <td ><img className='product-img' src={require('../../../images/download.jpeg')} alt=""  /></td>
               <td>{product.price}</td> 
               <td>{product.description}</td>
               <td>{product.category_name}</td>

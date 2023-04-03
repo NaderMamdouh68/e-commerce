@@ -57,7 +57,7 @@ const Charts = () => {
   return (
     <div className='chart'>
       <h3 className="chartTitle">Sales</h3>
-      <ResponsiveContainer width="100%" aspect={4 / 2}>
+      <ResponsiveContainer width="90%" aspect={4 / 2}>
       <LineChart
           
           data={data}
@@ -73,8 +73,8 @@ const Charts = () => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="clothes" stroke="#8884d8" activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="watches" stroke="#82ca9d" />
+          <Line type="monotone" dataKey="clothes" stroke="#8884d8" activeDot={{ r: 8 }}  className='chart-info'/>
+          <Line type="monotone" dataKey="watches" stroke="#82ca9d"  className='chart-info'/>
         </LineChart>
       </ResponsiveContainer>
     </div>
