@@ -1,5 +1,7 @@
 .containerr{
     display: flex;
+    background: #191919;
+    color: white;
 }
 .otherpages{
     flex: 4;

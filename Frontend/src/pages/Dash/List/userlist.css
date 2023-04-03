@@ -11,13 +11,19 @@
 table{
     width: 100%;
     text-align: center;
+    /* border:1px solid #191919; */
+}
+th{
+    border-bottom:1px solid #fff;
+    border-radius: 10px;
+    margin-bottom: 5px;
 }
 .edit{
     width: fit-content;
-    border: 1px solid #3bb077;
+    border: 1px solid #d8802e;
     border-radius: 10px;
     padding: 5px 10px;
-    background-color: #3bb077;
+    background-color: #d8802e;
     color: white;
     cursor: pointer;
     margin-left: 5px;
@@ -25,7 +31,7 @@ table{
 }
 .edit:hover{
     width: fit-content;
-    border: 1px solid green;
+    border: 1px solid #191919;
     background-color: aliceblue;
     color: #3bb077;
     
