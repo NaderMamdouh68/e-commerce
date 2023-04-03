@@ -2,7 +2,7 @@ import React, { useEffect , useState} from 'react'
 import {Link} from 'react-router-dom'
 import './userlist.css'
 import {DeleteOutline} from '@mui/icons-material'
-import { DataGrid, renderActionsCell } from '@mui/x-data-grid';
+// eslint-disable-next-line no-unused-vars
 import Avatar from "@mui/material/Avatar";
 import axios from 'axios';
 
