@@ -11,28 +11,28 @@ Products.use(cors());
 Products.use(bodyParser.urlencoded({ extended: false }))
 Products.use(bodyParser.json());
 
-// const storage = multer.diskStorage({
-//     destination: './images/uploadProductImg',
-//     filename (req, file, cb) {
-//        return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
-//     }
-// });
+const storage = multer.diskStorage({
+    destination: '../../Frontend/src/images/uploadProductImg',
+    filename (req, file, cb) {
+       return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
+    }
+});
 
-// const upload = multer({
-//     storage: storage,
+const upload = multer({
+    storage: storage,
 
-//     fileFilter: (req, file, cb) => {
-//         const fileTypes = /jpeg|jpg|png|webp|gif/;
-//         const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
-//         const mimetype = fileTypes.test(file.mimetype);
+    fileFilter: (req, file, cb) => {
+        const fileTypes = /jpeg|jpg|png|webp|gif/;
+        const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+        const mimetype = fileTypes.test(file.mimetype);
 
-//         if (mimetype && extname) {
-//             return cb(null, true);
-//         } else {
-//             cb('Error: Images Only!');
-//         }
-//     }
-// }).single('image');
+        if (mimetype && extname) {
+            return cb(null, true);
+        } else {
+            cb('Error: Images Only!');
+        }
+    }
+}).single('image');
 
 
 
@@ -49,9 +49,9 @@ Products.get('/', (req, res) => {
     });
 });
 
-Products.post('/productcreate',(req, res) => {
-    const sqlInsert = "INSERT INTO product ( product_name, price, description, category_id)VALUES (?,?,?,?)";
-    const values = [req.body.product_name, req.body.price, req.body.description ,req.body.category_id];
+Products.post('/productcreate',upload,(req, res) => {
+    const sqlInsert = "INSERT INTO product ( product_name, price, description,image, category_id)VALUES (?,?,?,?,?)";
+    const values = [req.body.product_name, req.body.price, req.body.description, req.file.filename, req.body.category_id]
     db.query(sqlInsert, values, (err, result) => {
         if (err) {
             console.log(err);

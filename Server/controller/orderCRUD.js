@@ -10,7 +10,7 @@ Order.use(bodyParser.urlencoded({ extended: false }));
 Order.use(bodyParser.json());
 
  Order.get('/', (req, res) => {
-    const sqlSelect = "SELECT order_id ,user_name, product_name, order_date FROM orders";
+    const sqlSelect = "SELECT * FROM orders";
     db.query(sqlSelect, (err, result) => {
         if (err) {
             console.log(err);
@@ -22,8 +22,8 @@ Order.use(bodyParser.json());
 });
 
 Order.post('/ordercreate',(req, res) => {
-    const sqlInsert = "INSERT INTO orders ( user_id, user_name, product_id, product_name )VALUES (?,?,?,?)";
-    const values = [req.body.user_id,req.body.user_name, req.body.product_id, req.body.product_name ];
+    const sqlInsert = "INSERT INTO orders ( user_id, user_name, product_id, product_name ,quantity)VALUES (?,?,?,?,?)";
+    const values = [req.body.user_id,req.body.user_name, req.body.product_id, req.body.product_name ,req.body.quantity];
     db.query(sqlInsert, values, (err, result) => {
         if (err) {
             console.log(err);
@@ -33,8 +33,8 @@ Order.post('/ordercreate',(req, res) => {
     });
 });
 
-Order.get('/readorder/:id', (req, res) => {
-     const sqlRead = "SELECT order_id ,user_name, product_name, order_date FROM orders where order_id = ?";
+Order.get('/showorder/:id', (req, res) => {
+     const sqlRead = "SELECT order_id ,user_name, product_name, order_date ,quantity FROM orders where order_id = ?";
      const values = [req.params.id];
      db.query(sqlRead, values, (err, result) => {
          if (err) {
