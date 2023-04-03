@@ -114,8 +114,8 @@ const OrderList = () => {
               <td>{order.product_name}</td> 
               <td>{order.order_date}</td>
               <td className='actions'>
-                <Link  to={`/dashboard/manageProducts/reado/${order.order_id}`} className='edit'>show</Link>
-                <Link  to={`/dashboard/manageorder/editorder/${order.order_id}`} className='edit'>Edit</Link>
+                <Link  to={`/dashboard/manageProducts/reado/${order.order_id}`} className='editbtn'>show</Link>
+                <Link  to={`/dashboard/manageorder/editorder/${order.order_id}`} className='editbtn'>Edit</Link>
                 {/* <DeleteOutline onClick={() => handleDelete (order.order_id)} className='delete'/> */}
               </td>
             </tr>

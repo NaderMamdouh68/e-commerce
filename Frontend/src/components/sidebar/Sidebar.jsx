@@ -7,8 +7,10 @@ const Sidebar = () => {
   return (
     <div className='Sidebar'>
       <div className="sidebarWrapper">
+        <div className="logo">
+          <h1>Dashbord</h1>
+        </div>
         <div className="sidebarmenu">
-          <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem active">
               <Link to='/dashboard'>
@@ -28,25 +30,25 @@ const Sidebar = () => {
           <h3 className="sidebarTitle">Control</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem ">
-              <Link to="/dashboard/manageUsers">
+              <Link className={"sidebarlink"} to="/dashboard/manageUsers">
                 <AccountCircleOutlined className='sidebarIcon' />
                 users
               </Link>
             </li>
             <li className="sidebarListItem">
-              <Link to="/dashboard/manageProducts">
+              <Link className={"sidebarlink"} to="/dashboard/manageProducts">
                 <Storefront className='sidebarIcon' />
                 Products
               </Link>
             </li>
-            <li className="sidebarListItem">
-              <Link to="/dashboard/manageCategories">
+            <li className={"sidebarListItem"}>
+              <Link className={"sidebarlink"} to="/dashboard/manageCategories">
                 <Category className='sidebarIcon' />
                 Categories
               </Link>
             </li>
             <li className="sidebarListItem">
-              <Link to="/dashboard/manageOrders">
+              <Link className={"sidebarlink"} to="/dashboard/manageOrders">
                 <AddShoppingCart className='sidebarIcon' />
                 orders
               </Link>

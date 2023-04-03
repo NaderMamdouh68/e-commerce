@@ -1,7 +1,10 @@
 :root {
-  --green: #0B993E;
-  --blacke: #202a2e;
-  --light-color: #666;
+  --maincolor: #d8802e;
+  --secondcolor: #191919;
+  --hovercolor: #272727;
+  --whitecolor: #fff;
+  --headtablecoler: #262323;
+  --hovertablecolor: #584e4e;
 }
 
 

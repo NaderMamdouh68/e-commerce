@@ -7,10 +7,11 @@ import Home from './dashHome/Home'
 const dashboard = () => {
   return (
     <div>
-        <Topbar/>
+        {/* <Topbar/> */}
         <div className="containerr">
           <Sidebar/>
           <div className="otherpages">
+            <Topbar/>
           <Outlet/>
           </div>
         </div>

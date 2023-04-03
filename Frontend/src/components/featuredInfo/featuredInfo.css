@@ -9,6 +9,7 @@
     margin: 20px 10px;
     padding: 30px;
     border-radius: 10px;
+    background-color: var(--hovercolor);
     cursor: pointer;
     -webkit-box-shadow: 15px 22px 23px -11px rgba(0,0,0,0.14);
     -moz-box-shadow: 15px 22px 23px -11px rgba(0,0,0,0.14);

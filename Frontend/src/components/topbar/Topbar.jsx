@@ -5,11 +5,6 @@ const Topbar = () => {
   return (
     <div className='topbar'>
         <div className="topbarwrapper">
-            <div className="topleft">
-                <span className="logo">
-                    logo
-                </span>
-            </div>
             <div className="topright">
                 <div className="topbarIconContainer">
                     <NotificationsNone />

@@ -85,7 +85,7 @@ const CategoryList = () => {
     <div className="userList">
       <h2 className='table-title'>Category List</h2>
       <div>
-        <Link to="/dashboard/manageCategories/createCategory" className='edit'>Create +</Link>
+        <Link to="/dashboard/manageCategories/createCategory" className='editbtn crbtn'>Create +</Link>
       </div>
       <div className="tableContainer">
       <table>
@@ -107,9 +107,9 @@ const CategoryList = () => {
               <td>{category.title}</td>
               <td>{category.description}</td>
               <td className='actions'>
-                <Link  to={`/dashboard/manageCategories/readc/${category.category_id}`} className='edit'>show</Link>
-                <Link  to={`/dashboard/manageProducts/${category.category_id}`} className='edit'>show Product</Link>
-                <Link to={`/dashboard/manageCategories/editcategory/${category.category_id}`}  className='edit'>edit</Link >
+                <Link  to={`/dashboard/manageCategories/readc/${category.category_id}`} className='editbtn'>show</Link>
+                <Link  to={`/dashboard/manageProducts/${category.category_id}`} className='editbtn'>show Product</Link>
+                <Link to={`/dashboard/manageCategories/editcategory/${category.category_id}`}  className='editbtn'>edit</Link >
                 <DeleteOutline onClick={() => handleDelete (category.category_id)} className='delete'/>
               </td>
             </tr>

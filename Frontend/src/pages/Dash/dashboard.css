@@ -1,6 +1,6 @@
 .containerr{
     display: flex;
-    background: #191919;
+    background: var(--secondcolor);
     color: white;
 }
 .otherpages{

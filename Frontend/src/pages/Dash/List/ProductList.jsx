@@ -86,7 +86,7 @@ const imgname = 'download.jpeg'
     <div className="userList">
       <h2 className='table-title'>Product List</h2>
       <div>
-        <Link to="/dashboard/manageProducts/createProduct" className='edit'>Create +</Link>
+        <Link to="/dashboard/manageProducts/createProduct" className='editbtn crbtn'>Create +</Link>
       </div>
       
       <div className="tableContainer">
@@ -113,8 +113,8 @@ const imgname = 'download.jpeg'
               <td>{product.description}</td>
               <td>{product.category_name}</td>
               <td className='actions'>
-                <Link  to={`/dashboard/manageProducts/readp/${product.product_id}`} className='edit'>show</Link>
-                <Link  to={`/dashboard/manageProducts/editproduct/${product.product_id}`} className='edit'>Edit</Link>
+                <Link  to={`/dashboard/manageProducts/readp/${product.product_id}`} className='editbtn'>show</Link>
+                <Link  to={`/dashboard/manageProducts/editproduct/${product.product_id}`} className='editbtn'>Edit</Link>
                 <DeleteOutline onClick={() => handleDelete (product.product_id)} className='delete'/>
               </td>
             </tr>
