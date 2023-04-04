@@ -1,10 +1,11 @@
 import React from 'react'
+import './dashboard.css'
 import { Outlet } from 'react-router-dom'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Topbar from '../../components/topbar/Topbar'
 import Home from './dashHome/Home'
-import './dashboard.css'
-const Dashboard = () => {
+
+const dashboard = () => {
   return (
     <div className='Dashboard'>
       <div className='slidec'>
@@ -18,4 +19,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default dashboard
