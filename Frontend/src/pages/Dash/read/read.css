@@ -1,17 +1,5 @@
-.readuser{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-.card{
-    margin: auto;    
-    height: 80vh;
-    width: 70%;
-    border-radius: 15px;
-    
-    display: flex;
-    flex-direction: column;
-}
-span{
-    font-size: 3rem;
+.datacontaainer{
+    color: white;
+    margin: 5px 0;
+    font-size: 1.2rem;
 }

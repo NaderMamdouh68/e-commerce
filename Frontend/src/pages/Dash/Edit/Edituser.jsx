@@ -16,6 +16,7 @@ const Edituser = () => {
           user_name: res.data[0].user_name,
           email: res.data[0].email,
           phonenumber: res.data[0].phonenumber,
+          status: res.data[0].status,
           password: res.data[0].password,
         })
     })
@@ -28,6 +29,7 @@ const Edituser = () => {
     user_name: '',
     email: '',
     password: '',
+    status: '',
     phonenumber: '',
   })
 
@@ -41,11 +43,17 @@ const Edituser = () => {
     )
     .catch (err => console.log(err))
   }
+  const imgname = 'download.jpeg'
 
   return (
     <div className='editu'>
         <h2 className='table-title'>update User</h2>
         <form onSubmit={handleUpdate}>
+          <div className="image">
+            <img className='profile-img' src={require(`../../../images/${imgname}`)}></img>
+            <span className={values.status ? 'status-green' : 'status-red'}></span>
+          </div>
+        
             <div className="inputcontainer">
             <label htmlFor='username'>Name :</label>
             <input
