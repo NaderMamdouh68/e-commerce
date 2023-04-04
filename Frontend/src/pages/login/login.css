@@ -3,16 +3,18 @@
     display: grid;
     grid-template-columns: 60%;
     place-content: center;
+    background-image: url(../../images/im1.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
 
 }
 
 .container {
     position: relative;
     background: #fff;
-    padding: 40px 30px;
+    padding: 40px 20px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    perspective: 2700px;
-    
+    perspective: 2700px;    
 }
 
 .container .cover {
@@ -43,7 +45,7 @@
 .front,
 .back
 {
-    background-image: url(../../images/images.jpg);
+    background-image: url(../../images/im1.jpg);
     background-repeat: no-repeat;
     background-size:cover;
     
@@ -65,7 +67,7 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    background: var(--blacke);
+    background: var(--secondcolor);
     opacity: 0.5;
     z-index: 12;
 }
@@ -117,12 +119,12 @@
 .container .form-content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .form-content .login-form,
 .form-content .signup-form {
-    width: calc(100% / 2 - 25px);
+    width: calc(100% / 2 - 150px);
 }
 
 .forms .form-content .title {
@@ -139,7 +141,7 @@
     bottom: 0;
     height: 3px;
     width: 25px;
-    background: var(--green);
+    background: var(--maincolor);
 }
 
 .forms .signup-form .title:before {
@@ -147,16 +149,16 @@
 }
 
 .forms .form-content .input-boxes {
-    margin-top: 30px;
+    margin: 30px  50px;
 }
 
 .forms .form-content .input-box {
     display: flex;
     align-items: center;
+    justify-content: end;
     height: 50px;
     width: 100%;
     margin: 10px 0;
-    position: relative;
 }
 
 .form-content .input-box input {
@@ -169,11 +171,13 @@
     font-weight: 500;
     border-bottom: 2px solid rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
+    
 }
 
 .form-content .input-box input:focus,
 .form-content .input-box input:valid {
-    border-color: var(--green);
+    border-color: var(--maincolor);
+    
 }
 .input-boxes{
     width: 150%;
@@ -181,7 +185,7 @@
 
 .form-content .input-box i {
     position: absolute;
-    color: var(--green);
+    color: var(--maincolor);
     font-size: 17px;
 }
 
@@ -193,7 +197,7 @@
 
 .forms .form-content .text a {
     text-decoration: none;
-    color: var(--green);
+    color: var(--maincolor);
 }
 
 .forms .form-content .text a:hover {
@@ -210,7 +214,7 @@
     height: 50px;
     border: none;
     color: #fff;
-    background: var(--green);
+    background: var(--maincolor);
     border-radius: 6px;
     padding: 0;
     cursor: pointer;
@@ -218,11 +222,11 @@
 }
 
  .button:hover , .button1:hover{
-    background: var(--blacke);
+    background: var(--hovercolor);
 }
 
 .forms .form-content label {
-    color: var(--green);
+    color: var(--maincolor);
     cursor: pointer;
 }
 
@@ -240,7 +244,7 @@
     display: none;
 }
 .button:hover{
-    color: var(--green);
+    color: var(--hovercolor);
 }
 
 @media (max-width: 730px) {

@@ -69,21 +69,21 @@ function Login_Signup() {
         <div className="cover">
           <div className="front">
             <div className="text">
-              <span className="text-1">I S L A M E Y A T <br /> Islam is peace</span>
+              <span className="text-1">B L A C K S H O P P I N G <br /> E-Commerce</span>
               <span className="text-2">Let's get connected</span>
             </div>
           </div>
 
           <div className="back">
             <div className="text">
-              <span className="text-1">ISLAMEYAT <br /> Islam is peace</span>
+              <span className="text-1">B L A C K S H O P P I N G <br /> E-Commerce </span>
               <span className="text-2">Let's get connected</span>
             </div>
           </div>
         </div>
         <div className="forms">
           <div className="form-content">
-            <div className="login-form form">
+            <div className="login-form">
               <div className="title">Login</div>
               <form action="" >
                 <div className="input-boxes">

@@ -10,7 +10,7 @@ import db from './controller/DB_Con.js';
 const app = express();
 app.use(cors());
 app.use(json());
-
+app.use("/images", express.static("images"));
 
 
 app.use('/users', Users);
