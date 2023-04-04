@@ -1,11 +1,9 @@
 .featured{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .featuredItem{
-    flex: 1;
     margin: 20px 10px;
     padding: 30px;
     border-radius: 10px;
@@ -47,4 +45,10 @@
 .featuredsub{
     font-size: 1rem;
     color: gray;
+}
+
+@media only screen and (max-width: 800px) {
+    .featured{
+        grid-template-columns: 1fr;        
+    }
 }

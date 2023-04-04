@@ -6,7 +6,6 @@ const Topbar = () => {
 
   return (
     <div className='topbar'>
-        <div className="topbarwrapper">
             <div className="topright">
                 <div className="topbarIconContainer">
                     <NotificationsNone />
@@ -17,7 +16,6 @@ const Topbar = () => {
                 </div>
                 <img  className='avatar' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJbM1sKRHlT8AroSFkNAmAT4fCrvcBOqCUXX_e1YF45ZjkBnqYDKz7AmqZblmAlZALabY&usqp=CAU" alt="" />
             </div>
-        </div>
     </div>
   )
 }

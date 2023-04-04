@@ -1,20 +1,14 @@
-
-.userList{
-    flex: 4;
-}
-.tableContainer{
-    display: flex;
-    justify-content: center;
+.userlist{
+    min-height: 100vh;
 }
 .table-title{
     margin-bottom: 20px;
 }
 table{
-    border-collapse: collapse;
     width: 100%;
+    border-collapse: collapse;
     text-align: center;
     border: 0 1px #ddd;
-    /* border:1px solid #191919; */
 }
 th{
     background-color: var(--headtablecoler);
@@ -23,6 +17,7 @@ th , td{
     padding: 8px;
 }
 tr:nth-child(even){
+    width: 100%;
     background-color: var(--headtablecoler);
 }
 tr:hover {
@@ -66,4 +61,13 @@ tr:hover {
 .product-img{
     width: 40px;
     height: 40px;
+}
+@media screen and (max-width: 767px){
+    table {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-y: hidden;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        border: 1px solid #ddd;
+    }
 }

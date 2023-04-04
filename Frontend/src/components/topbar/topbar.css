@@ -1,20 +1,12 @@
 .topbar{
-    width: 100%;
+    padding: 0 10px;
     height: 50px;
-    background: var(--secondcolor);
-    z-index: 999;
-}
-
-.topbarwrapper{
-    width: 100%;
-    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: end;
+    background: var(--secondcolor);
+    
 }
-
-
-
 .topright{
     display: flex;
     align-items: center;
