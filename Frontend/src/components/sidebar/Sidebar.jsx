@@ -30,8 +30,10 @@ const Sidebar = () => {
             </div>
             <div onClick={() => setActive('#Analytics')}className={active === '#Analytics' ? 'active' : ''}>
             <li className="sidebarListItem">
-              <Timeline className='sidebarIcon' />
-              Analytics
+              <Link to="/dashboard/analytics" className={"sidebarlink"}>
+                <Timeline className='sidebarIcon' />
+                Analytics
+              </Link>  
             </li>
             </div>
           </ul>

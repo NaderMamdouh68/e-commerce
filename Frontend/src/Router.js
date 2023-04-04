@@ -19,6 +19,7 @@ import CreateCategory from "./pages/Dash/create/Createcategory";
 import CreateProduct from "./pages/Dash/create/Createproduct";
 import OrderList from "./pages/Dash/List/OrderList";
 import Editorder from "./pages/Dash/Edit/Editorder";
+import Analytics from "./pages/Dash/analysis/Analytics";
 
 const Router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const Router = createBrowserRouter([
       {
         path: "/dashboard/manageUsers",
         element: <UesrList />,
+      },
+      {
+        path: "/dashboard/analytics",
+        element: <Analytics />,
       },
       {
         path: "/dashboard/manageProducts",
