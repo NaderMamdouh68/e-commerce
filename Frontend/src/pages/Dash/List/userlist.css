@@ -1,5 +1,11 @@
 .userlist{
     min-height: 100vh;
+    width: 100%;
+    
+}
+.tablecontainer{
+    width: 100%;
+  overflow-x: auto; 
 }
 .table-title{
     margin-bottom: 20px;
@@ -15,9 +21,9 @@ th{
     color: white;}
 th , td{
     padding: 8px;
+    color: white;
 }
 tr:nth-child(even){
-    width: 100%;
     background-color: var(--headtablecoler);
 }
 tr:hover {
@@ -61,13 +67,4 @@ tr:hover {
 .product-img{
     width: 40px;
     height: 40px;
-}
-@media screen and (max-width: 767px){
-    table {
-        width: 100%;
-        margin-bottom: 15px;
-        overflow-y: hidden;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
-        border: 1px solid #ddd;
-    }
 }
