@@ -44,28 +44,28 @@ const Edituser = () => {
 
   return (
     <div className='editu'>
-          <div className='wrapper'>
         <h2 className='table-title'>update User</h2>
         <form onSubmit={handleUpdate}>
-            <>
-            <label htmlFor='username'>Name</label>
+            <div className="inputcontainer">
+            <label htmlFor='username'>Name :</label>
             <input
               type="text"
               name='user_name'
               value={values.user_name}
               onChange={e=> setValues({...values, user_name: e.target.value})}
             />
-            </>
-            <>
-            <label htmlFor='email'>E-mail</label>
-            <input
-              type="email"
-              name='email'
-              value={values.email}
-              onChange={e=> setValues({...values, email: e.target.value})}
-            />
-            </>
-            <>
+            </div>
+            <div className="inputcontainer">
+              <label htmlFor='email'>E-mail</label>
+              <input
+                type="email"
+                name='email'
+                value={values.email}
+                onChange={e=> setValues({...values, email: e.target.value})}
+              />
+            </div>
+            
+            <div className="inputcontainer">
             <label htmlFor='phone'>Phone</label>
             <input
               type="text"
@@ -73,19 +73,21 @@ const Edituser = () => {
               value={values.phonenumber}
               onChange={e=> setValues({...values, phonenumber: e.target.value})}
             />
-            </>
-            <>
-            <label htmlFor='password'>Password</label>
-            <input
-              type="password"
-              name='password'
-              value={values.password}
-              onChange={e=> setValues({...values, password: e.target.value})}
-            />
-            </>
-            <button className='edit'>Edit</button>
+            </div>
+             
+            <div className="inputcontainer">
+              <label htmlFor='password'>Password</label>
+              <input
+                type="password"
+                name='password'
+                value={values.password}
+                onChange={e=> setValues({...values, password: e.target.value})}
+              />
+            </div>
+        
+            <button className='editbtn'>Edit</button>
         </form>
-    </div>
+
     </div>
   )
 }

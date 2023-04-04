@@ -33,17 +33,17 @@ const Editproduct = () => {
     price: '',
     description: '',
     category_name: '',
-    image:''
+    image: ''
   })
 
   const [data, setData] = useState([])
-    useEffect(() => {
-        axios.get('http://localhost:5000/categories')
-            .then(res => setData(res.data))
-            .catch(err => console.log(err))
-    },
-        []
-    )
+  useEffect(() => {
+    axios.get('http://localhost:5000/categories')
+      .then(res => setData(res.data))
+      .catch(err => console.log(err))
+  },
+    []
+  )
 
   const handleUpdate = (event) => {
     event.preventDefault()
@@ -61,19 +61,21 @@ const Editproduct = () => {
   return (
     <div>
       <div className='editu'>
-        <div className='wrapper'>
+        
           <h2 className='table-title'>update Product</h2>
           <form onSubmit={handleUpdate}>
-            <>
-              <label htmlFor='username'>Name</label>
+            <div className='inputcontainer'>
+                <label htmlFor='username'>Name</label>
               <input
                 type="text"
                 name='product_name'
                 value={values.product_name}
                 onChange={e => setValues({ ...values, product_name: e.target.value })}
               />
-            </>
-            <>
+            </div>
+            
+
+            <div className='inputcontainer'>
               <label htmlFor='category_id'>category_name</label>
               <select name="category_id" id="category_id" onChange={e => setValues({ ...values, category_id: e.target.value })}>
                 {data.map((category, index) => {
@@ -83,8 +85,9 @@ const Editproduct = () => {
                 }
                 )}
               </select>
-            </>
-            <>
+            </div>
+
+            <div className='inputcontainer'>
               <label htmlFor='price'>Price</label>
               <input
                 type="text"
@@ -92,8 +95,10 @@ const Editproduct = () => {
                 value={values.price}
                 onChange={e => setValues({ ...values, price: e.target.value })}
               />
-            </>
-            <>
+            </div>
+
+
+            <div className='inputcontainer'>
               <label htmlFor='description'>Description</label>
               <input
                 type="text"
@@ -101,8 +106,10 @@ const Editproduct = () => {
                 value={values.description}
                 onChange={e => setValues({ ...values, description: e.target.value })}
               />
-            </>
-            <>
+            </div>
+
+
+            <div className='inputcontainer'>
               <label htmlFor='description'>Description</label>
               <input
                 type="file"
@@ -111,12 +118,14 @@ const Editproduct = () => {
 
               />
               <p>{values.image}</p>
-            </>
+            </div>
 
-            <button>Edit</button>
+
+
+            <button className='editbtn'>Edit</button>
           </form>
         </div>
-      </div>
+  
     </div>
   )
 }

@@ -114,7 +114,7 @@ const Editorder = () => {
               <p>{values.image}</p>
             </>
 
-            <button>Edit</button>
+            <button className='editbtn'>Edit</button>
           </form>
         </div>
       </div>

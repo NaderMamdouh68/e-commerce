@@ -78,7 +78,7 @@ const Editcategory = () => {
               onChange={e=> setValues({...values, description: e.target.value})}
             />
             </div>
-            <button className='edit'>Edit</button>
+            <button className='editbtn'>Edit</button>
         </form>
     </div>
     </div>

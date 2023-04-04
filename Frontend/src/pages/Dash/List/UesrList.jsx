@@ -79,6 +79,7 @@ const handleDelete =(id) =>{
     <div className="userlist">
       <h2 className='table-title'>Uesr List</h2>
       
+      <div className="tablecontainer">
       <table>
       <thead>
         <tr>
@@ -110,6 +111,7 @@ const handleDelete =(id) =>{
         )}
       </tbody>
     </table>
+      </div>
       
 
 

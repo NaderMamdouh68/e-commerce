@@ -1,27 +1,46 @@
+.editu{
+    margin-top: 10px;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    padding:20px 0;
+    border: 1px solid var(--maincolor);
+}
 form{
     display: flex;
     gap: 2rem;
-}
-.feild{
-    display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.edit{
-    width: fit-content;
-    border: 1px solid #3bb077;
-    border-radius: 10px;
-    padding: 5px 10px;
-    background-color: #3bb077;
-    color: white;
-    cursor: pointer;
-    margin-left: 5px;
-    transition: 320ms ease;
+h2{
+    color: var(--whitecolor);
 }
-.edit:hover{
-    width: fit-content;
-    border: 1px solid green;
-    background-color: aliceblue;
-    color: #3bb077;
-    
+ 
+.inputcontainer{
+    width: 100%;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+input{
+    background: transparent;
+    border: none;
+    text-align: center;
+    color: var(--whitecolor);
+    height: 1.5rem;
+    font-size: 1.1rem;
+}
+
+
+.inputcontainer input:focus{
+    background-color: var(--whitecolor);
+    border: none;
+    color: black;
+}
+.inputcontainer label{
+    color: var(--whitecolor);
+    margin-right: .8rem;
 }
