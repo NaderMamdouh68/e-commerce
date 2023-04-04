@@ -9,7 +9,6 @@ const Home = () => {
         <FeaturedInfo/>
         <Charts/>
         <div className="homeWidgets">
-          
         </div>
     </div>
   )

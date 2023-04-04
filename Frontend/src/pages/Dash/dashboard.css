@@ -1,8 +1,30 @@
-.containerr{
-    display: flex;
-    background: var(--secondcolor);
-    color: white;
+.Dashboard{
+    background-color: var(--secondcolor);
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-areas: 'left  center center center center center center center center';
+}
+
+.slidec{
+    grid-area: left;
 }
 .otherpages{
-    flex: 4;
+    grid-area: center;
+    
+}
+
+
+@media only screen and (max-width: 600px) {
+    .Dashboard{
+        display: grid;
+        grid-template-areas: 
+        'left'
+        'center'
+
+        ;
+    }
+    .slidec{
+        display: none;
+    }
 }

@@ -5,6 +5,7 @@ import './featuredInfo.css'
 const FeaturedInfo = () => {
   return (
     <div className='featured'>
+
         <div className="featuredItem">
             <span className="featuredTitle">Revenue</span>
             <div className="featureMoney">

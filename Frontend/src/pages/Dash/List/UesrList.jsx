@@ -76,9 +76,9 @@ const handleDelete =(id) =>{
   // ];
   
   return (
-    <div className="userList">
+    <div className="userlist">
       <h2 className='table-title'>Uesr List</h2>
-      <div className="tableContainer">
+      
       <table>
       <thead>
         <tr>
@@ -92,7 +92,6 @@ const handleDelete =(id) =>{
       </thead>
       <tbody>
         {data.map((user, index) =>{
-          // (user.status === 0) ? user.status = 'non-active' : user.status = 'active'
           return(
             <tr key={index}>
               <td>{user.user_id}</td>
@@ -111,7 +110,7 @@ const handleDelete =(id) =>{
         )}
       </tbody>
     </table>
-      </div>
+      
 
 
     {/* <DataGrid rows={data[]} columns={columns} pageSize={20} disableRowSelectionOnClick rowsPerPageOptions={[5]} checkboxSelection /> */}
