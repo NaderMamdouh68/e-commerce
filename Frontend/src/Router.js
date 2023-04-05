@@ -20,6 +20,7 @@ import CreateProduct from "./pages/Dash/create/Createproduct";
 import OrderList from "./pages/Dash/List/OrderList";
 import Editorder from "./pages/Dash/Edit/Editorder";
 import Analytics from "./pages/Dash/analysis/Analytics";
+import Readorder from "./pages/Dash/read/Readorder";
 
 const Router = createBrowserRouter([
   {
@@ -93,6 +94,10 @@ const Router = createBrowserRouter([
       {
         path: "/dashboard/manageCategories/readc/:id",
         element: <Readcategory />,
+      },
+      {
+        path: "/dashboard/manageorder/reado/:id",
+        element: <Readorder />,
       },
     ]
   },

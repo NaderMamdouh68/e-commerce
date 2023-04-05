@@ -18,8 +18,8 @@ const Readuser = () => {
    }, [id]) 
    const imgname = 'download.jpeg'
   return (
-    <div className='readuser'>
-        <h2>{user.user_name}</h2>
+    <div className='editu'>
+        <h2 className='table-title'>{user.user_name}</h2>
         <div className="">
               <div className="image">
                 <img className='profile-img' src={require(`../../../images/${imgname}`)}></img>

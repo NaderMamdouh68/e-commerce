@@ -17,12 +17,12 @@ const Readcategory = () => {
     
    }, [id]) 
   return (
-    <div className='readuser'>
-        <h2>{category.category_name}</h2>
+    <div className='editu'>
+        <h2 className='table-title'>{category.category_name}</h2>
         <div className="card">
-            <span>{category.category_name}</span>
-            <span>{category.title}</span>
-            <span>{category.description}</span>
+            <div className='datacontaainer'>Name : {category.category_name}</div>
+            <div className='datacontaainer'>Title : {category.title}</div>
+            <div className='datacontaainer'>Description : {category.description}</div>
         </div>
     </div>
   )
