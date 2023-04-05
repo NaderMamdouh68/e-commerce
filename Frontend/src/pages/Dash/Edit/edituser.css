@@ -70,21 +70,34 @@ h2{
 }
 
 input{
+    padding: 5px 0;
     background: transparent;
     border: none;
     text-align: center;
     color: var(--whitecolor);
     height: 1.5rem;
     font-size: 1.1rem;
+    
+}
+input[type=text] {
+    border-bottom: 1px solid var(--maincolor);
 }
 
 
 .inputcontainer input:focus{
-    background-color: var(--whitecolor);
+    /* background-color: var(--whitecolor); */
     border: none;
-    color: black;
+    /* color: black; */
+    outline: none;
+    border-bottom: 1px solid var(--maincolor);
+
 }
 .inputcontainer label{
     color: var(--whitecolor);
     margin-right: .8rem;
+}
+
+.editu .editbtn,
+.editu .editbtn:hover{
+    width: 80%;
 }
