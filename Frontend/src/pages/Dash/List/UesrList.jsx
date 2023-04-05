@@ -85,6 +85,7 @@ const handleDelete =(id) =>{
         <tr>
           <th>ID</th>
           <th>Name</th>
+          <th>image</th>
           <th>Status</th>
           <th>email</th>
           <th>phone</th>
@@ -97,6 +98,7 @@ const handleDelete =(id) =>{
             <tr key={index}>
               <td>{user.user_id}</td>
               <td>{user.user_name}</td>
+              <td ><img className='product-img' src={(`http://localhost:5000/images/${user.userimage}`)} alt=""  /></td>
               <td>{(user.status)? 'active': 'non-active' } </td>
               <td>{user.email}</td>
               <td>{user.phonenumber}</td>

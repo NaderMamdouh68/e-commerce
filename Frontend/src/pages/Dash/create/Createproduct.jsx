@@ -30,16 +30,16 @@ const CreateProduct = () => {
     }
 
     return (
-        <div className='wrapper'>
-            <h2>Create New Product</h2>
+        <div className='editu'>
+            <h2 className='table-title'>Create New Product</h2>
             <form onSubmit={handleSubmit}>
-                <>
+            <div className="inputcontainer">
                     <label htmlFor='product_name'>product_name</label>
                     <input type="text" name='product_name'
                         onChange={e => setValues({ ...values, product_name: e.target.value })}
                     />
-                </>
-                <>
+                </div>
+                <div className="inputcontainer">
                     <label htmlFor='category_id'>category_name</label>
                     <select name="category_id" id="category_id" onChange={e => setValues({ ...values, category_id: e.target.value })}>
                         {data.map((category, index) => {
@@ -49,20 +49,20 @@ const CreateProduct = () => {
                         }
                         )}
                     </select>
-                </>
-                <>
+                    </div>
+                <div className="inputcontainer">
                     <label htmlFor='description'>description</label>
                     <input type="text" name='description'
                         onChange={e => setValues({ ...values, description: e.target.value })}
                     />
-                </>
-                <>
+                </div>
+                <div className="inputcontainer">
                     <label htmlFor='price'>price</label>
                     <input type="text" name='price'
                         onChange={e => setValues({ ...values, price: e.target.value })}
                     />
-                </>
-                <>
+                </div>
+                <div className="inputcontainer">
               <label htmlFor='description'>Description</label>
               <input
                 type="file"
@@ -70,9 +70,9 @@ const CreateProduct = () => {
                 onChange={e => setValues({ ...values, image: e.target.value })}
                 
               />
-              <p>{values.image}</p>
-            </>
-                <button>submit</button>
+              {/* <p>{values.image}</p> */}
+              </div>
+                <button className='editbtn'>submit</button>
             </form>
         </div>
     )

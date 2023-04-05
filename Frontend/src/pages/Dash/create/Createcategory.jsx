@@ -21,28 +21,28 @@ const CreateCategory = () => {
     }
 
   return (
-    <div className='wrapper'>
-        <h2>Create New Category</h2>
+    <div className='editu'>
+        <h2 className='table-title'>Create New Category</h2>
         <form onSubmit={handleSubmit}>
-            <>
+            <div className="inputcontainer">
             <label htmlFor='category_name'>category_name</label>
             <input type="text" name='category_name'
                 onChange={e=> setValues({...values, category_name: e.target.value})}
             />
-            </>
-            <>
+            </div>
+            <div className="inputcontainer">
             <label htmlFor='title'>title</label>
             <input type="text" name='title'
                 onChange={e=> setValues({...values, title: e.target.value})}
             />
-            </>
-            <>
+            </div>
+            <div className="inputcontainer">
             <label htmlFor='description'>description</label>
             <input type="text" name='description'
                 onChange={e=> setValues({...values, description: e.target.value})}
             />
-            </>
-            <button>submit</button>
+            </div>
+            <button className='editbtn'>submit</button>
         </form>
     </div>
   )
