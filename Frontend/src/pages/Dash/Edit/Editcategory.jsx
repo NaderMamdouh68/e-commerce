@@ -48,10 +48,10 @@ const Editcategory = () => {
   return (
     <div>
           <div className='editu'>
-          <div className='wrapper'>
+          
         <h2 className='table-title'>update Category</h2>
         <form onSubmit={handleUpdate}>
-            <div className='feild'>
+            <div className='inputcontainer'>
             <label htmlFor='category_name'>category_name</label>
             <input
               type="text"
@@ -60,7 +60,7 @@ const Editcategory = () => {
               onChange={e=> setValues({...values, category_name: e.target.value})}
             />
             </div>
-            <div className='feild'>
+            <div className='inputcontainer'>
             <label htmlFor='title'>Title</label>
             <input
               type="text"
@@ -69,7 +69,7 @@ const Editcategory = () => {
               onChange={e=> setValues({...values, title: e.target.value})}
             />
             </div>
-            <div className='feild'>
+            <div className='inputcontainer'>
             <label htmlFor='description'>Description</label>
             <input
               type="text"
@@ -80,7 +80,6 @@ const Editcategory = () => {
             </div>
             <button className='editbtn'>Edit</button>
         </form>
-    </div>
     </div>
     </div>
   )

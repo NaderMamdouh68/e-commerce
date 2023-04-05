@@ -17,13 +17,13 @@ const Readproduct = () => {
     
    }, [id]) 
   return (
-    <div className='readuser'>
-        <h2>{product.product_name}</h2>
+    <div className='editu'>
+        <h2 className='table-title'>{product.product_name}</h2>
         <div className="card">
-            <span>{product.product_name}</span>
-            <span>{product.description}</span>
-            <span>{product.price}</span>
-            <span>{product.category_name}</span>
+            <div className='datacontaainer'>Name : {product.product_name}</div>
+            <div className='datacontaainer'>Desciption : {product.description}</div>
+            <div className='datacontaainer'>Price : {product.price}</div>
+            <div className='datacontaainer'>Category : {product.category_name}</div>
         </div>
     </div>
   )
