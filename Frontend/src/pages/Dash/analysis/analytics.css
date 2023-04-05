@@ -1,0 +1,16 @@
+.num{
+    display: block;
+    color: var(--whitecolor);
+    font-size: 2rem;
+}
+.analytics .featuredItem{
+    text-align: center;
+    color: gray;
+}
+.analytics .featured{
+    margin-bottom: 20px;
+}
+.info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

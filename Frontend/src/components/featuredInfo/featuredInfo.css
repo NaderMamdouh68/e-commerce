@@ -5,7 +5,7 @@
 
 .featuredItem{
     margin: 20px 10px;
-    padding: 30px;
+    padding: 15px;
     border-radius: 10px;
     background-color: var(--hovercolor);
     cursor: pointer;
