@@ -16,15 +16,15 @@ const Readuser = () => {
     .catch(err => console.log(err))
     
    }, [id]) 
-   const imgname = 'download.jpeg'
   return (
     <div className='editu'>
         <h2 className='table-title'>{user.user_name}</h2>
         <div className="">
               <div className="image">
-                <img className='profile-img' src={require(`../../../images/${imgname}`)}></img>
+                <img className='profile-img' src={(`http://localhost:5000/images/userImg/${user.user_image}`)} alt=""></img>
+                <span className={user.status ? 'status-green' : 'status-red'}></span>
               </div>
-              <div className='datacontaainer'>ID : {user.user_id}</div>
+              <div className='datacontaainer'>id : {user.user_id}</div>
               <div className='datacontaainer'>Name : {user.user_name}</div>
               {/* <div >{user.status}</div> */}
               <div className='datacontaainer'>E-mail : {user.email}</div>

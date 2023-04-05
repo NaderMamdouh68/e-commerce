@@ -12,31 +12,34 @@ const CreateProduct = () => {
     }, []
     )
 
-    const [values, setValues] = useState({
-        product_name: "",
-        category_id: "",
-        price: "",
-        description: "",
-        image: ""
-    })
+    // const [values, setValues] = useState({
+    //     product_name: "",
+    //     category_id: "",
+    //     price: "",
+    //     description: "",
+    //     image: ""
+    // })
+    const [product_name, setProduct_name] = useState('');
+    const [category_id, setCategory_id] = useState('');
+    const [price, setPrice] = useState('');
+    const [description, setDescription] = useState('');
+    const [file, setFile] = useState('');
     const nvigate = useNavigate();
     const handleSubmit = (e) => {
-        // const formData = new FormData();
-        // formData.append('product_name', values.product_name);
-        // formData.append('category_id', values.category_id);
-        // formData.append('price', values.price);
-        // formData.append('description', values.description);
-        // formData.append('image', values.image);
-        e.preventDefault();
-        axios.post('http://localhost:5000/products/productcreate', values)
+        const formData = new FormData();
+        formData.append('product_name', product_name);
+        formData.append('category_id', category_id);
+        formData.append('price', price);
+        formData.append('description', description);
+        formData.append('image', file);
+        
+        axios.post('http://localhost:5000/products/productcreate', formData)
             .then(res => {
                 console.log(res.data);
-                console.log(res);
-                nvigate('/dashboard/manageproducts')
+                nvigate('/dashboard/manageProducts')
             })
             .catch(err => {
                 console.log(err)
-                console.log(err.response);
             })
     }
 
@@ -47,12 +50,12 @@ const CreateProduct = () => {
                 <div className="inputcontainer">
                     <label htmlFor='product_name'>product_name</label>
                     <input type="text" name='product_name'
-                        onChange={e => setValues({ ...values, product_name: e.target.value })}
+                        onChange={e => setProduct_name(e.target.value)}
                     />
                 </div>
                 <div className="inputcontainer">
                     <label htmlFor='category_id'>category_name</label>
-                    <select name="category_id" id="category_id" onChange={e => setValues({ ...values, category_id: e.target.value })}>
+                    <select name="category_id" id="category_id" onClick={e => setCategory_id(e.target.value)}>
                         {data.map((category, index) => {
                             return (
                                 <option key={index} value={category.category_id}>{category.category_name}</option>
@@ -64,13 +67,13 @@ const CreateProduct = () => {
                 <div className="inputcontainer">
                     <label htmlFor='description'>description</label>
                     <input type="text" name='description'
-                        onChange={e => setValues({ ...values, description: e.target.value })}
+                        onChange={e => setDescription(e.target.value)}
                     />
                 </div>
                 <div className="inputcontainer">
                     <label htmlFor='price'>price</label>
                     <input type="text" name='price'
-                        onChange={e => setValues({ ...values, price: e.target.value })}
+                        onChange={e => setPrice(e.target.value)}
                     />
                 </div>
                 <div className="inputcontainer">
@@ -78,9 +81,8 @@ const CreateProduct = () => {
                     <input
                         type="file"
                         name='image'
-                        onChange={e => setValues({ ...values, image: e.target.files[0] })}
+                        onChange={e => setFile(e.target.files[0])}
                     />
-                    <p>{values.image}</p>
                 </div>
                 <button className='editbtn'>submit</button>
             </form>

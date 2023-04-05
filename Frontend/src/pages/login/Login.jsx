@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import './login.css'
 import Axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -26,7 +27,7 @@ function Login_Signup() {
       if (response.data.message) {
         setSignupData(response.data.message);
         console.log(response.data.message);
-        
+
       } else {
         console.log("Signup Successfull");
         navigate("/login");
@@ -44,13 +45,14 @@ function Login_Signup() {
         setLoginData(response.data.message);
         console.log(response.data.message);
       } else {
-        if(response.data[0].type === 1){
-          navigate("/dashboard");
+        if (response.data[0].type === 1) {
+          const userdate = response.data[0];
+          navigate("/dashboard/", { state: { userdate } });
           console.log("login Successfull");
-      }else{
-        navigate("/");
-        console.log("login Successfull");
-      }
+        } else {
+          navigate("/");
+          console.log("login Successfull");
+        }
       }
     });
   };
@@ -88,7 +90,7 @@ function Login_Signup() {
               <form action="" >
                 <div className="input-boxes">
                   <div className="input-box">
-                    
+
                     <input
                       type="text"
                       name="user_name"
@@ -99,9 +101,9 @@ function Login_Signup() {
                     />
                   </div>
                   <div className="input-box">
-                    
+
                     <input
-                      
+
                       type="password"
                       name="password"
                       value={loginData.password}
@@ -112,13 +114,13 @@ function Login_Signup() {
                   </div>
                   <div className="text"><a href="#">Forgot password?</a></div>
                   <div >
-                    <input 
+                    <input
                       className="button"
                       type="submit"
-                      name="login" 
+                      name="login"
                       value="Login"
                       onClick={login}
-                    /> 
+                    />
                   </div>
                   <div className="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label></div>
                 </div>

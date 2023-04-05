@@ -19,8 +19,8 @@ form{
     position: relative;
 }
 .profile-img {
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
 }
 .status-red{
@@ -79,7 +79,7 @@ input{
     font-size: 1.1rem;
     
 }
-input[type=text] {
+input[type=text],input[type=email],input[type=password]{
     border-bottom: 1px solid var(--maincolor);
 }
 

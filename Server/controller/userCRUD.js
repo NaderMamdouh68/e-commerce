@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import db from "./DB_Con.js";
+import multer from "multer";
+import path from "path";
 
 
 
@@ -11,6 +13,30 @@ Users.use(bodyParser.urlencoded({ extended: false }));
 
 Users.use(bodyParser.json());
 
+const storage = multer.diskStorage({
+    destination:(req, file, cb) => {
+        cb(null, 'images/userImg');
+    },
+    filename (req, file, cb) {
+       return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
+    }
+});
+
+const upload = multer({
+    storage: storage,
+
+    fileFilter: (req, file, cb) => {
+        const fileTypes = /jpeg|jpg|png|webp|gif/;
+        const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+        const mimetype = fileTypes.test(file.mimetype);
+
+        if (mimetype && extname) {
+            return cb(null, true);
+        } else {
+            cb('Error: Images Only!');
+        }
+    }
+}).single('user_image');
 
 
 
@@ -54,9 +80,9 @@ Users.get('/userdetails/:id', (req, res) => {
     });
 });
 
-Users.put('/userupdate/:id', (req, res) => {
-    const sqlUpdate = "UPDATE user SET user_name = ?, email = ?, password = ?,phonenumber = ? WHERE user_id = ?";
-    const values = [req.body.user_name, req.body.password, req.body.email,req.body.phonenumber , req.params.id];
+Users.put('/userupdate/:id',upload, (req, res) => {
+    const sqlUpdate = "UPDATE user SET user_name = ?, email = ?, password = ?,phonenumber = ?,user_image=? WHERE user_id = ?";
+    const values = [req.body.user_name, req.body.password, req.body.email,req.body.phonenumber , req.file.filename , req.params.id];
     db.query(sqlUpdate, values, (err, result) => {
         if (err) {
             console.log(err);

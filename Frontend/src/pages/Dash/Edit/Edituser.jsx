@@ -18,6 +18,7 @@ const Edituser = () => {
           phonenumber: res.data[0].phonenumber,
           status: res.data[0].status,
           password: res.data[0].password,
+          user_image: res.data[0].user_image,
         })
     })
     .catch(err => console.log(err))
@@ -31,6 +32,7 @@ const Edituser = () => {
     password: '',
     status: '',
     phonenumber: '',
+    user_image: '',
   })
 
   const handleUpdate = (event)=>{
@@ -50,7 +52,7 @@ const Edituser = () => {
         <h2 className='table-title'>update User</h2>
         <form onSubmit={handleUpdate}>
           <div className="image">
-            <img className='profile-img' src={require(`../../../images/${imgname}`)}></img>
+            <img className='profile-img' src={(`http://localhost:5000/images/userImg/${values.user_image}`)} alt=''></img>
             <span className={values.status ? 'status-green' : 'status-red'}></span>
           </div>
         

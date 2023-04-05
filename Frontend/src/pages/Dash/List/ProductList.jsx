@@ -27,13 +27,12 @@ const ProductList = () => {
   const handleDelete =(id) =>{
     alert('Are you sure you want to delete this product?')
     axios.delete('http://localhost:5000/products/productsdelete/'+id)
-    .then(res => {
+    .then(() => {
        window.location.reload();
     })
     .catch(err => console.log(err))
 }
 
-const imgname = 'download.jpeg'
 
   // const columns = [
   //   { field: "id", headerName: "ID", width: 70 },
@@ -103,9 +102,10 @@ const imgname = 'download.jpeg'
         </tr>
       </thead>
       <tbody>
-        {data.map((product, index) =>{
+        {data.map((product) =>{
           return(
-            <tr key={index}>
+            // <a key={product.product_id} href={`/dashboard/manageProducts/readp/${product.product_id}`}> 
+            <tr key={product.product_id} >
               <td>{product.product_id}</td>
               <td>{product.product_name}</td>
               <td ><img className='product-img' src={(`http://localhost:5000/images/${product.image}`)} alt=""  /></td>
@@ -118,6 +118,7 @@ const imgname = 'download.jpeg'
                 <DeleteOutline onClick={() => handleDelete (product.product_id)} className='delete'/>
               </td>
             </tr>
+            // </a>
           )
         }
         )}
