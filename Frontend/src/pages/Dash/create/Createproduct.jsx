@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './create.css'
 const CreateProduct = () => {
@@ -9,7 +9,7 @@ const CreateProduct = () => {
         axios.get('http://localhost:5000/categories')
             .then(res => setData(res.data))
             .catch(err => console.log(err))
-    },[]
+    }, []
     )
 
     const [values, setValues] = useState({
@@ -17,23 +17,34 @@ const CreateProduct = () => {
         category_id: "",
         price: "",
         description: "",
+        image: ""
     })
     const nvigate = useNavigate();
     const handleSubmit = (e) => {
+        const formData = new FormData();
+        formData.append('product_name', values.product_name);
+        formData.append('category_id', values.category_id);
+        formData.append('price', values.price);
+        formData.append('description', values.description);
+        formData.append('image', values.image);
         e.preventDefault();
         axios.post('http://localhost:5000/products/productcreate', values)
             .then(res => {
+                console.log(res.data);
                 console.log(res);
                 nvigate('/dashboard/manageproducts')
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                console.log(err.response);
+            })
     }
 
     return (
         <div className='editu'>
             <h2 className='table-title'>Create New Product</h2>
             <form onSubmit={handleSubmit}>
-            <div className="inputcontainer">
+                <div className="inputcontainer">
                     <label htmlFor='product_name'>product_name</label>
                     <input type="text" name='product_name'
                         onChange={e => setValues({ ...values, product_name: e.target.value })}
@@ -49,7 +60,7 @@ const CreateProduct = () => {
                         }
                         )}
                     </select>
-                    </div>
+                </div>
                 <div className="inputcontainer">
                     <label htmlFor='description'>description</label>
                     <input type="text" name='description'
@@ -63,15 +74,15 @@ const CreateProduct = () => {
                     />
                 </div>
                 <div className="inputcontainer">
-              <label htmlFor='description'>Description</label>
-              <input
-                type="file"
-                name='image'
-                onChange={e => setValues({ ...values, image: e.target.value })}
-                
-              />
-              {/* <p>{values.image}</p> */}
-              </div>
+                    <label htmlFor='description'>Description</label>
+                    <input
+                        type="file"
+                        name='image'
+                        onChange={e => setValues({ ...values, image: e.target.value })}
+
+                    />
+                    <p>{values.image}</p>
+                </div>
                 <button className='editbtn'>submit</button>
             </form>
         </div>

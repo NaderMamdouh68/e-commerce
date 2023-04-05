@@ -51,7 +51,7 @@ Products.get('/', (req, res) => {
     });
 });
 
-Products.post('/productcreate',upload,(req, res) => {
+Products.post('/productcreate',upload ,(req, res) => {
     const sqlInsert = "INSERT INTO product ( product_name, price, description,image, category_id)VALUES (?,?,?,?,?)";
     const values = [req.body.product_name, req.body.price, req.body.description, req.file.filename, req.body.category_id]
     db.query(sqlInsert, values, (err, result) => {

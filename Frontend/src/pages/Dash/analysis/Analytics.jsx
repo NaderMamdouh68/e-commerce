@@ -27,6 +27,14 @@ const Analytics = () => {
   },
   []
   )
+  const productdatachart = productdata.map((item) => {
+    return {
+      name: item.product_name,
+      uv: item.price,
+      pv: item.price,
+      amt: 10,
+    }
+  })
   const data = [
     {
       name: 'Page A',
@@ -42,7 +50,7 @@ const Analytics = () => {
     },
     {
       name: 'Page C',
-      uv: 2000,
+      uv: userdata.length,
       pv: 9800,
       amt: 2290,
     },
@@ -96,7 +104,7 @@ const Analytics = () => {
       <BarChart
           width={500}
           height={300}
-          data={data}
+          data={productdatachart}
           margin={{
             top: 5,
             right: 30,
@@ -106,7 +114,7 @@ const Analytics = () => {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis />
+          <YAxis dataKey="uv" />
           <Tooltip />
           <Legend />
           <Bar dataKey="pv" fill="#8884d8" />
