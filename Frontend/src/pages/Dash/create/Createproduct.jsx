@@ -21,12 +21,12 @@ const CreateProduct = () => {
     })
     const nvigate = useNavigate();
     const handleSubmit = (e) => {
-        const formData = new FormData();
-        formData.append('product_name', values.product_name);
-        formData.append('category_id', values.category_id);
-        formData.append('price', values.price);
-        formData.append('description', values.description);
-        formData.append('image', values.image);
+        // const formData = new FormData();
+        // formData.append('product_name', values.product_name);
+        // formData.append('category_id', values.category_id);
+        // formData.append('price', values.price);
+        // formData.append('description', values.description);
+        // formData.append('image', values.image);
         e.preventDefault();
         axios.post('http://localhost:5000/products/productcreate', values)
             .then(res => {
@@ -78,8 +78,7 @@ const CreateProduct = () => {
                     <input
                         type="file"
                         name='image'
-                        onChange={e => setValues({ ...values, image: e.target.value })}
-
+                        onChange={e => setValues({ ...values, image: e.target.files[0] })}
                     />
                     <p>{values.image}</p>
                 </div>
