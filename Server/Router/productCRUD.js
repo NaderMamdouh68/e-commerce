@@ -125,6 +125,7 @@ product.put('/productupdate/:id',
     });
 
 product.get('/',
+    user,
     async (req, res) => {
         try {
             let search = "";
@@ -136,6 +137,7 @@ product.get('/',
                 productdetail.image = "http://" + req.hostname + ":5000/" + productdetail.image;
             });
             res.status(200).json(productdetails);
+            console.log(req.authUserid);
         } catch (err) {
             console.log(err);
             res.status(500).json({ msg: "Server Error" });
@@ -206,7 +208,7 @@ product.post('/productfeedback',
             }
 
             const feedbackData = {
-                user_id: res.locals.user.user_id,
+                user_id: req.authUserid,
                 product_id: products[0].product_id,
                 comment: req.body.comment,
             };
@@ -243,7 +245,7 @@ product.post('/productorder',
             }
 
             const orderData = {
-                user_id: res.locals.user.user_id,
+                user_id: req.authUserid,
                 product_id: req.body.product_id,
                 order_date: new Date(),
             };
