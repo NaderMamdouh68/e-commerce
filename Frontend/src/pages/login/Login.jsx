@@ -18,7 +18,7 @@ function Login_Signup() {
 
   const signup = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:5000/users/signup", {
+    Axios.post("http://localhost:5000/authentication/signup", {
       user_name: user_name,
       email: email,
       password: password,
@@ -37,13 +37,14 @@ function Login_Signup() {
   };
   const login = (e) => {
     e.preventDefault();
-    Axios.post("http://localhost:5000/login", {
+    Axios.post("http://localhost:5000/authentication/login", {
       user_name: user_name,
       password: password,
     }).then((response) => {
       if (response.data.message) {
         setLoginData(response.data.message);
         console.log(response.data.message);
+        console.log(response.data);
       } else {
         if (response.data[0].type === 1) {
           const userdate = response.data[0];
@@ -54,7 +55,8 @@ function Login_Signup() {
           console.log("login Successfull");
         }
       }
-    });
+    }
+    );
   };
 
 
