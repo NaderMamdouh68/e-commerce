@@ -68,8 +68,7 @@ product.post('/productcreate',
 product.put('/productupdate/:id',
     admin,
     upload,
-    body("product_name").notEmpty().withMessage("Product Name is required")
-        .isString().withMessage("please enter a valid Product name"),
+    body("product_name").isString().withMessage("please enter a valid Product name"),
     body("price").notEmpty().withMessage("Price is required"),
     body("description").notEmpty().withMessage("Description is required")
         .isString().withMessage("please enter a valid Description"),
@@ -239,7 +238,7 @@ product.post('/productorder',
             const values = [req.body.product_id];
             const feedback = await query(sqlSelect, values);
             if (!feedback[0]) {
-                res.status(404).json({ ms: "movie not found !" });
+                res.status(404).json({ ms: "Product not found !" });
             }
 
             const orderData = {

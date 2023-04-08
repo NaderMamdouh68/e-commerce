@@ -1,110 +1,139 @@
-import express from "express";
-import cors from "cors";
-import bodyParser from "body-parser";
-import db from "./DB_Con.js";
-import multer from "multer";
-import path from "path";
+import express from 'express';
+import query from '../Database/DB_Con.js';
+import user from '../middleware/checkuser.js';
+import admin from '../middleware/checkadmin.js';
+import { body, validationResult } from 'express-validator';
+import upload from '../middleware/uploadimageuser.js';
+import fs from 'fs';
+import cors from 'cors';
+import bcrypt from 'bcrypt';
+
+
+const userlist = express();
+userlist.use(express.Router());
+userlist.use(cors());
 
 
 
-const Users = express();
-Users.use(cors());
-Users.use(bodyParser.urlencoded({ extended: false }));
 
-Users.use(bodyParser.json());
+userlist.put('/userupdate/:id',
+    user,
+    body("user_name").notEmpty().withMessage("please enter a valid user name"),
+    body("email").isEmail().withMessage("please enter a valid email"),
+    body("phonenumber").notEmpty().withMessage("please enter a valid phonenumber"),
+    body("password").notEmpty().withMessage("please enter a valid password"),
+    async (req, res) => {
+        try {
+            if (req.params.id != req.authUserid) {
+                return res.status(400).json({ msg: "Error: Not allow To Access this route!" });
+            }
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
 
-const storage = multer.diskStorage({
-    destination:(req, file, cb) => {
-        cb(null, 'images/userImg');
-    },
-    filename (req, file, cb) {
-       return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
+
+
+
+            const sqlcheck = "SELECT * FROM user WHERE user_id = ?";
+            const value = [req.params.id];
+
+            const userdetails = await query(sqlcheck, value);
+
+            if (!userdetails[0]) {
+                return res.status(400).json({ msg: "Error: user Not Found!" });
+            }
+
+
+            if (req.body.email != userdetails[0].email) {
+                return res.status(400).json({ errors: [{ msg: "Email Is Not Allow to Chage !" }] });
+            }
+
+
+
+            const userData = {
+                user_name: req.body.user_name,
+                email: req.body.email,
+                password: await bcrypt.hash(req.body.password, 10),
+                phonenumber: req.body.phonenumber
+            };
+
+
+
+            const sqlUpdate = "UPDATE user SET ?  WHERE user_id = ?";
+            const values = [userData, req.params.id];
+            await query(sqlUpdate, values, (err) => {
+                if (err) {
+                    console.log(err);
+                }
+                res.status(200).json({ msg: "user Updated Successfully" });
+            });
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({ msg: "Server Error" });
+        }
+    });
+
+userlist.get('/',
+    async (req, res) => {
+        try {
+            let search = "";
+            if (req.query.search) {
+                search = `where user_name LIKE '%${req.query.search}%'`;
+            }
+            const userdetails = await query(`select * from user ${search}`);
+            delete userdetails[0].password;
+
+            res.status(200).json(userdetails);
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({ msg: "Server Error" });
+        }
+    });
+
+userlist.get('/usershow/:id',
+    async (req, res) => {
+        try {
+            const sqlShow = "SELECT * FROM user WHERE user_id = ?";
+            const values = [req.params.id];
+
+            const userdetails = await query(sqlShow, values);
+            if (!userdetails[0]) {
+                return res.status(404).json({ ms: "user not found !" });
+            }
+            delete userdetails[0].password;
+            res.status(200).json(userdetails[0]);
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({ msg: "Server Error" });
+        }
+
+    });
+
+userlist.delete("/userdelete/:id",
+    admin,
+    async (req, res) => {
+        try {
+            const userdetails = await query("SELECT * FROM user WHERE user_id = ?", [req.params.id]);
+            if (!userdetails[0]) {
+                res.status(404).json({ ms: "user not found !" });
+            }
+
+            const sqlDelete = "DELETE FROM user WHERE user_id = ?";
+            const values = [userdetails[0].user_id];
+            await query(sqlDelete, values);
+            res.status(200).json({
+                msg: "user delete successfully",
+            });
+        } catch (err) {
+            return res.status(500).json(err);
+        }
     }
-});
-
-const upload = multer({
-    storage: storage,
-
-    fileFilter: (req, file, cb) => {
-        const fileTypes = /jpeg|jpg|png|webp|gif/;
-        const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
-        const mimetype = fileTypes.test(file.mimetype);
-
-        if (mimetype && extname) {
-            return cb(null, true);
-        } else {
-            cb('Error: Images Only!');
-        }
-    }
-}).single('user_image');
+);
 
 
 
 
 
 
-Users.get('/', (req, res) => {
-    const sqlSelect = "SELECT * FROM user";
-    db.query(sqlSelect, (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(result);
-        }
-    });
-});
-
-Users.post('/signup', (req, res) => {
-    const sqlInsert = "INSERT INTO user (user_name, email, password, phonenumber)VALUES (?,?,?,?)";
-    const values = [req.body.user_name, req.body.email, req.body.password ,req.body.phonenumber];
-    db.query(sqlInsert, values, (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(result);
-        }
-    });
-});
-
-
-
-Users.get('/userdetails/:id', (req, res) => {
-    const sqlRead = "SELECT * FROM user WHERE user_id  = ?";
-    const values = [req.params.id];
-    db.query(sqlRead, values, (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(result);
-        }
-    });
-});
-
-Users.put('/userupdate/:id',upload, (req, res) => {
-    const sqlUpdate = "UPDATE user SET user_name = ?, email = ?, password = ?,phonenumber = ?,user_image=? WHERE user_id = ?";
-    const values = [req.body.user_name, req.body.password, req.body.email,req.body.phonenumber , req.file.filename , req.params.id];
-    db.query(sqlUpdate, values, (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(result);
-        }
-    });
-});
-
-Users.delete('/userdelete/:id', (req, res) => {
-    const sqlDelete = "DELETE FROM user WHERE user_id = ?";
-    const values = [req.params.id];
-    db.query(sqlDelete, values, (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(result);
-        }
-    });
-});
-
-
-
-export default Users;
-
+export default userlist;

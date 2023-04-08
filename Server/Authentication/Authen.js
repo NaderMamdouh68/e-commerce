@@ -2,14 +2,13 @@ import express from 'express';
 import query from "../Database/DB_Con.js";
 import { body, validationResult } from "express-validator";
 import bcrypt from "bcrypt";
-import { randomBytes } from "crypto";
 import jwt from "jsonwebtoken";
 import cors from "cors";
 
 
 const auth = express();
 auth.use(express.Router());
-auth.use(cors)
+auth.use(cors());
 
 const key = "secretkey";
 
@@ -78,8 +77,10 @@ auth.post('/login',
                 return res.status(400).json({ errors: errors.array() });
             }
 
+            console.log(req.body);
 
-            const user = await query("select * from user where user_name = ?", [req.body.user_name]);
+
+            const user = await query("SELECT * FROM user WHERE user_name = ?", [req.body.user_name]);
             if (user.length === 0) {
                 return res.status(400).json({ errors: [{ msg: "User does not exist" }] });
             }
@@ -91,7 +92,7 @@ auth.post('/login',
             } else {
                 delete user[0].password;
                 const token = jwt.sign({user_id : user[0].user_id},key);
-                return res.status(200).json({Login : true , token , user});
+                res.status(200).json({Login : true , token , user});
             }
 
         } catch (err) {

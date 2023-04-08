@@ -30,7 +30,7 @@ const user =(req, res, next) => {
             res.locals.user = authUser;
             req.authUserid = authUser.user_id;
         }else{
-            res.status(401).send("Unauthorized");
+           return res.status(401).send("Unauthorized");
         }
         next();
     } catch (err) {
