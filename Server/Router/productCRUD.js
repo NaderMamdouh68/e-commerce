@@ -11,8 +11,6 @@ const product = express();
 product.use(express.Router());
 
 
-
-
 product.post('/productcreate',
     admin,
     upload,
