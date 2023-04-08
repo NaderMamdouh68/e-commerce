@@ -1,39 +1,18 @@
-import express, { json } from 'express';
-import { createConnection } from 'mysql';
-import cors from 'cors';
-import Users from './controller/userCRUD.js';
-import Products from './controller/productCRUD.js';
-import Category from './controller/categoryCRUD.js';
-import Order from './controller/orderCRUD.js';
-import db from './controller/DB_Con.js';
+import express from 'express';
+import product from './Router/productCRUD.js';
+
+
 
 const app = express();
-app.use(cors());
-app.use(json());
-app.use("/images", express.static("images"));
-app.use("/images/userImg", express.static("images/userImg"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public/productImg"));
+app.use('/product', product);
 
 
-app.use('/users', Users);
-app.use('/products', Products);
-app.use('/categories', Category);
-app.use('/orders', Order);
 
-app.post('/login', (req, res) => {
-    const user_name = req.body.user_name;
-    const password = req.body.password;
 
-    db.query("SELECT * FROM user WHERE user_name = ? AND password = ?", [user_name, password], 
-    (err, result) => {
-        
-            if (result.length > 0) {
-                res.send(result);
-            } else {
-                res.send({message: "Wrong username/password combination"});
-            }
-        
-    });
-});
+
 
 
 

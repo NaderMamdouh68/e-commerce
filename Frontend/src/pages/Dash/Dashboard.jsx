@@ -9,8 +9,8 @@ import { useLocation } from 'react-router-dom'
 const dashboard = () => {
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const location = useLocation();
-  const userdate = location.state.userdate
+  // const location = useLocation();
+  // const userdate = location.state.userdate
   
   return (
     <div className='Dashboard'>
@@ -18,7 +18,7 @@ const dashboard = () => {
            <Sidebar/>
       </div>
        <div className="otherpages">
-         <Topbar userdate={userdate} />
+         <Topbar  />
          <Outlet/>
       </div>
     </div>
