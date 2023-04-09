@@ -4,7 +4,8 @@ import { Outlet } from 'react-router-dom'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Topbar from '../../components/topbar/Topbar'
 
-const dashboard = () => {
+
+const Dashboard = () => {
 
   if(!localStorage.getItem('token')){
     return window.location.href = '/login'
@@ -23,4 +24,4 @@ const dashboard = () => {
   )
 }
 
-export default dashboard
+export default Dashboard
