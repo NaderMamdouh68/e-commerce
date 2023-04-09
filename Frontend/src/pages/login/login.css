@@ -122,8 +122,8 @@
 
 .form-contentt .loginn-form,
 .form-contentt .signup-form {
-    width: calc(100% / 2 - 70px);
-    margin-left: 70px;
+    width: calc(100% / 2 - 90px);
+    margin-left: 80px;
 }
 
 

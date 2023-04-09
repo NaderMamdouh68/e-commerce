@@ -2,7 +2,7 @@ import React, { useEffect , useState} from 'react'
 import './analytics.css'
 import axios from 'axios';
 
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer , BarChart, Bar} from 'recharts';
+import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer , BarChart, Bar} from 'recharts';
 
 
 
@@ -104,7 +104,7 @@ const Analytics = () => {
       <BarChart
           width={500}
           height={300}
-          data={productdatachart}
+          data={data}
           margin={{
             top: 5,
             right: 30,
