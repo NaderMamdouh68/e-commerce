@@ -1,5 +1,4 @@
 import express from 'express';
-// import auth from './Authentication/Authentication.js';
 import cors from 'cors';
 import auth from './Authentication/Authen.js';
 import product from './Router/productCRUD.js';
@@ -24,6 +23,7 @@ app.use('/authentication', auth);
 app.use('/product', product);
 app.use('/category', category);
 app.use('/user', userlist);
+
 
 
 
