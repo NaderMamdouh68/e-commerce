@@ -2,6 +2,8 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 
 
+
+
 // const user = async (req, res, next) => {
 //     try {
 //         const { token } = req.headers;
@@ -21,21 +23,27 @@ import jwt from 'jsonwebtoken';
 const key = "secretkey";
 
 
-const user =(req, res, next) => {
+const user =async(req, res, next) => {
     try {
-        let token  = req.headers.authorization;
+        const token  = req.headers.authorization;
         if(token){
             token = token.split(" ")[1];
-            let authUser = jwt.verify(token, key);
-            res.locals.user = authUser;
+            let authUser = jwt.verify(token, key,(err)=>{
+                if(err){
+                    return res.status(401).json({user : false, msg:"Failed to authenticate token."});
+                }
+            });
             req.authUserid = authUser.user_id;
+            
+            
+            next();
+
         }else{
-           return res.status(401).send("Unauthorized");
+            return res.status(401).json({user : false, msg:"Unauthorized"});
         }
-        next();
     } catch (err) {
         console.log(err);
-        res.status(500).send("user Error");
+        return res.status(500).json("user Error");
     }
 }
 

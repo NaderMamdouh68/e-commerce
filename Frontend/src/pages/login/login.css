@@ -1,15 +1,14 @@
-.login {
+.loginn {
     min-height: 100vh;
     display: grid;
     grid-template-columns: 60%;
     place-content: center;
     background-image: url(../../images/im1.jpg);
     background-repeat: no-repeat;
-    background-size:cover;
-
+    background-size:coverr;
 }
 
-.container {
+.containerr {
     /* position: relative; */
     background: #fff;
     padding: 40px 0;
@@ -17,7 +16,7 @@
     perspective: 2700px;    
 }
 
-.cover {
+.coverr {
     position: absolute;
     top: 0;
     left: 50%;
@@ -29,12 +28,12 @@
     transform-style: preserve-3d;
 }
 
-.container #flip:checked~.cover {
+.containerr #flip:checked~.coverr {
     transform: rotateY(-180deg);
 }
 
- .front,
- .back {
+ .frontt,
+ .backk {
     position: absolute;
     top: 0;
     left: 0;
@@ -43,21 +42,21 @@
     backface-visibility: hidden;
     background-image: url(../../images/im1.jpg);
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size:coverr;
 }
  
-.login{
+.loginn{
     background-color: rgb(218, 236, 250);
 }
 
 
-.cover .back {
+.coverr .backk {
     transform: rotateY(180deg);
     backface-visibility: hidden;
 }
 
-.container .cover::before,
-.container .cover::after {
+.containerr .coverr::before,
+.containerr .coverr::after {
     content: '';
     position: absolute;
     height: 100%;
@@ -67,24 +66,24 @@
     z-index: 12;
 }
 
-.container .cover::after {
+.containerr .coverr::after {
     opacity: 0.3;
     transform: rotateY(180deg);
     backface-visibility: hidden;
 }
 
-.container .cover img {
+.containerr .coverr img {
     position: absolute;
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: coverr;
     z-index: 10;
 }
 
-.forms{
+.formss{
     width: 100%;
 }
-.container .cover .text {
+.containerr .coverr .txt {
     position: absolute;
     z-index: 130;
     height: 100%;
@@ -95,91 +94,93 @@
     justify-content: center;
 }
 
-.cover .text .text-1,
-.cover .text .text-2 {
+.coverr .txt .txt-1,
+.coverr .txt .txt-2 {
     font-size: 26px;
     font-weight: 600;
     color: #fff;
     text-align: center;
 }
 
-.cover .text .text-2 {
+.coverr .txt .txt-2 {
     font-size: 15px;
     font-weight: 500;
 }
 
-.container .forms {
+.containerr .formss {
     height: 100%;
     width: 100%;
     background: #fff;
 }
 
-.container .form-content {
+.containerr .form-contentt {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    
 }
 
-.form-content .login-form,
-.form-content .signup-form {
-    width: calc(100% / 2 - 150px);
-    /* margin-left: 30px; */
-    padding: 0 20px;
+.form-contentt .loginn-form,
+.form-contentt .signup-form {
+    width: calc(100% / 2 - 70px);
+    margin-left: 70px;
 }
 
 
-.forms .form-content .title {
+.formss .form-contentt .title {
     position: relative;
-    font-size: 24px;
+    font-size: 34px;
     font-weight: 500;
     color: #333;
+    
 }
 
-.forms .form-content .title:before {
+.formss .form-contentt .title:before {
     content: '';
     position: absolute;
     left: 0;
     bottom: 0;
-    height: 3px;
-    width: 25px;
+    height: 4px;
+    width: 37px;
     background: var(--maincolor);
+    text-align: center;
 }
 
-.forms .signup-form .title:before {
-    width: 20px;
+.formss .signup-form .title:before {
+    width: 28px;
 }
 
-.forms .form-content .input-boxes {
-    margin: 30px  50px;
+.formss .form-contentt .input-boxes {
+    margin: 30px  0px;
 }
 
-.input-box {
+.input-boxx {
     display: flex;
-    align-items: center;
-    justify-content: end;
     height: 50px;
+    justify-content: flex-end;
     width: 100%;
     margin: 10px 0;
 }
 
-.form-content .input-box input {
+.form-contentt .input-boxx .inputt {
     height: 100%;
     width: 100%;
     outline: none;
     border: none;
-    /* padding: 0 30px; */
+    padding: 0 30px;
     font-size: 16px;
     font-weight: 500;
     border-bottom: 2px solid rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     color: #000;
+    
 }
 
-.form-content .input-box input:focus{
+.form-contentt .input-boxx .inputt:focus{
     border-color: var(--maincolor);
 }
 
-/* .form-content .input-box input:valid {
+/* .form-contentt .input-boxx input:valid {
     border-color: var(--maincolor);
     
 } */
@@ -187,30 +188,32 @@
     width: 150%;
 }
 
-.form-content .input-box i {
+.form-contentt .input-boxx i {
     position: absolute;
     color: var(--maincolor);
     font-size: 17px;
+    margin: 10px;
 }
 
-.forms .form-content .text {
+.formss .form-contentt .txt {
     font-size: 14px;
     font-weight: 500;
     color: #333;
 }
 
-.forms .form-content .text a {
+.formss .form-contentt .txt a {
     text-decoration: none;
     color: var(--maincolor);
+    margin: 10px;
 }
 
-.forms .form-content .text a:hover {
+.formss .form-contentt .txt a:hover {
     text-decoration: underline;
 }
 
-.forms .form-content .button {
+.formss .form-contentt .button {
     color: #fff;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .button , .button1{
@@ -229,47 +232,47 @@
     background: var(--hovercolor);
 }
 
-.forms .form-content label {
+.formss .form-contentt label {
     color: var(--maincolor);
     cursor: pointer;
 }
 
-.forms .form-content label:hover {
+.formss .form-contentt label:hover {
     text-decoration: underline;
 }
 
-.forms .form-content .login-text,
-.forms .form-content .sign-up-text {
+.formss .form-contentt .loginn-text,
+.formss .form-contentt .sign-up-text {
     text-align: center;
     margin-top: 25px;
 }
 
-.container #flip {
+.containerr #flip {
     display: none;
 }
 .button:hover{
     color: var(--hovercolor);
 }
 
-@media (max-width: 730px) {
-    .container .cover {
+@media (max-width: 750px) {
+    .containerr .coverr {
         display: none;
     }
 
-    .form-content .login-form,
-    .form-content .signup-form {
+    .form-contentt .loginn-form,
+    .form-contentt .signup-form {
         width: 100%;
     }
 
-    .form-content .signup-form {
+    .form-contentt .signup-form {
         display: none;
     }
 
-    .container #flip:checked~.forms .signup-form {
+    .containerr #flip:checked~.formss .signup-form {
         display: block;
     }
 
-    .container #flip:checked~.forms .login-form {
+    .containerr #flip:checked~.formss .loginn-form {
         display: none;
     }
 }

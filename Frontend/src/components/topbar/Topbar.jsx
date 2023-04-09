@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './topbar.css'
 import { NotificationsNone, Settings } from '@mui/icons-material';
-import axios from 'axios';
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
 
 const Topbar = (props) => {
   // const userdate = props.userdate

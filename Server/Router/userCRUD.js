@@ -75,6 +75,7 @@ userlist.put('/userupdate/:id',
     });
 
 userlist.get('/',
+    admin,
     async (req, res) => {
         try {
             let search = "";

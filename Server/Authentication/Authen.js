@@ -54,9 +54,6 @@ auth.post('/signup',
             const values = userData;
             await query(sqlInsert, values, (err, result) => {
                 delete userData.password;
-                const token = jwt.sign(userData,key);
-
-                return res.status(200).json({Signup : true , token , userData});
                 res.status(200).json(userData);
             });
 
@@ -77,27 +74,37 @@ auth.post('/login',
                 return res.status(400).json({ errors: errors.array() });
             }
 
-            console.log(req.body);
 
 
             const user = await query("SELECT * FROM user WHERE user_name = ?", [req.body.user_name]);
             if (user.length === 0) {
-                return res.status(400).json({ errors: [{ msg: "User does not exist" }] });
+                return res.status(400).json({login: false, errors: "User does not exist"});
             }
+
+            
 
             const checkpassword = await bcrypt.compare(req.body.password, user[0].password);
 
+
             if (!checkpassword) {
-                return res.status(400).json({ errors: [{ msg: "Password is incorrect" }] });
-            } else {
-                delete user[0].password;
-                const token = jwt.sign({user_id : user[0].user_id},key);
-                res.status(200).json({Login : true , token , user});
+                return res.json({login: false, errors: "Password is incorrect"  });
             }
 
+            delete user[0].password;
+            let type = user[0].type;
+            if (type === 1) {
+                type = "admin";
+            } else {
+                type = "user";
+            }
+            const user_id = user[0].user_id;
+            const token = jwt.sign({ user_id }, key);
+            res.status(200).json({ login: true, token : token, type : type });
+
+
         } catch (err) {
-            console.log(err);
-            res.status(500).send("Server Error");
+           console.log(err);
+           return res.status(500).json(err);
         }
     });
 

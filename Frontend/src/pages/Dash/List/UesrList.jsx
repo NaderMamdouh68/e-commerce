@@ -10,8 +10,11 @@ const UesrList = () => {
 
   const [data, setData] =useState([])
   useEffect(()=>{
-      axios.get('http://localhost:5000/users')
-      .then(res => setData(res.data))
+      axios.get('http://localhost:5000/user',{
+        headers: {
+        authorization : localStorage.getItem('token'),
+      },
+    }).then(res => setData(res.data))
       .catch(err => console.log(err))
   },
  []
@@ -19,7 +22,10 @@ const UesrList = () => {
 
 const handleDelete =(id) =>{
   alert('Are you sure you want to delete this product?')
-  axios.delete('http://localhost:5000/users/userdelete/'+id)
+  axios.delete('http://localhost:5000/user/userdelete/'+id,{
+    headers: {
+    authorization : localStorage.getItem('token'),
+  }})
   .then(res => {
     window.location.reload();
   })

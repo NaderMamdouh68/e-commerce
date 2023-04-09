@@ -3,57 +3,69 @@ import React, { useState } from 'react'
 import './login.css'
 import Axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+
 
 
 
 function Login_Signup() {
-  const navigate = useNavigate();
   const [user_name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phonenumber, setPhonenumber] = useState("");
-  const [loginData, setLoginData] = useState("");
-  const [signupData, setSignupData] = useState("");
+  const [loginData, setLoginData] = useState(false);
+  const [signupData] = useState("");
+  const navigate = useNavigate();
+
+  if (localStorage.getItem("token")) {
+    if (localStorage.getItem("type") === "admin") {
+      return window.location.href = "/dashboard";
+    } else {
+      return window.location.href = "/";
+    }
+  }
+
+
+
+
+
+
+
+
+
 
   const signup = (e) => {
-    e.preventDefault();
-    Axios.post("http://localhost:5000/authentication/signup", {
-      user_name: user_name,
-      email: email,
-      password: password,
-      phonenumber: phonenumber,
-    }).then((response) => {
-      if (response.data.message) {
-        setSignupData(response.data.message);
-        console.log(response.data.message);
-
-      } else {
-        console.log("Signup Successfull");
-        navigate("/login");
-        window.location.reload();
-      }
-    });
+    // e.preventDefault();
+    // Axios.post("http://localhost:5000/authentication/signup", {
+    //   user_name: user_name,
+    //   email: email,
+    //   password: password,
+    //   phonenumber: phonenumber,
+    // }).then((response) => {
+    //   if (response) {
+    //     console.log(response);
+    //   }
+    // });
   };
+
   const login = (e) => {
     e.preventDefault();
     Axios.post("http://localhost:5000/authentication/login", {
       user_name: user_name,
       password: password,
     }).then((response) => {
-      if (response.data.message) {
-        setLoginData(response.data.message);
-        console.log(response.data.message);
-        console.log(response.data);
+      if (!response.data.login) {
+        console.log(response.data.errors);
+        setLoginData(false);
       } else {
-        if (response.data[0].type === 1) {
-          const userdate = response.data[0];
-          navigate("/dashboard/", { state: { userdate } });
-          console.log("login Successfull");
+        setLoginData(true);
+        localStorage.setItem("token", "Bearer " + response.data.token);
+        localStorage.setItem("type", response.data.type);
+        if (response.data.type === "admin") {
+          navigate("/dashboard");
         } else {
           navigate("/");
-          console.log("login Successfull");
         }
+
       }
     }
     );
@@ -67,33 +79,34 @@ function Login_Signup() {
 
 
   return (
-    <div className='login'>
-      <div className="container">
+    <div className='loginn'>
+      <div className="containerr">
         <input type="checkbox" id="flip" />
-        <div className="cover">
-          <div className="front">
-            <div className="text">
-              <span className="text-1">B L A C K S H O P P I N G <br /> E-Commerce</span>
-              <span className="text-2">Let's get connected</span>
+        <div className="coverr">
+          <div className="frontt">
+            <div className="txt">
+              <span className="txt-1">B L A C K S H O P P I N G <br /> E-Commerce</span>
+              <span className="txt-2">Let's get connected</span>
             </div>
           </div>
 
-          <div className="back">
-            <div className="text">
-              <span className="text-1">B L A C K S H O P P I N G <br /> E-Commerce </span>
-              <span className="text-2">Let's get connected</span>
+          <div className="backk">
+            <div className="txt">
+              <span className="txt-1">B L A C K S H O P P I N G <br /> E-Commerce </span>
+              <span className="txt-2">Let's get connected</span>
             </div>
           </div>
         </div>
-        <div className="forms">
-          <div className="form-content">
-            <div className="login-form">
+        <div className="formss">
+          <div className="form-contentt">
+            <div className="loginn-form">
               <div className="title">Login</div>
               <form action="" >
                 <div className="input-boxes">
-                  <div className="input-box">
+                  <div className="input-boxx">
 
                     <input
+                      className='inputt'
                       type="text"
                       name="user_name"
                       value={loginData.user_name}
@@ -102,9 +115,10 @@ function Login_Signup() {
                       required
                     />
                   </div>
-                  <div className="input-box">
+                  <div className="input-boxx">
 
                     <input
+                      className='inputt'
 
                       type="password"
                       name="password"
@@ -114,7 +128,7 @@ function Login_Signup() {
                       required
                     />
                   </div>
-                  <div className="text"><a href="#">Forgot password?</a></div>
+                  <div className="txt"><a href="#">Forgot password?</a></div>
                   <div >
                     <input
                       className="button"
@@ -124,7 +138,7 @@ function Login_Signup() {
                       onClick={login}
                     />
                   </div>
-                  <div className="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label></div>
+                  <div className="sign-up-text">Don't have an account? <label htmlFor="flip">Sigup now</label></div>
                 </div>
               </form>
             </div>
@@ -135,9 +149,11 @@ function Login_Signup() {
               <div className="title">Signup</div>
               <form action="" method="POST">
                 <div className="input-boxes">
-                  <div className="input-box">
+                  <div className="input-boxx">
 
                     <input
+                      className='inputt'
+
                       type="text"
                       pattern=".{3,}"
                       title="User Name Must Be Larger Than 3 Characters"
@@ -147,9 +163,11 @@ function Login_Signup() {
                       placeholder="Enter your Name" required
                     />
                   </div>
-                  <div className="input-box">
+                  <div className="input-boxx">
 
                     <input
+                      className='inputt'
+
                       type="email"
                       name="email"
                       value={signupData.email}
@@ -158,9 +176,11 @@ function Login_Signup() {
                       required
                     />
                   </div>
-                  <div className="input-box">
+                  <div className="input-boxx">
 
                     <input
+                      className='inputt'
+
                       type="text"
                       name="phonenumber"
                       value={signupData.phonenumber}
@@ -169,11 +189,13 @@ function Login_Signup() {
                       required
                     />
                   </div>
-                  <div className="input-box">
+                  <div className="input-boxx">
 
                     <input
+                      className='inputt'
+
                       type="password"
-                      minlength="4"
+                      minLength="4"
                       name="password"
                       value={signupData.password}
                       onChange={(e) => setPassword(e.target.value)}
@@ -181,11 +203,13 @@ function Login_Signup() {
                       required
                     />
                   </div>
-                  <div className="input-box">
+                  <div className="input-boxx">
 
                     <input
+                      className='inputt'
+
                       type="password"
-                      minlength="4"
+                      minLength="4"
                       name="passwordConfirm"
                       value={signupData.passwordConfirm}
                       onChange={signupData.passwordConfirm}
@@ -202,7 +226,7 @@ function Login_Signup() {
                       onClick={signup}
                     />
                   </div>
-                  <div className="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+                  <div className="sign-up-text">Already have an account? <label htmlFor="flip">Login now</label></div>
                 </div>
               </form>
             </div>
@@ -212,6 +236,8 @@ function Login_Signup() {
       </div>
     </div>
   )
+
 }
+
 
 export default Login_Signup
