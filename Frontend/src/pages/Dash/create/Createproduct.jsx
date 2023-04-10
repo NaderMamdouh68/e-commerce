@@ -6,7 +6,10 @@ const CreateProduct = () => {
 
     const [data, setData] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:5000/categories')
+        axios.get('http://localhost:5000/category',{
+            headers: {
+            authorization : localStorage.getItem('token'),
+          }},)
             .then(res => setData(res.data))
             .catch(err => console.log(err))
     }, []
@@ -24,8 +27,10 @@ const CreateProduct = () => {
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
     const [file, setFile] = useState('');
+
     const nvigate = useNavigate();
     const handleSubmit = (e) => {
+        e.preventDefault();
         const formData = new FormData();
         formData.append('product_name', product_name);
         formData.append('category_id', category_id);
@@ -33,7 +38,10 @@ const CreateProduct = () => {
         formData.append('description', description);
         formData.append('image', file);
         
-        axios.post('http://localhost:5000/products/productcreate', formData)
+        axios.post('http://localhost:5000/product/productcreate', formData,{
+            headers: {
+            authorization : localStorage.getItem('token'),
+          }},)
             .then(res => {
                 console.log(res.data);
                 nvigate('/dashboard/manageProducts')
@@ -47,6 +55,7 @@ const CreateProduct = () => {
         <div className='editu'>
             <h2 className='table-title'>Create New Product</h2>
             <form onSubmit={handleSubmit}>
+                
                 <div className="inputcontainer">
                     <label htmlFor='product_name'>product_name</label>
                     <input type="text" name='product_name'

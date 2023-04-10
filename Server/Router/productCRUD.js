@@ -122,7 +122,7 @@ product.put('/productupdate/:id',
     });
 
 product.get('/',
-    user,
+
     async (req, res) => {
         try {
             let search = "";
@@ -160,27 +160,23 @@ product.get('/productshow/:id',
 
     });
 
-product.delete("productdelete/:id",
+product.delete("/productdelete/:id",
     admin,
     async (req, res) => {
         try {
             const productdetails = await query("SELECT * FROM product WHERE product_id = ?", [req.params.id]);
             if (!productdetails[0]) {
-                res.status(404).json({ ms: "Product not found !" });
+                return res.status(404).json({ ms: "Product not found !" });
             }
-            fs.unlinkSync("../public/productImg" + productdetails[0].image);
+            fs.unlinkSync("./public/productImg/" + productdetails[0].image);
             const sqlDelete = "DELETE FROM product WHERE product_id = ?";
             const values = [productdetails[0].product_id];
-            await query(sqlDelete, values, (err) => {
-                if (err) {
-                    console.log(err);
-                }
-            });
+            await query(sqlDelete, values);
             res.status(200).json({
                 msg: "Product delete successfully",
             });
         } catch (err) {
-            res.status(500).json(err);
+            return res.status(500).json(err);
         }
     }
 );
@@ -225,7 +221,6 @@ product.post('/productfeedback',
 
 product.post('/productorder',
     body("product_id").isNumeric().withMessage("Product Id is not valid"),
-    user,
     async (req, res) => {
         try {
             const errors = validationResult(req);

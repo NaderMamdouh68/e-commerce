@@ -11,16 +11,16 @@ const Editproduct = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    axios.get('http://localhost:5000/products/readproduct/' + id)
+    axios.get('http://localhost:5000/product/productshow/'+id)
       .then(res => {
         console.log(res)
         setValues({
           ...values,
-          product_name: res.data[0].product_name,
-          price: res.data[0].price,
-          description: res.data[0].description,
-          category_name: res.data[0].category_name,
-          image: res.data[0].image,
+          product_name: res.data.product_name,
+          price: res.data.price,
+          description: res.data.description,
+          category_name: res.data.category_name,
+          image: res.data.image,
 
         })
       })
@@ -38,7 +38,7 @@ const Editproduct = () => {
 
   const [data, setData] = useState([])
   useEffect(() => {
-    axios.get('http://localhost:5000/categories')
+    axios.get('http://localhost:5000/category')
       .then(res => setData(res.data))
       .catch(err => console.log(err))
   },
@@ -63,6 +63,9 @@ const Editproduct = () => {
       <div className='editu'>
         
           <h2 className='table-title'>update Product</h2>
+          <div>
+              <img className='profile-img' src={values.image} alt="" />
+          </div>
           <form onSubmit={handleUpdate}>
             <div className='inputcontainer'>
                 <label htmlFor='username'>Name</label>
@@ -110,15 +113,14 @@ const Editproduct = () => {
 
 
             <div className='inputcontainer'>
-              <label htmlFor='description'>Description</label>
+              <label htmlFor='description'>image</label>
               <input
                 type="file"
                 name='image'
-                onChange={e => setValues({ ...values, image: e.target.value })}
-
+                onChange={e => setValues({ ...values, image: e.target.files[0] })}
               />
-              <p>{values.image}</p>
             </div>
+
 
 
 
