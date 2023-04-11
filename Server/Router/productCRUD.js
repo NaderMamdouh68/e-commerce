@@ -51,15 +51,10 @@ product.post('/productcreate',
 
             const sqlInsert = "INSERT INTO product set ?";
             const values = [productData];
-            await query(sqlInsert, values, (err) => {
-                if (err) {
-                    console.log(err);
-                }
-            });
+            await query(sqlInsert, values);
             res.status(200).json({ msg: "Product Created Successfully" });
 
         } catch (err) {
-            console.log(err);
             res.status(500).json({ msg: "Server Error" });
         }
 
@@ -102,39 +97,38 @@ product.put('/productupdate/:id',
                 category_id: req.body.category_id
             };
 
-            if (req.file) {
-                productData.image = req.file.filename;
-                fs.unlinkSync("./public/productImg/" + productdetails[0].image);
-            }
+            // if (req.file) {
+            //     productData.image = req.file.filename;
+            //     fs.unlinkSync("./public/productImg/" + productdetails[0].image);
+            // }
 
             const sqlUpdate = "UPDATE product SET ?  WHERE product_id = ?";
             const values = [productData, req.params.id];
-            await query(sqlUpdate, values, (err) => {
-                if (err) {
-                    console.log(err);
-                }
-                res.status(200).json({ msg: "Product Updated Successfully" });
-            });
+            await query(sqlUpdate, values);
+
+            res.status(200).json({ msg: "Product Updated Successfully" });
+
         } catch (err) {
-            console.log(err);
             res.status(500).json({ msg: "Server Error" });
         }
     });
 
 product.get('/',
-
     async (req, res) => {
         try {
             let search = "";
+            let filter = "";
             if (req.query.search) {
-                search = `where product_name LIKE '%${req.query.search}%' OR description LIKE '%${req.query.search}%'`;
+                search = `where product.product_name LIKE '%${req.query.search}%' OR product.description LIKE '%${req.query.search}%'`;
             }
-            const productdetails = await query(`select * from product ${search}`);
+            if (req.query.filter) {
+                filter = `where product.category_id = ${req.query.filter}`;
+            }
+            const productdetails = await query(`select product.product_id, product.product_name, product.price, product.description, product.image,product.category_id, category.category_name from product inner join category on product.category_id = category.category_id ${search} ${filter}`);
             productdetails.map((productdetail) => {
                 // productdetail.image = "http://" + req.hostname + ":5000/" + productdetail.image;
             });
             res.status(200).json(productdetails);
-            console.log(req.authUserid);
         } catch (err) {
             console.log(err);
             res.status(500).json({ msg: "Server Error" });
@@ -242,12 +236,25 @@ product.post('/productorder',
                 order_date: new Date(),
             };
 
-            await query("insert into orders set ?", orderData );
+            await query("insert into orders set ?", orderData);
             res.status(200).json({
                 msg: "Your Order Is added successfully !",
             });
         } catch (err) {
             res.status(500).json(err);
+        }
+    }
+);
+
+product.get('/productallorder',
+    admin,
+    async (req, res) => {
+        try {
+            const sqlSelect = "select orders.order_id, orders.order_date, product.product_name, user.user_name from orders inner join product on orders.product_id = product.product_id inner join user on orders.user_id = user.user_id";
+            const orderdetails = await query(sqlSelect);
+            res.status(200).json(orderdetails);
+        } catch (err) {
+           return res.status(500).json(err);
         }
     }
 );

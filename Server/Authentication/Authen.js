@@ -98,6 +98,7 @@ auth.post('/login',
                 type = "user";
             }
             const user_id = user[0].user_id;
+            await query("UPDATE user SET status = ? WHERE user_id = ?", [1, user_id]);
             const token = jwt.sign({ user_id }, key);
             res.status(200).json({ login: true, token : token, type : type });
 
@@ -107,5 +108,23 @@ auth.post('/login',
            return res.status(500).json(err);
         }
     });
+
+auth.get('/logout', async (req, res) => {
+    try {
+        let token = req.headers.authorization;
+        if (!token) {
+            return res.status(401).json({ user: false, msg: "Unauthorized" });
+        } else {
+            token = token.split(" ")[1];
+            let authUser = jwt.verify(token, key);
+            req.authUserid = authUser.user_id;
+            await query("UPDATE user SET status = ? WHERE user_id = ?", [0, authUser.user_id]);
+            res.status(200).json({ logout: true });
+        }
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+});
+
 
 export default auth;

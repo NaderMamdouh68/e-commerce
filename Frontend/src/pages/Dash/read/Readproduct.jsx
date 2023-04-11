@@ -21,7 +21,7 @@ const Readproduct = () => {
         <h2 className='table-title'>{product.product_name}</h2>
         <div className="card">
             <div>
-              <img className='profile-img' src={product.image} alt="" />
+              <img className='profile-img' src={`http://localhost:5000/${product.image}`} alt="" />
             </div>
             <div className='datacontaainer'>Name : {product.product_name}</div>
             <div className='datacontaainer'>Desciption : {product.description}</div>

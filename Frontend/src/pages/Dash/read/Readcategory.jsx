@@ -8,7 +8,7 @@ const Readcategory = () => {
    const [category, setCategory] = useState([])
    
    useEffect(()=>{
-    axios.get('http://localhost:5000/categories/categorydetails/'+id)
+    axios.get('http://localhost:5000/category/categorydetails/'+id)
     .then(res =>{
         console.log(res)
         setCategory(res.data[0]);

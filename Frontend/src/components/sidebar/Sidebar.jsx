@@ -4,12 +4,18 @@ import { useState } from 'react'
 import { AccountCircleOutlined, AddShoppingCart, Category, Feedback, LineStyle, Logout, Mail, Storefront, Timeline } from '@mui/icons-material'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Sidebar = () => {
 
   const [active, setActive] = useState('#home')
 
   const handleLogOut = () => {
+    axios.get('http://localhost:5000/authentication/logout',{
+      headers: {
+        authorization : localStorage.getItem('token'),
+      }
+    })
     const conf = confirm('Are you sure you want to log out?', 'Log out')
     if (conf === true) {
       localStorage.removeItem('token')
