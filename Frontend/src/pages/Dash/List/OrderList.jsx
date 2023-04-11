@@ -7,7 +7,7 @@ import axios from 'axios';
 const OrderList = () => {
   const [data, setData] =useState([])
   useEffect(()=>{
-      axios.get('http://localhost:5000/product/productorder',{
+      axios.get('http://localhost:5000/product/productallorder',{
         headers: {
         authorization : localStorage.getItem('token'),
       },

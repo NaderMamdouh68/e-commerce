@@ -15,13 +15,21 @@ const Analytics = () => {
 
 
   useEffect(()=>{
-    axios.get('http://localhost:5000/users')
+    axios.get('http://localhost:5000/user', {
+      headers: {
+        authorization : localStorage.getItem('token'),
+      },
+    })
       .then(res => setUserData(res.data))
       .catch(err => console.log(err))
-    axios.get('http://localhost:5000/orders')
+    axios.get('http://localhost:5000/product/productallorder', { 
+      headers: {
+        authorization : localStorage.getItem('token'),
+      },
+    })
       .then(res => setOrderData(res.data))
       .catch(err => console.log(err))
-    axios.get('http://localhost:5000/products')
+    axios.get('http://localhost:5000/product')
       .then(res => setProductrData(res.data))
       .catch(err => console.log(err))
   },

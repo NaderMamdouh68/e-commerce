@@ -7,7 +7,6 @@ import './edituser.css'
 const Editproduct = () => {
 
   const { id } = useParams();
-  const [user, setUser] = useState([])
   const navigate = useNavigate()
   const [product_name, setProduct_name] = useState('');
   const [category_id, setCategory_id] = useState('');
@@ -19,11 +18,10 @@ const Editproduct = () => {
     axios.get('http://localhost:5000/product/productshow/'+id)
       .then(res => {
         console.log(res)
-        setProduct_name(res.data.Product_name)
-        setCategory_id(res.data.category_id)
+        setProduct_name(res.data.product_name)
         setPrice(res.data.price)
         setDescription(res.data.description)
-        setFile(res.file.image)
+        setFile(res.data.image)
       })
       .catch(err => console.log(err))
 
@@ -48,6 +46,7 @@ const Editproduct = () => {
     formData.append('category_id', category_id);
     formData.append('price', price);
     formData.append('description', description);
+    
     formData.append('image', file);
     
     axios.put('http://localhost:5000/product/productupdate/' + id, formData,{
@@ -90,7 +89,7 @@ const Editproduct = () => {
               <select name="category_id" id="category_id" onClick={e => setCategory_id(e.target.value)}>
                 {data.map((category, index) => {
                   return (
-                    <option key={index} value={category_id}>{category.category_name}</option>
+                    <option key={index} value={category.category_id}>{category.category_name}</option>
                   )
                 }
                 )}

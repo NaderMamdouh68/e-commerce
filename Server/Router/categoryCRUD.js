@@ -68,7 +68,20 @@ category.get('/',
             res.status(500).json({ msg: "Server Error" });
         }
     });
-
+category.get('/categorydetails/:id',
+    async (req, res) => {
+        try {
+            const sqlcheck = "SELECT * FROM category WHERE category_id = ?";
+            const value = [req.params.id];
+            const categorydetails = await query(sqlcheck, value);
+            if (!categorydetails[0]) {
+                return res.status(400).json({ msg: "Error: category Not Found!" });
+            }
+            res.status(200).json(categorydetails);
+        }catch (err) {
+            return res.status(500).json({ msg: "Server Error" });
+        }
+    });
 
 category.put('/categoryupdate/:id',
     admin,
