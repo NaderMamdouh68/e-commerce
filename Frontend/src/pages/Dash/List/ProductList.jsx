@@ -64,7 +64,7 @@ const handleDelete =(id) =>{
             <tr key={product.product_id} >
               <td>{product.product_id}</td>
               <td>{product.product_name}</td>
-              <td ><img className='product-img' src={product.image} alt=""  /></td>
+              <td ><img className='product-img' src={`http://localhost:5000/${product.image}`} alt=""  /></td>
               <td>{`${product.price}$`}</td> 
               <td>{product.description}</td>
               <td>{product.category_name}</td>

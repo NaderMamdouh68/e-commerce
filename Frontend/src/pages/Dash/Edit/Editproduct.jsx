@@ -9,32 +9,28 @@ const Editproduct = () => {
   const { id } = useParams();
   const [user, setUser] = useState([])
   const navigate = useNavigate()
+  const [product_name, setProduct_name] = useState('');
+  const [category_id, setCategory_id] = useState('');
+  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState('');
+  const [file, setFile] = useState('');
 
   useEffect(() => {
     axios.get('http://localhost:5000/product/productshow/'+id)
       .then(res => {
         console.log(res)
-        setValues({
-          ...values,
-          product_name: res.data.product_name,
-          price: res.data.price,
-          description: res.data.description,
-          category_name: res.data.category_name,
-          image: res.data.image,
-
-        })
+        setProduct_name(res.data.Product_name)
+        setCategory_id(res.data.category_id)
+        setPrice(res.data.price)
+        setDescription(res.data.description)
+        setFile(res.file.image)
       })
       .catch(err => console.log(err))
 
   }, [id])
 
-  const [values, setValues] = useState({
-    product_name: '',
-    price: '',
-    description: '',
-    category_name: '',
-    image: ''
-  })
+
+
 
   const [data, setData] = useState([])
   useEffect(() => {
@@ -47,7 +43,18 @@ const Editproduct = () => {
 
   const handleUpdate = (event) => {
     event.preventDefault()
-    axios.put('http://localhost:5000/products/productUpdate/' + id, values)
+    const formData = new FormData();
+    formData.append('product_name', product_name);
+    formData.append('category_id', category_id);
+    formData.append('price', price);
+    formData.append('description', description);
+    formData.append('image', file);
+    
+    axios.put('http://localhost:5000/product/productupdate/' + id, formData,{
+      headers: {
+        authorization : localStorage.getItem('token'),
+      }
+    })
       .then(res => {
         console.log(res);
         navigate('/dashboard/manageproducts')
@@ -64,7 +71,7 @@ const Editproduct = () => {
         
           <h2 className='table-title'>update Product</h2>
           <div>
-              <img className='profile-img' src={values.image} alt="" />
+              <img className='profile-img' src={`http://localhost:5000/${file}`} alt="" />
           </div>
           <form onSubmit={handleUpdate}>
             <div className='inputcontainer'>
@@ -72,18 +79,18 @@ const Editproduct = () => {
               <input
                 type="text"
                 name='product_name'
-                value={values.product_name}
-                onChange={e => setValues({ ...values, product_name: e.target.value })}
+                value={product_name}
+                onChange={e => setProduct_name(e.target.value)}
               />
             </div>
             
 
             <div className='inputcontainer'>
               <label htmlFor='category_id'>category_name</label>
-              <select name="category_id" id="category_id" onChange={e => setValues({ ...values, category_id: e.target.value })}>
+              <select name="category_id" id="category_id" onClick={e => setCategory_id(e.target.value)}>
                 {data.map((category, index) => {
                   return (
-                    <option key={index} value={category.category_id}>{category.category_name}</option>
+                    <option key={index} value={category_id}>{category.category_name}</option>
                   )
                 }
                 )}
@@ -95,8 +102,8 @@ const Editproduct = () => {
               <input
                 type="text"
                 name='price'
-                value={values.price}
-                onChange={e => setValues({ ...values, price: e.target.value })}
+                value={price}
+                onChange={e => setPrice(e.target.value)}
               />
             </div>
 
@@ -106,21 +113,30 @@ const Editproduct = () => {
               <input
                 type="text"
                 name='description'
-                value={values.description}
-                onChange={e => setValues({ ...values, description: e.target.value })}
+                value={description}
+                onChange={e => setDescription(e.target.value)}
               />
             </div>
+            {/* <div className='inputcontainer'>
+              <label htmlFor='description'>img</label>
+              <input
+                type="text"
+                name='img'
+                value={values.image}
+                onChange={e => setValues({ ...values, image: e.target.value })}
+              />
+            </div> */}
 
 
             <div className='inputcontainer'>
               <label htmlFor='description'>image</label>
               <input
-                type="file"
-                name='image'
-                onChange={e => setValues({ ...values, image: e.target.files[0] })}
-              />
+                        type="file"
+                        name='image'
+                        onChange={e => setFile(e.target.files[0])}
+                    />
             </div>
-
+            
 
 
 

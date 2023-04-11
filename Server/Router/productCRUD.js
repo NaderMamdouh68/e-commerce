@@ -81,9 +81,9 @@ product.put('/productupdate/:id',
                 return res.status(400).json({ errors: errors.array() });
             }
 
-            if (!req.file) {
-                return res.status(400).json({ msg: "Error: No Image Selected!" });
-            }
+            // if (!req.file) {
+            //     return res.status(400).json({ msg: "Error: No Image Selected!" });
+            // }
 
             const sqlcheck = "SELECT * FROM product WHERE product_id = ?";
             const value = [req.params.id];
@@ -131,7 +131,7 @@ product.get('/',
             }
             const productdetails = await query(`select * from product ${search}`);
             productdetails.map((productdetail) => {
-                productdetail.image = "http://" + req.hostname + ":5000/" + productdetail.image;
+                // productdetail.image = "http://" + req.hostname + ":5000/" + productdetail.image;
             });
             res.status(200).json(productdetails);
             console.log(req.authUserid);
@@ -151,7 +151,7 @@ product.get('/productshow/:id',
             if (!productdetails[0]) {
                 return res.status(404).json({ ms: "Product not found !" });
             }
-            productdetails[0].image = "http://" + req.hostname + ":5000/" + productdetails[0].image;
+            // productdetails[0].image = "http://" + req.hostname + ":5000/" + productdetails[0].image;
             res.status(200).json(productdetails[0]);
         } catch (err) {
             console.log(err);
