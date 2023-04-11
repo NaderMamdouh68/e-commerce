@@ -15,13 +15,7 @@ const CreateProduct = () => {
     }, []
     )
 
-    // const [values, setValues] = useState({
-    //     product_name: "",
-    //     category_id: "",
-    //     price: "",
-    //     description: "",
-    //     image: ""
-    // })
+
     const [product_name, setProduct_name] = useState('');
     const [category_id, setCategory_id] = useState('');
     const [price, setPrice] = useState('');
