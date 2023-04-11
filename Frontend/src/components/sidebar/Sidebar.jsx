@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import './sidebar.css'
 import { useState } from 'react'
-import { AccountCircleOutlined, AddShoppingCart, Category, Feedback, LineStyle, Mail, Storefront, Timeline } from '@mui/icons-material'
+import { AccountCircleOutlined, AddShoppingCart, Category, Feedback, LineStyle, Logout, Mail, Storefront, Timeline } from '@mui/icons-material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -22,30 +22,8 @@ const Sidebar = () => {
 
   return (
     <div className='Sidebar'>
-      <div className="sidebarWrapper">
-        <div className="logo">
-          <h1>Dashbord</h1>
-        </div>
-        <div className="sidebarmenu">
-          <ul className="sidebarList">
-            <div onClick={() => setActive('#home')} className={active === '#home' ? 'active' : ''}>
-              <li className="sidebarListItem ">
-                <Link to='/dashboard' className={"sidebarlink"} >
-                  <LineStyle />
-                  Home
-                </Link>
-              </li>
-            </div>
-            <div onClick={() => setActive('#Analytics')} className={active === '#Analytics' ? 'active' : ''}>
-              <li className="sidebarListItem">
-                <Link to="/dashboard/analytics" className={"sidebarlink"}>
-                  <Timeline className='sidebarIcon' />
-                  Analytics
-                </Link>
-              </li>
-            </div>
-          </ul>
-        </div>
+      {/* <div className="sidebarWrapper">
+     
 
 
         <div className="sidebarmenu">
@@ -104,6 +82,85 @@ const Sidebar = () => {
             </div>
           </ul>
         </div>
+      </div> */}
+      <div className="sidebar-wrapper">
+        <h2 className='title'>
+          Dashboard
+        </h2>
+        <div className="sidebar-menu">
+          <ul>
+            <li onClick={() => setActive('#home')} className={active === '#home' ? 'active' : ''}>
+            <Link to='/dashboard' className={"sidebarlink"} >
+                  <LineStyle />
+                    Home
+                  </Link>
+            </li>
+
+            <li onClick={() => setActive('#analtic')} className={active === '#analtic' ? 'active' : ''}>
+              <Link to='/dashboard/analytics' className={"sidebarlink"} >
+              <Timeline  />
+                  Analytics
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+
+
+        <div className="sidebar-menu">
+        <ul>
+            <h3>control</h3>
+            <li onClick={() => setActive('#user')} className={active === '#user' ? 'active' : ''}>
+              <Link to='/dashboard/manageUsers' className={"sidebarlink"} >
+                <AccountCircleOutlined />
+                users
+              </Link>
+            </li>
+
+            <li onClick={() => setActive('#product')} className={active === '#product' ? 'active' : ''}>
+              <Link to='/dashboard/manageProducts' className={"sidebarlink"} >
+                <Storefront />
+                Products
+              </Link>
+            </li>
+            <li onClick={() => setActive('#Category')} className={active === '#Category' ? 'active' : ''}>
+              <Link to='/dashboard/manageCategories' className={"sidebarlink"} >
+                <Category />
+                Categories
+              </Link>
+            </li>
+            <li onClick={() => setActive('#order')} className={active === '#order' ? 'active' : ''}>
+              <Link to='/dashboard/manageOrders' className={"sidebarlink"} >
+                <AddShoppingCart className='sidebarIcon' />
+                orders
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+
+
+        <div className="sidebar-menu">
+        <h3>Notifications</h3>
+          <ul>
+            <li onClick={() => setActive('#feedback')} className={active === '#feedback' ? 'active' : ''}>
+              <Link to='' className={"sidebarlink"} >
+                <Feedback className='sidebarIcon' />
+                Feedback
+              </Link>
+            </li>
+
+            <li onClick={() => setActive('#mail')} className={active === '#mail' ? 'active' : ''}>
+              <Link to='/dashboard' className={"sidebarlink"} >
+              <Mail  />
+                  E-mail
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <button className="editbtn" onClick={handleLogOut}>
+          <Logout />logout
+        </button>
       </div>
     </div>
   )

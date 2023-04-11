@@ -110,7 +110,6 @@ const handleDelete =(id) =>{
               <td>{user.phonenumber}</td>
               <td className='actions'>
                 <Link  to={`/dashboard/manageUsers/readu/${user.user_id}`} className='editbtn'>show</Link>
-                <Link to={`/dashboard/manageUsers/edituser/${user.user_id}`}  className='editbtn'>edit</Link>
                 <DeleteOutline onClick={() => handleDelete (user.user_id)} className='delete'/>
               </td>
             </tr>

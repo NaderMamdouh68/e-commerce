@@ -8,10 +8,10 @@ const Readuser = () => {
    const [user, setUser] = useState([])
    
    useEffect(()=>{
-    axios.get('http://localhost:5000/users/userdetails/'+id)
+    axios.get('http://localhost:5000/user/usershow/'+id)
     .then(res =>{
         console.log(res)
-        setUser(res.data[0]);
+        setUser(res.data);
     })
     .catch(err => console.log(err))
     
