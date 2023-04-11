@@ -21,7 +21,7 @@ const Readuser = () => {
         <h2 className='table-title'>{user.user_name}</h2>
         <div className="">
               <div className="image">
-                <img className='profile-img' src={(`http://localhost:5000/images/userImg/${user.user_image}`)} alt=""></img>
+                <img className='profile-img' src="https://previews.123rf.com/images/yupiramos/yupiramos1610/yupiramos161007352/64369849-young-man-avatar-isolated-icon-vector-illustration-design.jpg" alt=""></img>
                 <span className={user.status ? 'status-green' : 'status-red'}></span>
               </div>
               <div className='datacontaainer'>id : {user.user_id}</div>

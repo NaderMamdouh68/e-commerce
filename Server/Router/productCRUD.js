@@ -55,14 +55,13 @@ product.post('/productcreate',
             res.status(200).json({ msg: "Product Created Successfully" });
 
         } catch (err) {
-            res.status(500).json({ msg: "Server Error" });
+            return res.status(500).json({ msg: "Server Error" });
         }
 
     });
 
 product.put('/productupdate/:id',
     admin,
-    upload,
     body("product_name").isString().withMessage("please enter a valid Product name"),
     body("price").notEmpty().withMessage("Price is required"),
     body("description").notEmpty().withMessage("Description is required")
@@ -93,7 +92,6 @@ product.put('/productupdate/:id',
                 product_name: req.body.product_name,
                 price: req.body.price,
                 description: req.body.description,
-                image: req.file.filename,
                 category_id: req.body.category_id
             };
 

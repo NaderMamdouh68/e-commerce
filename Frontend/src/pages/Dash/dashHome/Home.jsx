@@ -1,5 +1,4 @@
 import React, {useEffect, useState}from 'react'
-import Charts from '../../../components/charts/Charts'
 import FeaturedInfo from '../../../components/featuredInfo/FeaturedInfo'
 import './home.css'
 import axios from 'axios'
@@ -20,7 +19,6 @@ const Home = () => {
   return (
     <div className='home'>
         <FeaturedInfo/>
-        <Charts/>
         <div className="last-added">
         <h3>last added products</h3>
         <div className="last">

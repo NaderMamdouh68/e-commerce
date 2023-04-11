@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { useEffect , useState} from 'react'
 import {Link} from 'react-router-dom'
 import './userlist.css'
@@ -21,15 +22,18 @@ const UesrList = () => {
   )
 
 const handleDelete =(id) =>{
-  alert('Are you sure you want to delete this product?')
+  const conf = confirm('Are you sure you want to delete this User?')
+    if (conf === true) {
   axios.delete('http://localhost:5000/user/userdelete/'+id,{
     headers: {
     authorization : localStorage.getItem('token'),
   }})
+
   .then(res => {
     window.location.reload();
   })
   .catch(err => console.log(err))
+}
 }
 
 
@@ -104,7 +108,7 @@ const handleDelete =(id) =>{
             <tr key={index}>
               <td>{user.user_id}</td>
               <td>{user.user_name}</td>
-              <td ><img className='product-img' src={(`http://localhost:5000/images/userImg/${user.user_image}`)} alt=""  /></td>
+              <td ><img className='product-img' src="https://previews.123rf.com/images/yupiramos/yupiramos1610/yupiramos161007352/64369849-young-man-avatar-isolated-icon-vector-illustration-design.jpg" alt=""  /></td>
               <td>{(user.status)? 'active': 'non-active' } </td>
               <td>{user.email}</td>
               <td>{user.phonenumber}</td>

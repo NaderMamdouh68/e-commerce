@@ -11,9 +11,10 @@ function Login_Signup() {
   const [user_name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [checkpassword, setCheckpassword] = useState("");
   const [phonenumber, setPhonenumber] = useState("");
   const [loginData, setLoginData] = useState(false);
-  const [signupData] = useState("");
+  const [signupData,setSignupData] = useState("");
   const navigate = useNavigate();
 
   if (localStorage.getItem("token")) {
@@ -34,18 +35,26 @@ function Login_Signup() {
 
 
   const signup = (e) => {
-    // e.preventDefault();
-    // Axios.post("http://localhost:5000/authentication/signup", {
-    //   user_name: user_name,
-    //   email: email,
-    //   password: password,
-    //   phonenumber: phonenumber,
-    // }).then((response) => {
-    //   if (response) {
-    //     console.log(response);
-    //   }
-    // });
+    e.preventDefault();
+    Axios.post("http://localhost:5000/authentication/signup", {
+      user_name: user_name,
+      email: email,
+      password: password,
+      checkpassword : checkpassword,
+      phonenumber: phonenumber,
+    }).then((response) => {
+      if (!response.data.signup) {
+        console.log(response.data.errors);
+        setSignupData(false);
+      } else {
+        setSignupData(true);
+        window.location.reload();
+      }
+    }
+    );
   };
+
+
 
   const login = (e) => {
     e.preventDefault();
@@ -210,9 +219,9 @@ function Login_Signup() {
 
                       type="password"
                       minLength="4"
-                      name="passwordConfirm"
-                      value={signupData.passwordConfirm}
-                      onChange={signupData.passwordConfirm}
+                      name="checkpassword"
+                      value={signupData.checkpassword}
+                      onChange={(e) => setCheckpassword(e.target.value)}
                       placeholder="Enter your password again"
                       required
                     />

@@ -47,7 +47,6 @@ const Editproduct = () => {
     formData.append('price', price);
     formData.append('description', description);
     
-    formData.append('image', file);
     
     axios.put('http://localhost:5000/product/productupdate/' + id, formData,{
       headers: {
@@ -55,7 +54,6 @@ const Editproduct = () => {
       }
     })
       .then(res => {
-        console.log(res);
         navigate('/dashboard/manageproducts')
       }
       )
@@ -127,14 +125,7 @@ const Editproduct = () => {
             </div> */}
 
 
-            <div className='inputcontainer'>
-              <label htmlFor='description'>image</label>
-              <input
-                        type="file"
-                        name='image'
-                        onChange={e => setFile(e.target.files[0])}
-                    />
-            </div>
+            
             
 
 

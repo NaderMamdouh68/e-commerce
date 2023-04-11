@@ -12,7 +12,11 @@ const CreateCategory = () => {
     const nvigate =useNavigate();
     const handleSubmit = (e) =>{
         e.preventDefault();
-        axios.post('http://localhost:5000/categories/categorycreate', values)
+        axios.post('http://localhost:5000/category/categorycreate', values, {
+            headers: {
+                authorization: localStorage.getItem('token'),
+            }
+        })
         .then(res => {
             console.log(res);
             nvigate('/dashboard/manageCategories')

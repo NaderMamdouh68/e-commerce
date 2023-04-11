@@ -38,7 +38,7 @@ const CreateProduct = () => {
           }},)
             .then(res => {
                 console.log(res.data);
-                window.location.href = '/dashboard/manageproducts'
+                // window.location.href = '/dashboard/manageproducts'
             })
             .catch(err => {
                 console.log(err)

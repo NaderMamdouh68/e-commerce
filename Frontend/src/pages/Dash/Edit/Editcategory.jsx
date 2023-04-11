@@ -9,7 +9,7 @@ const Editcategory = () => {
   const navigate = useNavigate()
 
   useEffect(()=>{
-    axios.get('http://localhost:5000/categories/categorydetails/'+id)
+    axios.get('http://localhost:5000/category/categorydetails/'+id)
     .then(res =>{
         console.log(res)
         setValues({...values,
@@ -21,7 +21,8 @@ const Editcategory = () => {
     })
     .catch(err => console.log(err))
     
-   }, [id]) 
+   // eslint-disable-next-line no-use-before-define
+   }, [id, values]) 
 
   const [values, setValues] = useState({
     category_name: '',
@@ -32,7 +33,11 @@ const Editcategory = () => {
 
   const handleUpdate = (event)=>{
     event.preventDefault()
-    axios.put('http://localhost:5000/categories/categoryupdate/'+id, values)
+    axios.put('http://localhost:5000/category/categoryupdate/'+id, values, {
+      headers: {
+        authorization: localStorage.getItem('token'),
+      }
+    })
     .then(res =>{
       console.log(res);
       navigate('/dashboard/manageCategories')

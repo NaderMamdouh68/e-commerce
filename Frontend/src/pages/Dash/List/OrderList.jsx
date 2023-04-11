@@ -20,7 +20,7 @@ const OrderList = () => {
 
 
   return (
-    <div className="userList">
+    <div className="userlist">
       <h2 className='table-title'>Orders List</h2>
       <div>
       </div>

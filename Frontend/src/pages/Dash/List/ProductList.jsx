@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import './userlist.css'
@@ -18,7 +19,6 @@ const ProductList = () => {
 
     axios.get('http://localhost:5000/category/categorydetails/' + id)
       .then(res => {
-        console.log(res)
         setSearch(res.data[0].category_name);
       })
       .catch(err => console.log(err))
@@ -28,7 +28,8 @@ const ProductList = () => {
 
 
   const handleDelete = (id) => {
-    alert('Are you sure you want to delete this product?')
+    const conf = confirm('Are you sure you want to delete this product?')
+    if (conf === true) {
     axios.delete('http://localhost:5000/product/productdelete/' + id, {
       headers: {
         authorization: localStorage.getItem('token'),
@@ -39,12 +40,14 @@ const ProductList = () => {
       })
       .catch(err => console.log(err))
   }
+  }
+  
 
 
 
 
   return (
-    <div className="userList">
+    <div className="userlist">
       <h2 className='table-title'>Product List</h2>
       <div>
         <Link to="/dashboard/manageProducts/createProduct" className='editbtn crbtn'>Create +</Link>

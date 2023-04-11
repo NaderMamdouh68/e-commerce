@@ -4,6 +4,8 @@ import { body, validationResult } from "express-validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cors from "cors";
+import upload from '../middleware/uploadimage.js';
+
 
 
 const auth = express();
@@ -18,6 +20,7 @@ auth.post('/signup',
     body("password").isLength({ min: 3 }).withMessage("password must be at least 3 chars long!"),
     body("user_name").isLength({ min: 3 }).withMessage("username must be at least 3 chars long!"),
     body("phonenumber").isLength({ min: 3 }).withMessage("phonenumber must be at least 11 number!"),
+    upload,
 
     async (req, res) => {
         try {

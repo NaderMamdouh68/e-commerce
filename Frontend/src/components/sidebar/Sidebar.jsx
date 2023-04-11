@@ -164,7 +164,7 @@ const Sidebar = () => {
             </li>
           </ul>
         </div>
-        <button className="editbtn" onClick={handleLogOut}>
+        <button className="editbtn logout" onClick={handleLogOut}>
           <Logout />logout
         </button>
       </div>

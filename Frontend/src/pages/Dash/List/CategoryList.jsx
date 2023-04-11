@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { useEffect , useState} from 'react'
 import {Link} from 'react-router-dom'
 import './userlist.css'
@@ -25,18 +26,25 @@ const CategoryList = () => {
 
   const handleDelete =(id) =>{
     alert('Are you sure you want to delete this category?')
-      axios.delete('http://localhost:5000/categories/categorydelete/'+id)
+    const conf = confirm('Are you sure you want to delete this category?')
+    if (conf === true) {
+      axios.delete('http://localhost:5000/category/categorydelete/'+id,{
+        headers: {
+          authorization : localStorage.getItem('token'),
+        },
+      })
+
       .then((res) => {
         console.log(res)
         window.location.reload();
       })
       
       .catch(err => console.log(err))
-
+    }
       
   }  
   return (
-    <div className="userList">
+    <div className="userlist">
       <h2 className='table-title'>Category List</h2>
       <div>
         <Link to="/dashboard/manageCategories/createCategory" className='editbtn crbtn'>Create +</Link>

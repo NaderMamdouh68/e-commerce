@@ -7,7 +7,7 @@ import Topbar from '../../components/topbar/Topbar'
 
 const Dashboard = () => {
 
-  if(!localStorage.getItem('token')){
+  if(localStorage.getItem('type') === 'user' || !localStorage.getItem('token')){
     return window.location.href = '/login'
   }
   

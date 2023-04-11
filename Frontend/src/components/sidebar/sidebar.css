@@ -1,5 +1,5 @@
 .Sidebar{
-    width: 200px;
+    width: 280px;
     min-height: 100vh;
     margin-right: 10px;
     background: var(--secondcolor);
@@ -29,7 +29,7 @@ ul{
     display: flex;
     align-items: center;
     gap: 5px;
-    padding: 5px 10px;
+    padding: 10px 5px;
     border-radius: 50px;
 }
 .Sidebar li:hover{
@@ -41,8 +41,14 @@ ul{
     align-items: center;
     gap: 5px;
     font-size: 1rem;
+    margin: 15px 0px;
 }
 .active{
     background: var(--hovercolor);
     border-radius: 10px;
+}
+.logout{
+    margin-top:50px !important;
+    height: 50px;
+    width: 250px !important;
 }
