@@ -11,19 +11,18 @@ const ProductList = () => {
   const [data, setData] = useState([])
   const [search, setSearch] = useState('')
   const { id } = useParams();
-  console.log(id);
 
   useEffect(() => {
     axios.get('http://localhost:5000/product').then(res => setData(res.data))
       .catch(err => console.log(err))
-
+    if(id){
     axios.get('http://localhost:5000/category/categorydetails/' + id)
       .then(res => {
         setSearch(res.data[0].category_name);
       })
       .catch(err => console.log(err))
-  },
-    [id]
+    }
+  },[id]
   )
 
 

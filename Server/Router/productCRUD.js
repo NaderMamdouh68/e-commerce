@@ -2,7 +2,7 @@ import express from 'express';
 import query from '../Database/DB_Con.js';
 import user from '../middleware/checkuser.js';
 import admin from '../middleware/checkadmin.js';
-import { body, validationResult } from 'express-validator';
+import { body, validationResult, check } from 'express-validator';
 import upload from '../middleware/uploadimage.js';
 import fs from 'fs';
 
@@ -21,23 +21,31 @@ product.post('/productcreate',
         .isString().withMessage("please enter a valid Description"),
     body("category_id").notEmpty().withMessage("Category is required"),
 
+
     async (req, res) => {
         try {
+            // if (!req.file) {
+            //     return res.status(400).json({ msg: ("Error: No Image Selected!").array() });
+            // }
+            let error = [];
             const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                return res.status(400).json({ errors: errors.array() });
+            if (!errors.isEmpty() || !req.file) {
+                error = errors.array();
+                if (!req.file) {
+                    error.push({ msg: "No Image Selected!" });
+                }
+                return res.status(400).json({ msg: error });
             }
 
-            if (!req.file) {
-                return res.status(400).json({ msg: "Error: No Image Selected!" });
-            }
+
 
             const sqlcheck = "select * from product where product_name = ?";
             const value = [req.body.product_name];
 
             const checkproduct = await query(sqlcheck, value);
             if (checkproduct[0]) {
-                return res.status(404).json({ ms: "Product Is Already Exist !" });
+                error.push({ msg: "Product Already Exists!" })
+                return res.status(404).json({ msg: error});
             }
 
             const productData = {
@@ -52,7 +60,7 @@ product.post('/productcreate',
             const sqlInsert = "INSERT INTO product set ?";
             const values = [productData];
             await query(sqlInsert, values);
-            res.status(200).json({ msg: "Product Created Successfully" });
+            res.status(200).json([{ msg: "Product Created Successfully" }]);
 
         } catch (err) {
             return res.status(500).json({ msg: "Server Error" });
@@ -67,6 +75,7 @@ product.put('/productupdate/:id',
     body("description").notEmpty().withMessage("Description is required")
         .isString().withMessage("please enter a valid Description"),
     body("category_id").notEmpty().withMessage("Category is required"),
+
 
     async (req, res) => {
         try {
@@ -123,9 +132,9 @@ product.get('/',
                 filter = `where product.category_id = ${req.query.filter}`;
             }
             const productdetails = await query(`select product.product_id, product.product_name, product.price, product.description, product.image,product.category_id, category.category_name from product inner join category on product.category_id = category.category_id ${search} ${filter}`);
-            productdetails.map((productdetail) => {
-                // productdetail.image = "http://" + req.hostname + ":5000/" + productdetail.image;
-            });
+            // productdetails.map((productdetail) => {
+            //     // productdetail.image = "http://" + req.hostname + ":5000/" + productdetail.image;
+            // });
             res.status(200).json(productdetails);
         } catch (err) {
             console.log(err);
@@ -252,7 +261,7 @@ product.get('/productallorder',
             const orderdetails = await query(sqlSelect);
             res.status(200).json(orderdetails);
         } catch (err) {
-           return res.status(500).json(err);
+            return res.status(500).json(err);
         }
     }
 );

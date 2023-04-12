@@ -25,7 +25,6 @@ const CategoryList = () => {
   )
 
   const handleDelete =(id) =>{
-    alert('Are you sure you want to delete this category?')
     const conf = confirm('Are you sure you want to delete this category?')
     if (conf === true) {
       axios.delete('http://localhost:5000/category/categorydelete/'+id,{

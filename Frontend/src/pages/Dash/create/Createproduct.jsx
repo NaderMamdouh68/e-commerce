@@ -1,9 +1,10 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import './create.css'
 const CreateProduct = () => {
-
+    // const [error, setError] = useState();
+    const [errors, setErrors] = useState();
     const [data, setData] = useState([])
     useEffect(() => {
         axios.get('http://localhost:5000/category',{
@@ -12,7 +13,7 @@ const CreateProduct = () => {
           }},)
             .then(res => setData(res.data))
             .catch(err => console.log(err))
-    }, []
+    }, [errors]
     )
 
 
@@ -22,7 +23,8 @@ const CreateProduct = () => {
     const [description, setDescription] = useState('');
     const [file, setFile] = useState('');
 
-    const nvigate = useNavigate();
+    
+    // const nvigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
@@ -32,18 +34,29 @@ const CreateProduct = () => {
         formData.append('description', description);
         formData.append('image', file);
         
-        axios.post('http://localhost:5000/product/productcreate', formData,{
-            headers: {
-            authorization : localStorage.getItem('token'),
-          }},)
-            .then(res => {
-                console.log(res.data);
-                // window.location.href = '/dashboard/manageproducts'
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        try {
+            axios.post('http://localhost:5000/product/productcreate', formData, {
+                headers: {
+                    authorization: localStorage.getItem('token'),
+                }
+            },(res) => {
+                console.log(res.data)
+            }
+            )
+                .then(res => {
+                    window.location.href = '/dashboard/manageproducts'
+                })
+                .catch(err => {
+                    if(err.response.data.msg){
+                        setErrors(err.response.data.msg)
+                    }
+                    console.log(err.response.data)
+                })
+        } catch (error) {
+            console.log(error)
+        }
     }
+        
 
     return (
         <div className='editu'>
@@ -80,7 +93,7 @@ const CreateProduct = () => {
                     />
                 </div>
                 <div className="inputcontainer">
-                    <label htmlFor='description'>Description</label>
+                    <label htmlFor='description'>Image</label>
                     <input
                         type="file"
                         name='image'
@@ -88,6 +101,12 @@ const CreateProduct = () => {
                     />
                 </div>
                 <button className='editbtn'>submit</button>
+                {/* {error && <h2 className='error'>{error.msg}</h2>} */}
+                {errors && errors.map((error, index) => {
+                    return (
+                        <h2 key={index} className='error'>{error.msg}</h2>
+                    )
+                })}
             </form>
         </div>
     )
