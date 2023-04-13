@@ -21,6 +21,7 @@ import OrderList from "./pages/Dash/List/OrderList";
 import Editorder from "./pages/Dash/Edit/Editorder";
 import Analytics from "./pages/Dash/analysis/Analytics";
 import Readorder from "./pages/Dash/read/Readorder";
+import FeedbackList from "./pages/Dash/List/FeedbackList";
 
 const Router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const Router = createBrowserRouter([
       {
         path: "/dashboard/manageUsers",
         element: <UesrList />,
+      },
+      {
+        path: "/dashboard/feedback",
+        element: <FeedbackList />,
       },
       {
         path: "/dashboard/analytics",

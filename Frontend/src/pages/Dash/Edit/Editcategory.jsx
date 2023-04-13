@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
@@ -7,7 +8,13 @@ const Editcategory = () => {
 
   const {id} = useParams();
   const navigate = useNavigate()
-
+  const [errors, setErrors] = useState()
+  const [values, setValues] = useState({
+    category_name: '',
+    title: '',
+    description: '',
+    
+  })
   useEffect(()=>{
     axios.get('http://localhost:5000/category/categorydetails/'+id)
     .then(res =>{
@@ -22,14 +29,9 @@ const Editcategory = () => {
     .catch(err => console.log(err))
     
    // eslint-disable-next-line no-use-before-define
-   }, [id, values]) 
+   }, [id]) 
 
-  const [values, setValues] = useState({
-    category_name: '',
-    title: '',
-    description: '',
-    
-  })
+
 
   const handleUpdate = (event)=>{
     event.preventDefault()
@@ -43,7 +45,10 @@ const Editcategory = () => {
       navigate('/dashboard/manageCategories')
     }
     )
-    .catch (err => console.log(err))
+    .catch (err => {
+      console.log(err.response.data.errors)
+      setErrors(err.response.data.errors)
+    })
   }
 
 
@@ -86,7 +91,13 @@ const Editcategory = () => {
             <button className='editbtn'>Edit</button>
         </form>
     </div>
+    {errors && errors.map((error, index) => (
+        <h1 key={index} className='error'>
+          {error.msg}
+        </h1>
+      ))}
     </div>
+
   )
 }
 

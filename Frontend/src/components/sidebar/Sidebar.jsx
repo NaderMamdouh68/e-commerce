@@ -150,7 +150,7 @@ const Sidebar = () => {
         <h3>Notifications</h3>
           <ul>
             <li onClick={() => setActive('#feedback')} className={active === '#feedback' ? 'active' : ''}>
-              <Link to='' className={"sidebarlink"} >
+              <Link to='/dashboard/feedback' className={"sidebarlink"} >
                 <Feedback className='sidebarIcon' />
                 Feedback
               </Link>

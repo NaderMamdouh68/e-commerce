@@ -72,16 +72,19 @@ auth.post('/login',
     body("password").isLength({ min: 3 }).withMessage("password must be at least 3 chars long!"),
     async (req, res) => {
         try {
+            let error = [];
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return res.status(400).json({ errors: errors.array() });
+                error=errors.array();
+                return res.status(400).json({errors:error});
             }
 
 
 
             const user = await query("SELECT * FROM user WHERE user_name = ?", [req.body.user_name]);
             if (user.length === 0) {
-                return res.status(400).json({login: false, errors: "User does not exist"});
+                error.push({ msg: "User does not exist"});
+                return res.status(400).json({login: false, errors: error});
             }
 
             
@@ -90,7 +93,8 @@ auth.post('/login',
 
 
             if (!checkpassword) {
-                return res.json({login: false, errors: "Password is incorrect"  });
+                error.push({ msg: "Password is incorrect"});
+                return res.status(400).json({login: false, errors: error });
             }
 
             delete user[0].password;

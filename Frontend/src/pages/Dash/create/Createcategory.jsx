@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './create.css'
 const CreateCategory = () => {
+    const [errors, setErrors] = useState()
 
     const [values, setValues] = useState({
         category_name:"",
@@ -21,10 +22,13 @@ const CreateCategory = () => {
             console.log(res);
             nvigate('/dashboard/manageCategories')
         })
-        .catch(err => console.log(err))
+        .catch(err => {console.log(err)
+            setErrors(err.response.data.errors)
+        })
     }
 
   return (
+    <div>
     <div className='editu'>
         <h2 className='table-title'>Create New Category</h2>
         <form onSubmit={handleSubmit}>
@@ -48,7 +52,14 @@ const CreateCategory = () => {
             </div>
             <button className='editbtn'>submit</button>
         </form>
+        
     </div>
+    {errors && errors.map((error, index) => (
+        <h1 key={index} className='error'>
+          {error.msg}
+        </h1>
+      ))}
+      </div>
   )
 }
 

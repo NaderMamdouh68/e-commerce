@@ -14,7 +14,9 @@ function Login_Signup() {
   const [checkpassword, setCheckpassword] = useState("");
   const [phonenumber, setPhonenumber] = useState("");
   const [loginData, setLoginData] = useState(false);
-  const [signupData,setSignupData] = useState("");
+  const [signupData, setSignupData] = useState("");
+  const [errors, setErrors] = useState();
+
   const navigate = useNavigate();
 
   if (localStorage.getItem("token")) {
@@ -40,10 +42,11 @@ function Login_Signup() {
       user_name: user_name,
       email: email,
       password: password,
-      checkpassword : checkpassword,
+      checkpassword: checkpassword,
       phonenumber: phonenumber,
     }).then((response) => {
       if (!response.data.signup) {
+        setErrors(response.data.errors);
         console.log(response.data.errors);
         setSignupData(false);
       } else {
@@ -55,7 +58,6 @@ function Login_Signup() {
   };
 
 
-
   const login = (e) => {
     e.preventDefault();
     Axios.post("http://localhost:5000/authentication/login", {
@@ -63,7 +65,6 @@ function Login_Signup() {
       password: password,
     }).then((response) => {
       if (!response.data.login) {
-        console.log(response.data.errors);
         setLoginData(false);
       } else {
         setLoginData(true);
@@ -77,7 +78,10 @@ function Login_Signup() {
 
       }
     }
-    );
+    ).catch((err) => {
+      setErrors(err.response.data.errors);
+      console.log(err.response.data.errors);
+    });
   };
 
 
@@ -109,6 +113,7 @@ function Login_Signup() {
         <div className="formss">
           <div className="form-contentt">
             <div className="loginn-form">
+
               <div className="title">Login</div>
               <form action="" >
                 <div className="input-boxes">
@@ -148,6 +153,11 @@ function Login_Signup() {
                     />
                   </div>
                   <div className="sign-up-text">Don't have an account? <label htmlFor="flip">Sigup now</label></div>
+                  {errors && errors.map((error, index) => (
+                    <div key={index} className="error">
+                      {error.msg}
+                    </div>
+                  ))}
                 </div>
               </form>
             </div>

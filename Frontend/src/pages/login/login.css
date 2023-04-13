@@ -276,3 +276,10 @@
         display: none;
     }
 }
+.error{
+    color: red;
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: calc(100% /7);
+    margin-top: 10px;
+}

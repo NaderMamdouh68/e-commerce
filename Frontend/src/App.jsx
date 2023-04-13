@@ -4,6 +4,9 @@ import Footer from './components/footer/Footer.jsx'
 import Header from './components/header/Header';
 import axios from 'axios'
 function App() {
+  if(localStorage.getItem('type') === 'admin' || !localStorage.getItem('token')){
+    return window.location.href = '/login'
+  }
 
   const handleLogOut = () => {
     axios.get('http://localhost:5000/authentication/logout',{

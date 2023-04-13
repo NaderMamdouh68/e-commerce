@@ -1,38 +1,43 @@
-import React, {useEffect, useState}from 'react'
+/* eslint-disable array-callback-return */
+import React, { useEffect, useState } from 'react'
 import FeaturedInfo from '../../../components/featuredInfo/FeaturedInfo'
 import './home.css'
-import axios from 'axios'
+import axios from 'axios';
 const Home = () => {
+  const [users, setUsers] = useState([])
 
-  const [products, setProducts]= useState([])
   useEffect(() => {
-    axios.get('http://localhost:5000/product').then(res => setProducts(res.data))
+    axios.get('http://localhost:5000/user', {
+      headers: {
+        authorization: localStorage.getItem('token'),
+      },
+    }).then(res => setUsers(res.data))
       .catch(err => console.log(err))
 
-      .catch(err => console.log(err))
-  },
-    []
-  )
+  }, [])
 
-  const lastproducts = products.slice(-5);
+  const lastpUsers = users.slice(-5);
+
 
   return (
     <div className='home'>
-        <FeaturedInfo/>
-        <div className="last-added">
-        <h3>last added products</h3>
+      <FeaturedInfo />
+      <div className="last-added">
+        <h3>Active Users</h3>
         <div className="last">
-          {lastproducts.map((product)=>{
-            return(
-              <div className="product-card">
-                <img src={(`http://localhost:5000/${product.image}`)} alt="" />
-                <p>{product.product_name}</p>
-              </div>
-            )  
+          {lastpUsers.map((user) => {
+            if (user.status) {
+              return (
+                <div className="product-card">
+                  <img src="https://previews.123rf.com/images/yupiramos/yupiramos1610/yupiramos161007352/64369849-young-man-avatar-isolated-icon-vector-illustration-design.jpg" alt="" />
+                  <p>{user.user_name}</p>
+                </div>
+              )
+            }
           })
           }
         </div>
-        </div>
+      </div>
     </div>
   )
 }

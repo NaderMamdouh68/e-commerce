@@ -257,7 +257,21 @@ product.get('/productallorder',
     admin,
     async (req, res) => {
         try {
-            const sqlSelect = "select orders.order_id, orders.order_date, product.product_name, user.user_name from orders inner join product on orders.product_id = product.product_id inner join user on orders.user_id = user.user_id";
+            const sqlSelect = "select orders.order_id, orders.order_date, product.product_name,product.image , user.user_name from orders inner join product on orders.product_id = product.product_id inner join user on orders.user_id = user.user_id";
+            const orderdetails = await query(sqlSelect);
+            res.status(200).json(orderdetails);
+        } catch (err) {
+            return res.status(500).json(err);
+        }
+    }
+);
+
+
+product.get('/productallfeedback',
+    admin,
+    async (req, res) => {
+        try {
+            const sqlSelect = "select feedback.feedback_id, feedback.comment, product.product_name, user.user_name from feedback inner join product on feedback.product_id = product.product_id inner join user on feedback.user_id = user.user_id";
             const orderdetails = await query(sqlSelect);
             res.status(200).json(orderdetails);
         } catch (err) {

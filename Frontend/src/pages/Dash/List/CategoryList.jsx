@@ -9,6 +9,7 @@ import axios from 'axios';
 const CategoryList = () => {
 
   const [data, setData] =useState([])
+  
   useEffect(()=>{
       axios.get('http://localhost:5000/category',{
         headers: {
@@ -38,7 +39,13 @@ const CategoryList = () => {
         window.location.reload();
       })
       
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log(err.response.data.sqlState)
+        if (err.response.data.sqlState === '23000') {
+          alert('You can not delete this category because it is related to another table')
+        }
+      }
+      )
     }
       
   }  
