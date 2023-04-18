@@ -24,17 +24,17 @@ const Header = () => {
 
 
   return (
-    <div>
+    <div className='header'>
+        <h1 className="mian-logo">Logo</h1>
         <nav>
-            <h2>logo</h2>
             <ul className='nav-icons'>
-                <li><Link>Home</Link></li>
-                <li><Link>About</Link></li>
-                <li><Link>Contact us</Link></li>
-                <li><button onClick={handleLogOut} >logout</button></li>
-
+                <li><Link  className='link-header' to="/">Home</Link></li>
+                <li><Link className='link-header' >About</Link></li>
+                <li><Link  className='link-header' to="/products">Our Products</Link></li>
+                <li><Link  className='link-header' to="/products">Our Categories</Link></li>
             </ul>
         </nav>
+        <div className='logout-btn' onClick={handleLogOut} >Log out</div>
     </div>
   )
 }

@@ -1,0 +1,16 @@
+.our-products{
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 3rem;
+margin: 2rem 0;
+}
+.search{
+    display: flex;
+    align-items: center;
+    gap:  1rem;
+}
+.search input{
+    border: 1px solid black;
+    color: black;
+}

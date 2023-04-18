@@ -1,12 +1,66 @@
-nav{
+.header{
+    display: flex;
+    justify-content: space-between;    
+    align-items: center;
+}
+.mian-logo {
+font-size: 1.5rem;
+}
+nav {
     margin: 0 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 10px;
 }
-nav-icons{
-    text-decoration: none;
-    list-style: none;
+
+.nav-icons {
     display: flex;
+    align-items: center;
     gap: .5rem;
+
 }
+.nav-icons li{
+    margin: 0 1rem;
+}
+.nav-icons li .link-header{
+position: relative;
+padding: 0 0 0.2rem;
+}
+.nav-icons li .link-header::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto 0;
+    height: 2px;
+    width: 0;
+    background-color: #d2d8ce;
+    transition: all 0.5s ease-in-out;
+}
+.nav-icons li .link-header:hover::after{
+    width: 100%;
+}
+.logout-btn {
+    border-radius: 25px;
+    position: relative;
+    z-index: 100;
+}
+
+.logout-btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto 0;
+    width: 3rem;
+    height: 2rem;
+    background-color: #ddd;
+    border-radius: 77% 23% 75% 25% / 72% 23% 77% 28%;
+    z-index: -1;
+    transition: all 0.5s ease-in-out;
+}
+
+.logout-btn:hover {}

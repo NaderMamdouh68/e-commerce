@@ -1,0 +1,146 @@
+.buy{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    grid-column-gap: px;
+    grid-row-gap: 0px;
+    height: 100vh;
+    margin: 6rem 0;
+
+    }
+    .Image-Contanir { 
+        grid-area: 1 / 8 / 6 / 13; 
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        border-radius: 25px;
+        
+    }
+    .Image-Contanir img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+
+    }
+.Name-Contanir { 
+    grid-area: 1 / 1 / 2 / 5;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 25px;
+    font-size: 2rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Price-Contanir {
+     grid-area: 1 / 5 / 2 / 7;
+     width: 100%;
+     height: 100%;
+     overflow: hidden;
+     position: relative;
+     border-radius: 25px;
+     font-size: 1.5rem;
+     font-weight: 700;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+    }
+    .Price-Contanir span{
+        border-radius: 25px;
+        position: relative;
+        z-index: 100;
+    }
+    .Price-Contanir span::after{
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto 0;
+        width: 2rem;
+        height: 2rem;
+        background-color: #ddd;
+        border-radius: 77% 23% 75% 25% / 72% 23% 77% 28% ;
+        z-index: -1;
+        transition: all 0.5s ease-in-out;
+    }
+    .Price-Contanir span:hover::after{
+        width: 3rem;
+    }
+.desctiption-Contanir{
+     grid-area: 2 / 1 / 6 / 7; 
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+    }
+.feedback-Contanir {
+    grid-area: 6 / 1 / 8 / 13; 
+     position: relative;
+     width: 100%;
+     height: 100%;
+    }
+.feedback-Contanir textarea{
+     position: absolute;
+     top: 2rem;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     padding: 1rem;
+     resize: none;
+     border-radius: 25px;
+     z-index: 0;
+     box-shadow: 0 0 5px #00000085;
+        font-size: 1.2rem;
+    }
+    .feedback-Contanir button{
+        position: absolute;
+        bottom: -1rem;
+        right: 1rem;
+        border: none;
+        font-size: 1rem;
+        font-weight: 900;
+        background-color: black;
+        width: 3.5rem;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        color: #fff;
+        z-index: 10;
+        cursor: pointer;
+        box-shadow: 0 0 5px #00000085;
+    }
+    .semilar-proucts{
+        grid-area: 9 / 1 / 13 / 13; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .semilar-proucts h2{
+        color: black;
+        margin: 1rem;
+    }
+.product-container { 
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: .5rem;
+}
+
+
+/* .buy-product{
+    min-height: 80vh;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+.imagepro{
+    width: 80%;
+
+    overflow: hidden;
+}
+.imagepro img{
+    object-fit: cover;
+} */

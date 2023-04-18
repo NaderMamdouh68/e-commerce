@@ -29,7 +29,7 @@ a{
 }
 .butn{
     border: 1px solid black;
-    width: 60%;
+    /* width: 60%; */
     margin: auto;
     padding: .3rem 0;
     transition: .6s ease;
