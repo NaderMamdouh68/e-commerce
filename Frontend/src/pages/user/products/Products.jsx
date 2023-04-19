@@ -1,27 +1,60 @@
-import React from 'react'
+import React, { useEffect , useState} from 'react'
 import './products.css'
 import Product from '../../../components/product/Product'
 import { FaSearch } from 'react-icons/fa'
+import axios from 'axios';
 
 function Products  () {
+
+  const [categories, setCategories] =useState([])
+  const [products, setProducts] = useState([])
+  
+  useEffect(()=>{
+      axios.get('http://localhost:5000/category',{
+        headers: {
+        authorization : localStorage.getItem('token'),
+      },
+    })
+      .then(res => setCategories(res.data))
+      .catch(err => console.log(err))
+
+      axios.get('http://localhost:5000/product')
+      .then(res => setProducts(res.data))
+      .catch(err => console.log(err))
+  },
+  
+ []
+  )
   return (
     <section className='our-products'>
         <div className="search">
             <input type="text" />
             <FaSearch/>
         </div>
-        <div className="category">
-          <h2>category name</h2> 
+        {categories.map((category)=>{
+          return(
+            <div className="category">
+          <h1>{category.category_name}</h1> 
           <div className='product-cont'>
-          <Product/>
-          <Product/>
-          <Product/>
-          <Product/>
+          {
+            products.map((product)=>{
+              if(category.category_id === product.category_id){
+              return(
+                <Product 
+                  id ={product.product_id}
+                  name ={product.product_name}
+                  price = {product.price}
+                  image = {product.image}
+
+                />
+              )
+              }
+            })
+          }
           </div> 
         </div>
-        <div className="category">
-
-        </div>
+          )
+        })}
     </section>
   )
 }

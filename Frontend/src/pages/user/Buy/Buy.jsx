@@ -8,43 +8,69 @@ import { FaPaperPlane } from 'react-icons/fa'
 function Buy() {
 
     const { id } = useParams();
-    const [product, setProduct] = useState([])
+    const [item, seItem] = useState([])
+    const [categories, setCategories] =useState([])
+    const [products, setProducts] = useState([])
+    const [feedback, setFeedback] = useState({
+        user_id : "",
+        product_id : item.product_id,
+        comment:"",
+    })
     
     useEffect(()=>{
      axios.get('http://localhost:5000/product/productshow/'+id)
      .then(res =>{
          console.log(res)
-         setProduct(res.data);
+         seItem(res.data);
      })
      .catch(err => console.log(err))
+     axios.get('http://localhost:5000/category',{
+        headers: {
+        authorization : localStorage.getItem('token'),
+      },
+    })
+      .then(res => setCategories(res.data))
+      .catch(err => console.log(err))
+
+      axios.get('http://localhost:5000/product')
+      .then(res => setProducts(res.data))
+      .catch(err => console.log(err))
      
     }, [id]) 
     
     function handleSubmit(event) {
-        event.preventDefault()
-        console.log("feedback")
+        event.preventDefault()        
+        try {
+            axios.post('http://localhost:5000/product/', feedback, {
+                headers: {
+                    authorization: localStorage.getItem('token'),
+                }
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
         <section className='buy'>
             <div class="Image-Contanir">
-                <img src={`http://localhost:5000/${product.image}`} alt="" />
+                <img src={`http://localhost:5000/${item.image}`} alt="" />
             </div>
             <div class="Name-Contanir">
-                <span>{product.product_name}</span>
+                <span>{item.product_name}</span>
             </div>
             <div class="Price-Contanir">
-                <span>{`${product.price}$`}</span>
+                <span>{`${item.price}$`}</span>
             </div>
             <div class="desctiption-Contanir">
                 <h4>description</h4>
                 <p>
-                    {product.description}
+                    {item.description}
                 </p>
             </div>
             <div class="feedback-Contanir">
                 <form action="" onSubmit={handleSubmit}>
-                    <textarea placeholder='your feedback' />
+                    <textarea placeholder='your feedback'  onChange={e=> setFeedback({...feedback, comment: e.target.value})}/>
                     <button><FaPaperPlane /> </button>
                 </form>
             </div>
@@ -52,11 +78,12 @@ function Buy() {
                 <h2>you may like</h2>
 
                 <div className='product-container'>
-
+                    {    
+                     
+                    }
                     <Product />
                     <Product />
-                    <Product />
-                    <Product />
+                    
                 </div>
             </div>
         </section>

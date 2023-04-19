@@ -145,7 +145,7 @@ product.get('/',
 product.get('/productshow/:id',
     async (req, res) => {
         try {
-            const sqlShow = "select product.product_id, product.product_name, product.price, product.description, product.image, category.category_name from product inner join category on product.category_id = category.category_id where product_id = ?";
+            const sqlShow = "select product.product_id, product.category_id, product.product_name, product.price, product.description, product.image, category.category_name from product inner join category on product.category_id = category.category_id where product_id = ?";
             const values = [req.params.id];
 
             const productdetails = await query(sqlShow, values);
