@@ -1,48 +1,49 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import './buy.css'
 import Product from '../../../components/product/Product'
 import { FaPaperPlane } from 'react-icons/fa'
 
 function Buy() {
+
+    const { id } = useParams();
+    const [product, setProduct] = useState([])
+    
+    useEffect(()=>{
+     axios.get('http://localhost:5000/product/productshow/'+id)
+     .then(res =>{
+         console.log(res)
+         setProduct(res.data);
+     })
+     .catch(err => console.log(err))
+     
+    }, [id]) 
+    
+    function handleSubmit(event) {
+        event.preventDefault()
+        console.log("feedback")
+    }
+
     return (
         <section className='buy'>
-            {/* <div className='buy-product'>
-            <div className="about">
-
-            </div>
-            <div className="imagepro">
-                <img src={require("../../../assits/prodect-11.jpg")} alt="" />
-            </div>
-        </div>
-
-
-        <div className='feedback'>
-            <input type="text" placeholder='your feedback'/>
-            <button> send </button>
-        </div>
-        <div className='product-cont'>
-            <Product/>
-            <Product/>
-            <Product/>
-            <Product/>
-        </div> */}
             <div class="Image-Contanir">
-                <img src={require("../../../assits/prodect-11.jpg")} alt="" />
+                <img src={`http://localhost:5000/${product.image}`} alt="" />
             </div>
             <div class="Name-Contanir">
-                <span>Name Produact</span>
+                <span>{product.product_name}</span>
             </div>
             <div class="Price-Contanir">
-                <span>20$</span>
+                <span>{`${product.price}$`}</span>
             </div>
             <div class="desctiption-Contanir">
                 <h4>description</h4>
                 <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque debitis libero magni a, quis illo distinctio?
+                    {product.description}
                 </p>
             </div>
             <div class="feedback-Contanir">
-                <form action="">
+                <form action="" onSubmit={handleSubmit}>
                     <textarea placeholder='your feedback' />
                     <button><FaPaperPlane /> </button>
                 </form>

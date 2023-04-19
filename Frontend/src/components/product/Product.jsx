@@ -1,6 +1,15 @@
 import React from 'react'
+import { Link, useParams } from 'react-router-dom'
 
-function Product (){
+function Product (props){
+
+  const handlebuy =()=>{
+    
+  }
+
+
+
+
   return (
     <>
         {/* <div className="product">
@@ -15,17 +24,17 @@ function Product (){
           <article class="prodect">
       <div class="img-prodect">
           <img
-        src={require('../../assits/4302377512_2_1_1.jpg')}
+        src={`http://localhost:5000/${props.image}`}
         alt=""
         class="prodect-photo"
         id="prodect-photo"
       />
       </div>
-      <h1 class="name-prodect" id="name-prodect">name</h1>
-      <p class="price-prodect" id="price-prodect">20</p>
+      <h1 class="name-prodect" id="name-prodect">{props.name}</h1>
+      <p class="price-prodect" id="price-prodect">{`${props.price}$`}</p>
       
       <div className="con-buton">
-      <div className="butn-product">buy now</div>
+      <Link to={`/buy/${props.id}`} onClick={handlebuy}><div className="butn-product" >buy now</div></Link>
       </div>
       </article>
     </>
