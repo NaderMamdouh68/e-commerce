@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useEffect , useState} from 'react'
 import './home.css'
 import Product from '../../../components/product/Product'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 function Customerhome() {
+
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/product')
+      .then(res => setProducts(res.data))
+      .catch(err => console.log(err))
+  },
+    []
+  )
+  const lastproducts = products.slice(-4);
+
   return (
     <div>
       <main>
@@ -23,10 +36,19 @@ function Customerhome() {
       </main>
       <section className="products">
         <div className='product-cont'>
-          <Product />
-          <Product />
-          <Product />
-          <Product />
+          {
+            lastproducts.map((product)=>{
+              return(
+                <Product 
+                  id ={product.product_id}
+                  name ={product.product_name}
+                  price = {product.price}
+                  image = {product.image}
+
+                />
+              )
+            })
+          }
         </div>
 
       </section>

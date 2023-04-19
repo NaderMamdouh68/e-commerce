@@ -3,7 +3,6 @@ import React, { useEffect , useState} from 'react'
 import {Link} from 'react-router-dom'
 import './userlist.css'
 import {DeleteOutline} from '@mui/icons-material'
-
 import axios from 'axios';
 
 const CategoryList = () => {
