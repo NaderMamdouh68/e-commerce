@@ -25,6 +25,7 @@ import FeedbackList from "./pages/Dash/List/FeedbackList";
 import Customerhome from "./pages/user/home/Customerhome.jsx";
 import Buy from "./pages/user/Buy/Buy";
 import Products from "./pages/user/products/Products";
+import Profile from "./pages/user/profile/Profile.jsx";
 
 const Router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const Router = createBrowserRouter([
       {
         path:"/products",
         element: <Products/>
+      },
+      {
+        path:"/profile",
+        element: <Profile/>
       },
     ]
   },
