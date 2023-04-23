@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import './header.css'
 import axios from 'axios'
 
@@ -34,7 +34,13 @@ const Header = () => {
                 <li><Link  className='link-header' to="/products">Our Categories</Link></li>
             </ul>
         </nav>
-        <div className='logout-btn' onClick={handleLogOut} >Log out</div>
+        <div className="reer">
+        <Link   to="/profile"><img src="https://previews.123rf.com/images/yupiramos/yupiramos1610/yupiramos161007352/64369849-young-man-avatar-isolated-icon-vector-illustration-design.jpg" alt="" className='user-profile'/></Link>
+          
+        
+          <div className='logout-btn' onClick={handleLogOut} >Log out</div>
+        </div>
+        
     </div>
   )
 }

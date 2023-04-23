@@ -1,0 +1,30 @@
+.profile{
+    min-height: 80vh;
+}
+.user-prof{
+    display: grid;
+    grid-template-areas: 
+    'image  name '
+    'image  phone '
+    ;
+}
+.prof-img-cont img{
+    width: 300px;
+    height: 300px;
+    grid-area: image;
+
+}
+
+.prof-img-cont {
+    grid-area: image;
+}
+
+.orders-cont{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+.oreder-img img{
+    width: 200px;
+    height: 200px;
+}
+

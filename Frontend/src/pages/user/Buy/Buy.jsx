@@ -67,6 +67,7 @@ function Buy() {
                 <p>
                     {item.description}
                 </p>
+
             </div>
             <div class="feedback-Contanir">
                 <form action="" onSubmit={handleSubmit}>
