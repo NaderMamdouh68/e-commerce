@@ -29,15 +29,9 @@ const FeedbackList = () => {
       <thead>
         <tr>
           <th>ID</th>
-<<<<<<< HEAD
           <th>User</th>
           <th>Product</th>
           <th>Comment</th>
-=======
-          <th>user</th>
-          <th>roduct</th>
-          <th>comment</th>
->>>>>>> eb8cd1ca5699f35c16b548aaed8ba37238f84919
           {/* <th>action</th> */}
         </tr>
       </thead>
