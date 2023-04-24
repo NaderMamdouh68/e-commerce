@@ -37,6 +37,7 @@ function Customerhome() {
         </div>
       </main>
       <section className="products">
+        <h1>Our Latest</h1>
         <div className='product-cont'>
           {
             lastproducts.map((product) => {
@@ -78,7 +79,7 @@ function Customerhome() {
       <section className="about-us small">
         <h2>ABOUT_US</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id excepturi optio eos aut architecto temporibus suscipit nam enim atque dolores cumque, quasi dolorum, animi eum perspiciatis, totam mollitia dolore expedita beatae possimus. Impedit totam eligendi quibusdam repudiandae tenetur dolor. Odit?</p>
-        <button className='learn'>learn more</button>
+        <Link to='/about'><button className='learn'>learn more</button></Link>
       </section>
 
     </div>
