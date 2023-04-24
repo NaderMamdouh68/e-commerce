@@ -34,7 +34,7 @@ function Product (props){
       <p class="price-prodect" id="price-prodect">{`${props.price}$`}</p>
       
       <div className="con-buton">
-      <Link to={`/buy/${props.id}`} onClick={handlebuy}><div className="butn-product" >buy now</div></Link>
+      <div className="butn-product" ><Link className='by' to={`/buy/${props.id}`} onClick={handlebuy}>buy now</Link></div>
       </div>
       </article>
     </>

@@ -1,6 +1,6 @@
 .Home{
   display: grid;
-  place-items: center;
+  
 }
 
 main{
@@ -51,6 +51,10 @@ main{
 }
 .products{
 width: 100%;
+}
+.products h1{
+  margin: 2rem auto;
+  text-align: center;
 }
 .product-cont{
 width: 90%;
@@ -232,8 +236,8 @@ gap: 1rem;
 
 .services-cont{
   width: 100%;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
   text-align: center;
 }
@@ -250,4 +254,7 @@ article .icon{
 }
 .services{
   text-align: center;
+}
+.by{
+  color: white;
 }

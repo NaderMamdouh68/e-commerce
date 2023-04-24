@@ -26,6 +26,7 @@ import Customerhome from "./pages/user/home/Customerhome.jsx";
 import Buy from "./pages/user/Buy/Buy";
 import Products from "./pages/user/products/Products";
 import Profile from "./pages/user/profile/Profile.jsx";
+import About from "./pages/user/about/About.jsx";
 
 const Router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const Router = createBrowserRouter([
       {
         path:"/profile",
         element: <Profile/>
+      },
+      {
+        path:"/about",
+        element: <About/>
       },
     ]
   },
