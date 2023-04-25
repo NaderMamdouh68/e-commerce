@@ -110,6 +110,28 @@ userlist.get('/usershow/:id',
         }
 
     });
+userlist.get('/userProfile',
+    user,
+    async (req, res) => {
+        try {
+            const sqlShow = "SELECT * FROM user WHERE user_id = ?";
+            const values = [req.authUserid];
+
+            const userdetails = await query(sqlShow, values);
+            if (!userdetails[0]) {
+                return res.status(404).json({ ms: "user not found !" });
+            }
+            delete userdetails[0].password;
+            delete userdetails[0].status;
+            delete userdetails[0].type;
+            delete userdetails[0].user_id;
+            res.status(200).json(userdetails[0]);
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({ msg: "Server Error" });
+        }
+
+    });
 
 userlist.delete("/userdelete/:id",
     admin,

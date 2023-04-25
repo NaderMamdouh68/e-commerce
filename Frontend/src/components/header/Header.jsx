@@ -1,8 +1,9 @@
 /* eslint-disable no-restricted-globals */
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import './header.css'
 import axios from 'axios'
+import { TiShoppingCart } from 'react-icons/ti'
 
 const Header = () => {
 
@@ -24,17 +25,31 @@ const Header = () => {
 
 
   return (
-    <div>
+    <div className='header'>
+        <h1 className="mian-logo">Logo</h1>
         <nav>
-            <h2>logo</h2>
             <ul className='nav-icons'>
-                <li><Link>Home</Link></li>
-                <li><Link>About</Link></li>
-                <li><Link>Contact us</Link></li>
-                <li><button onClick={handleLogOut} >logout</button></li>
-
+                <li><Link  className='link-header' to="/">Home</Link></li>
+                <li><Link className='link-header'  to='/about'>About</Link></li>
+                <li><Link  className='link-header' to="/products">Our Products</Link></li>
+                <li><Link  className='link-header' to="/products">Our Categories</Link></li>
             </ul>
         </nav>
+        
+        {
+          localStorage.getItem('token')? (
+            <div className="reer">
+            <Link   to="/profile"><img src="https://previews.123rf.com/images/yupiramos/yupiramos1610/yupiramos161007352/64369849-young-man-avatar-isolated-icon-vector-illustration-design.jpg" alt="" className='user-profile'/></Link>
+            <TiShoppingCart className='headericon'/>
+            <div className='logout-btn' onClick={handleLogOut} >Log out</div>
+            </div>
+            ) :(
+              <div className="reer">                
+              <div className='logout-btn' ><Link to="/login">log-in</Link></div>
+              </div>
+            )
+        }
+        
     </div>
   )
 }

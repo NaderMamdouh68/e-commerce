@@ -23,24 +23,20 @@ import jwt from 'jsonwebtoken';
 const key = "secretkey";
 
 
-const user =async(req, res, next) => {
+const user = async (req, res, next) => {
     try {
-        const token  = req.headers.authorization;
-        if(token){
+        let token = req.headers.authorization;
+        if (!token) {
+            return res.status(401).json({ user: false, msg: "Unauthorized" });
+        } else {
             token = token.split(" ")[1];
-            let authUser = jwt.verify(token, key,(err)=>{
-                if(err){
-                    return res.status(401).json({user : false, msg:"Failed to authenticate token."});
-                }
-            });
+            let authUser = jwt.verify(token, key);
             req.authUserid = authUser.user_id;
-            
-            
-            next();
-
-        }else{
-            return res.status(401).json({user : false, msg:"Unauthorized"});
         }
+
+        next();
+
+
     } catch (err) {
         console.log(err);
         return res.status(500).json("user Error");

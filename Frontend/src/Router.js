@@ -2,7 +2,7 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 
-import App from './App'
+import App from './pages/user/App.jsx'
 import Dashboard from './pages/Dash/Dashboard'
 import Home from "./pages/Dash/dashHome/Home";
 import Edituser from "./pages/Dash/Edit/Edituser";
@@ -22,11 +22,38 @@ import Editorder from "./pages/Dash/Edit/Editorder";
 import Analytics from "./pages/Dash/analysis/Analytics";
 import Readorder from "./pages/Dash/read/Readorder";
 import FeedbackList from "./pages/Dash/List/FeedbackList";
+import Customerhome from "./pages/user/home/Customerhome.jsx";
+import Buy from "./pages/user/Buy/Buy";
+import Products from "./pages/user/products/Products";
+import Profile from "./pages/user/profile/Profile.jsx";
+import About from "./pages/user/about/About.jsx";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children:[
+      {
+        path:"",
+        element: <Customerhome/>
+      },
+      {
+        path:"/buy/:id",
+        element: <Buy/>
+      },
+      {
+        path:"/products",
+        element: <Products/>
+      },
+      {
+        path:"/profile",
+        element: <Profile/>
+      },
+      {
+        path:"/about",
+        element: <About/>
+      },
+    ]
   },
   {
     path: "/dashboard",

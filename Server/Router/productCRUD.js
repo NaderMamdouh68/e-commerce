@@ -145,7 +145,7 @@ product.get('/',
 product.get('/productshow/:id',
     async (req, res) => {
         try {
-            const sqlShow = "select product.product_id, product.product_name, product.price, product.description, product.image, category.category_name from product inner join category on product.category_id = category.category_id where product_id = ?";
+            const sqlShow = "select product.product_id, product.category_id, product.product_name, product.price, product.description, product.image, category.category_name from product inner join category on product.category_id = category.category_id where product_id = ?";
             const values = [req.params.id];
 
             const productdetails = await query(sqlShow, values);
@@ -183,7 +183,7 @@ product.delete("/productdelete/:id",
 );
 
 product.post('/productfeedback',
-    body("product_id").isNumeric().withMessage("Product Id is required"),
+    body("product_id").notEmpty().withMessage("Product Id is required"),
     body("comment").notEmpty().withMessage("Comment is required"),
     user,
     async (req, res) => {
@@ -221,7 +221,8 @@ product.post('/productfeedback',
 
 
 product.post('/productorder',
-    body("product_id").isNumeric().withMessage("Product Id is not valid"),
+    user,
+    body("product_id").notEmpty().withMessage("Product Id is required"),
     async (req, res) => {
         try {
             const errors = validationResult(req);
@@ -232,8 +233,8 @@ product.post('/productorder',
 
             const sqlSelect = "select * from product where product_id = ?";
             const values = [req.body.product_id];
-            const feedback = await query(sqlSelect, values);
-            if (!feedback[0]) {
+            const order = await query(sqlSelect, values);
+            if (!order[0]) {
                 res.status(404).json({ ms: "Product not found !" });
             }
 
@@ -259,6 +260,19 @@ product.get('/productallorder',
         try {
             const sqlSelect = "select orders.order_id, orders.order_date, product.product_name,product.image , user.user_name from orders inner join product on orders.product_id = product.product_id inner join user on orders.user_id = user.user_id";
             const orderdetails = await query(sqlSelect);
+            res.status(200).json(orderdetails);
+        } catch (err) {
+            return res.status(500).json(err);
+        }
+    }
+);
+product.get('/productUserOrder',
+    user,
+    async (req, res) => {
+        try {
+            const sqlSelect = "select orders.order_id, orders.order_date,orders.waiting ,product.product_name,product.image , user.user_name from orders inner join product on orders.product_id = product.product_id inner join user on orders.user_id = user.user_id where orders.user_id = ?";
+            const values = [req.authUserid];
+            const orderdetails = await query(sqlSelect, values);
             res.status(200).json(orderdetails);
         } catch (err) {
             return res.status(500).json(err);
