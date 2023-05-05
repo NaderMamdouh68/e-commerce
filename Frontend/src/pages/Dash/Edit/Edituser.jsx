@@ -7,18 +7,21 @@ const Edituser = () => {
 
   const {id} = useParams();
   const navigate = useNavigate()
+  const [values, setValues] = useState({
+    user_name: '',
+    email: '',
+    password: '',
+    phonenumber: '',
+  })
 
   useEffect(()=>{
-    axios.get('http://localhost:5000/users/userdetails/'+id)
+    axios.get('http://localhost:5000/user/usershow/'+id)
     .then(res =>{
         console.log(res)
         setValues({...values,
-          user_name: res.data[0].user_name,
-          email: res.data[0].email,
-          phonenumber: res.data[0].phonenumber,
-          status: res.data[0].status,
-          password: res.data[0].password,
-          user_image: res.data[0].user_image,
+          user_name: res.data.user_name,
+          email: res.data.email,
+          phonenumber: res.data.phonenumber,
         })
     })
     .catch(err => console.log(err))
@@ -26,33 +29,29 @@ const Edituser = () => {
    // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [id]) 
 
-  const [values, setValues] = useState({
-    user_name: '',
-    email: '',
-    password: '',
-    status: '',
-    phonenumber: '',
-    user_image: '',
-  })
+  
 
   const handleUpdate = (event)=>{
     event.preventDefault()
-    axios.put('http://localhost:5000/users/userupdate/'+id, values)
+    axios.put('http://localhost:5000/user/userupdate/'+id, values,{
+      headers: {
+        authorization : localStorage.getItem('token'),
+      },
+    })
     .then(res =>{
       console.log(res);
-      navigate('/dashboard/manageUsers')
+      window.location.reload(alert(res.data.msg));
     }
     )
     .catch (err => console.log(err))
   }
-  const imgname = 'download.jpeg'
 
   return (
     <div className='editu'>
         <h2 className='table-title'>update User</h2>
         <form onSubmit={handleUpdate}>
           <div className="image">
-            <img className='profile-img' src={(`http://localhost:5000/images/userImg/${values.user_image}`)} alt=''></img>
+            <img className='profile-img' src="https://previews.123rf.com/images/yupiramos/yupiramos1610/yupiramos161007352/64369849-young-man-avatar-isolated-icon-vector-illustration-design.jpg" alt=''></img>
             <span className={values.status ? 'status-green' : 'status-red'}></span>
           </div>
         

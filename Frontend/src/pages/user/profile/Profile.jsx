@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable array-callback-return */
@@ -9,6 +10,7 @@ import { FaRegTimesCircle } from "react-icons/fa";
 import axios from 'axios'
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { DeleteOutline } from '@mui/icons-material';
 
 
 function Profile() {
@@ -80,6 +82,24 @@ function Profile() {
       })
   }
 
+  const handleDelete = (id) => {
+    const conf = confirm('Are you sure you want to delete this product?')
+    if (conf === true) {
+      axios.delete('http://localhost:5000/order/deleteorder/' + id, {
+        headers: {
+          authorization: localStorage.getItem('token'),
+        }
+      })
+      .then(res => {
+        window.location.reload(alert(res.data.msg));
+      })
+      .catch(err => console.log(err))
+    }
+  }
+  
+
+
+
   return (
     <>
       <div className='profile'>
@@ -135,6 +155,29 @@ function Profile() {
                     </div>
                     <div className="count_data">
                       <span>{order.product_name}  </span>
+                      {/* <span>  {date}</span> */}
+                    </div>
+                  </div>
+                )
+              }
+            })
+            }
+          </div>
+          <h1><AiOutlineHistory /> Refused List</h1>
+          <div className="order-cont">
+
+
+            {orders.map((order, index) => {
+              // const date = order.order_date.split('T')[0]
+              if (order.waiting === 2) {
+                return (
+                  <div className="order" key={index}>
+                    <div className="image">
+                      <img src={`http://localhost:5000/${order.image}`} alt="" />
+                    </div>
+                    <div className="count_data">
+                      <span>{order.product_name}  </span>
+                      <DeleteOutline onClick={() => handleDelete(order.order_id)} className='delete' />
                       {/* <span>  {date}</span> */}
                     </div>
                   </div>

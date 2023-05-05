@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect , useState} from 'react'
 import './userlist.css'
 
@@ -26,6 +27,17 @@ function RequestList() {
       )
       .catch(err => console.log(err));
   };
+  const handleRefuse = (id) => {
+    axios.put(`http://localhost:5000/order/rejectorder/${id}`, id, {
+      headers: {
+        authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(res => alert(res.data.msg)
+      )
+      .catch(err => console.log(err));
+  };
+  
 
 
 
@@ -59,7 +71,7 @@ function RequestList() {
                     <td className='actions'>
 
                       <button className='editbtn' onClick={() => handleAccept(order.order_id)}>Accept</button>
-                      <button className='editbtn delete1'>Refuse</button>
+                      <button className='editbtn delete1' onClick={() => handleRefuse(order.order_id)}>Refuse</button>
                       {/* <Link  to={`/dashboard/manageorder/reado/${order.order_id}`} className='editbtn'>Accept</Link>
                             <Link  to={`/dashboard/manageorder/editorder/${order.order_id}`} className='editbtn delete'>Refuse</Link> */}
                     </td>

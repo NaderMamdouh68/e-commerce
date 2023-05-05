@@ -92,8 +92,7 @@ order.put('/acceptorder/:id', admin,
     }
 );
 
-order.put('/rejectorder/:id',
-    admin,
+order.put('/rejectorder/:id',admin,
     async (req, res) => {
         try {
             const sqlSelect = "select * from orders where order_id = ?";
@@ -105,7 +104,7 @@ order.put('/rejectorder/:id',
             const sqlUpdate = "update orders set waiting = 2 where order_id = ?";
             await query(sqlUpdate, values);
             res.status(200).json({
-                msg: "Your Order Is rejected successfully !",
+                msg: "Order Is rejected successfully !",
             });
         } catch (err) {
             res.status(500).json(err);
@@ -113,8 +112,7 @@ order.put('/rejectorder/:id',
     }
 );
 
-order.delete('/deleteorder/:id',
-    user,
+order.delete('/deleteorder/:id',user,
     async (req, res) => {
         try {
             const sqlSelect = "select * from orders where order_id = ?";

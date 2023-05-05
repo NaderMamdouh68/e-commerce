@@ -16,8 +16,7 @@ userlist.use(cors());
 
 
 
-userlist.put('/userupdate',
-    user,
+userlist.put('/userupdate',user,
     body("user_name").notEmpty().withMessage("please enter a valid user name"),
     body("email").isEmail().withMessage("please enter a valid email"),
     body("phonenumber").notEmpty().withMessage("please enter a valid phonenumber"),
@@ -60,6 +59,62 @@ userlist.put('/userupdate',
             } else {
                 const sqlUpdate = "UPDATE user SET user_name = ?, email = ?, phonenumber = ? WHERE user_id = ?";
                 const values = [req.body.user_name, req.body.email, req.body.phonenumber, req.authUserid];
+                return await query(sqlUpdate, values, (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    res.status(200).json({ msg: "user Updated Successfully" });
+                });
+            }
+
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({ msg: "Server Error" });
+        }
+    });
+userlist.put('/userupdate/:id',admin,
+    body("user_name").notEmpty().withMessage("please enter a valid user name"),
+    body("email").isEmail().withMessage("please enter a valid email"),
+    body("phonenumber").notEmpty().withMessage("please enter a valid phonenumber"),
+    async (req, res) => {
+        try {
+
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+
+
+
+
+            const sqlcheck = "SELECT * FROM user WHERE user_id = ?";
+            const value = [req.params.id];
+
+            const userdetails = await query(sqlcheck, value);
+
+            if (!userdetails[0]) {
+                return res.status(400).json({ msg: "Error: user Not Found!" });
+            }
+
+
+            if (req.body.email != userdetails[0].email) {
+                return res.status(400).json({ errors: [{ msg: "Email Is Not Allow to Chage !" }] });
+            }
+
+
+            if (req.body.password) {
+                const pass = await bcrypt.hash(req.body.password, 10);
+                const sqlUpdate = "UPDATE user SET user_name = ?, email = ?, phonenumber = ?, password = ? WHERE user_id = ?";
+                const values = [req.body.user_name, req.body.email, req.body.phonenumber, pass, req.params.id];
+                return await query(sqlUpdate, values, (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    res.status(200).json({ msg: "user Updated Successfully" });
+                });
+            } else {
+                const sqlUpdate = "UPDATE user SET user_name = ?, email = ?, phonenumber = ? WHERE user_id = ?";
+                const values = [req.body.user_name, req.body.email, req.body.phonenumber, req.params.id];
                 return await query(sqlUpdate, values, (err) => {
                     if (err) {
                         console.log(err);

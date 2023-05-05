@@ -150,6 +150,10 @@
 }
 .count_data{
     padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }
 .pp{
     font-size: 30px;

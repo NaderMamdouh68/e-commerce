@@ -19,7 +19,7 @@ form{
     position: relative;
 }
 .profile-img {
-    width: 250px;
+    width: 250px !important;
     height: 250px;
     border-radius: 50%;
 }
