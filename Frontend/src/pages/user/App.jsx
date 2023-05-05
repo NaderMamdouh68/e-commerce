@@ -5,9 +5,9 @@ import Header from '../../components/header/Header';
 
 import { Outlet } from 'react-router-dom';
 function App() {
-  // if(localStorage.getItem('type') === 'admin' || !localStorage.getItem('token')){
-  //   return window.location.href = '/login'
-  // }
+  if(localStorage.getItem('type') === 'admin'){
+    return window.location.href = '/login'
+  }
 
 
 

@@ -4,6 +4,7 @@ import auth from './Authentication/Authen.js';
 import product from './Router/productCRUD.js';
 import category from './Router/categoryCRUD.js';
 import userlist from './Router/userCRUD.js';
+import order from './Router/orderCRUD.js';
 
 
 
@@ -23,6 +24,7 @@ app.use('/authentication', auth);
 app.use('/product', product);
 app.use('/category', category);
 app.use('/user', userlist);
+app.use('/order', order);
 
 
 

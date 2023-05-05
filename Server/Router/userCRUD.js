@@ -16,17 +16,14 @@ userlist.use(cors());
 
 
 
-userlist.put('/userupdate/:id',
+userlist.put('/userupdate',
     user,
     body("user_name").notEmpty().withMessage("please enter a valid user name"),
     body("email").isEmail().withMessage("please enter a valid email"),
     body("phonenumber").notEmpty().withMessage("please enter a valid phonenumber"),
-    body("password").notEmpty().withMessage("please enter a valid password"),
     async (req, res) => {
         try {
-            if (req.params.id != req.authUserid) {
-                return res.status(400).json({ msg: "Error: Not allow To Access this route!" });
-            }
+
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.status(400).json({ errors: errors.array() });
@@ -36,7 +33,7 @@ userlist.put('/userupdate/:id',
 
 
             const sqlcheck = "SELECT * FROM user WHERE user_id = ?";
-            const value = [req.params.id];
+            const value = [req.authUserid];
 
             const userdetails = await query(sqlcheck, value);
 
@@ -50,24 +47,27 @@ userlist.put('/userupdate/:id',
             }
 
 
+            if (req.body.password) {
+                const pass = await bcrypt.hash(req.body.password, 10);
+                const sqlUpdate = "UPDATE user SET user_name = ?, email = ?, phonenumber = ?, password = ? WHERE user_id = ?";
+                const values = [req.body.user_name, req.body.email, req.body.phonenumber, pass, req.authUserid];
+                return await query(sqlUpdate, values, (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    res.status(200).json({ msg: "user Updated Successfully" });
+                });
+            } else {
+                const sqlUpdate = "UPDATE user SET user_name = ?, email = ?, phonenumber = ? WHERE user_id = ?";
+                const values = [req.body.user_name, req.body.email, req.body.phonenumber, req.authUserid];
+                return await query(sqlUpdate, values, (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    res.status(200).json({ msg: "user Updated Successfully" });
+                });
+            }
 
-            const userData = {
-                user_name: req.body.user_name,
-                email: req.body.email,
-                password: await bcrypt.hash(req.body.password, 10),
-                phonenumber: req.body.phonenumber
-            };
-
-
-
-            const sqlUpdate = "UPDATE user SET ?  WHERE user_id = ?";
-            const values = [userData, req.params.id];
-            await query(sqlUpdate, values, (err) => {
-                if (err) {
-                    console.log(err);
-                }
-                res.status(200).json({ msg: "user Updated Successfully" });
-            });
         } catch (err) {
             console.log(err);
             res.status(500).json({ msg: "Server Error" });

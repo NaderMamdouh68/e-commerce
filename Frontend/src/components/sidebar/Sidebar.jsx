@@ -1,10 +1,11 @@
 /* eslint-disable no-restricted-globals */
 import './sidebar.css'
 import { useState } from 'react'
-import { AccountCircleOutlined, AddShoppingCart, Category, Feedback, LineStyle, Logout, Mail, Storefront, Timeline } from '@mui/icons-material'
+import { AccountCircleOutlined, AddShoppingCart, Category, Feedback, LineStyle, Logout , Storefront, Timeline } from '@mui/icons-material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { AiFillAlert } from 'react-icons/ai'
 
 const Sidebar = () => {
 
@@ -80,9 +81,9 @@ const Sidebar = () => {
                 Feedback
               </li>
             </div>
-            <div onClick={handleLogOut} className={active === '#Mail' ? 'active' : ''}>
+            <div onClick={handleLogOut} className={active === '#Requset Order' ? 'active' : ''}>
               <li className="sidebarListItem">
-                <Mail className='sidebarIcon' />
+                <Requset Order className='sidebarIcon' />
                 Log Out
               </li>
             </div>
@@ -156,10 +157,10 @@ const Sidebar = () => {
               </Link>
             </li>
 
-            <li onClick={() => setActive('#mail')} className={active === '#mail' ? 'active' : ''}>
-              <Link to='/dashboard' className={"sidebarlink"} >
-              <Mail  />
-                  E-mail
+            <li onClick={() => setActive('#Requset Order')} className={active === '#Requset Order' ? 'active' : ''}>
+              <Link to='/dashboard/manageRequests' className={"sidebarlink"} >
+              <AiFillAlert />
+                  E-Requset Order
               </Link>
             </li>
           </ul>

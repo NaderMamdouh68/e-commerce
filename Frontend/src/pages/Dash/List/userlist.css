@@ -54,10 +54,17 @@ tr:hover {
 .crbtn{
     margin-bottom: 10px;
 }
-.delete{
-    color:red;
+.delete1{
+    background-color:red !important;
     cursor: pointer;
-    margin-left: 5px;
+}
+.delete1:hover{
+    background-color: var(--hovertablecolor) !important;
+    transition: 320ms ease;
+}
+.delete{
+    color: red;
+    cursor: pointer;
 }
 .actions{
     display: flex;

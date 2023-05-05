@@ -68,6 +68,7 @@ category.get('/',
             res.status(500).json({ msg: "Server Error" });
         }
     });
+
 category.get('/categorydetails/:id',
     async (req, res) => {
         try {
@@ -78,7 +79,7 @@ category.get('/categorydetails/:id',
                 return res.status(400).json({ msg: "Error: category Not Found!" });
             }
             res.status(200).json(categorydetails);
-        }catch (err) {
+        } catch (err) {
             return res.status(500).json({ msg: "Server Error" });
         }
     });
@@ -135,7 +136,7 @@ category.delete('/categorydelete/:id',
         try {
             const categorydetails = await query("SELECT * FROM category WHERE category_id = ?", [req.params.id]);
             if (!categorydetails[0]) {
-               return res.status(404).json({ ms: "category not found !" });
+                return res.status(404).json({ ms: "category not found !" });
             }
 
             const sqlDelete = "DELETE FROM category WHERE category_id = ?";
@@ -145,10 +146,27 @@ category.delete('/categorydelete/:id',
                 msg: "category delete successfully",
             });
         } catch (err) {
-           return res.status(500).json(err);
+            return res.status(500).json(err);
         }
     }
 );
+
+category.get('/categoryproductdetails/:id',
+    async (req, res) => {
+        try {
+            const sqlcheck = "SELECT * FROM category INNER JOIN product ON category.category_id = product.category_id WHERE category.category_id = ?";
+            const value = [req.params.id];
+            const categorydetails = await query(sqlcheck, value);
+            if (!categorydetails[0]) {
+                return res.status(400).json({ msg: "Error: category Not Found!" });
+            }
+            res.status(200).json(categorydetails);
+        } catch (err) {
+            return res.status(500).json({ msg: "Server Error" });
+        }
+    });
+
+
 
 
 

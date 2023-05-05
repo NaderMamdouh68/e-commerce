@@ -8,7 +8,6 @@ const Editproduct = () => {
 
   const { id } = useParams();
   const navigate = useNavigate()
-  const [category_id, setCategory_id] = useState('');
   const [file, setFile] = useState('');
 
   useEffect(() => {

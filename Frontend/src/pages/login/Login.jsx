@@ -49,6 +49,7 @@ function Login_Signup() {
         setErrors(response.data.errors);
         console.log(response.data.errors);
         setSignupData(false);
+        window.location.reload();
       } else {
         setSignupData(true);
         window.location.reload();

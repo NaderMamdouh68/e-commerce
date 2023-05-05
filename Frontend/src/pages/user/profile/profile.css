@@ -1,15 +1,17 @@
 .profile {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(12, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    height: 90vh;
+    /* grid-template-rows: repeat(11, 1fr); */
+    /* grid-column-gap: 24px; */
+    /* grid-row-gap: 30px; */
+    /* height: 90vh; */
     width: 100%;
+    justify-items: stretch;
+    align-items: center;
 }
 
 .Cover_profile {
-    grid-area: 1 / 1 / 5 / 13;
+    grid-area: 1 / 1 / 7 / 13;
     width: 100%;
     height: 100%;
     border-radius: 25px 25px 0 0;
@@ -19,7 +21,7 @@
 
 .Cover_profile img {
     width: 100%;
-    height: 100%;
+    height: 70%;
     object-fit: cover;
     object-position: center;
     border-radius: 25px 25px 0 0;
@@ -33,7 +35,7 @@
 .Image_Profile {
     grid-area: 4 / 1 / 6 / 3;
     z-index: 10;
-    width: 10rem;
+    width: 12rem;
     aspect-ratio: 1;
     border-radius: 10%;
     margin: 0 auto;
@@ -109,15 +111,15 @@
 .Show_produacts {
     grid-area: 6 / 1 / 13 / 13;
     overflow: hidden;
-    overflow-y: scroll;
     width: 100%;
     height: 100%;
     padding: 2.5rem 0;
+    margin: 20px;
 }
 
 .order-cont {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
     gap: 1rem;
     margin: 1rem;
     padding: 1rem;
@@ -129,6 +131,7 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     border-radius: 25px;
     overflow: hidden;
+    justify-content: space-between;
 }
 .order .image{
     width: 100%;
@@ -137,7 +140,7 @@
 }
 .image img{
     object-fit: cover;
-    object-position: cen;
+    object-position: center;
     width: 100%;
     height: 100%;
     transition: all 0.5s ease-in-out;
@@ -147,11 +150,14 @@
 }
 .count_data{
     padding: 1rem;
-    display: flex;
-    flex-direction: column;
-
 }
-
+.pp{
+    font-size: 30px;
+    color: var(--maincolor);
+}
+.cc{
+    color: var(--maincolor);
+}
 
 
 
@@ -203,18 +209,25 @@
 }
 
 .DialogContanet {
+    display: flex !important;
     width: 60%;
-    height: 80%;
     margin: auto;
     background-color: #fff;
     border-radius: 1em;
     border: none;
     position: fixed;
-    top: 10%;
+    top: 20%;
     gap: 1em;
     overflow: hidden;
     overflow-y: scroll;
     z-index: 100000;
+    transition: all 2s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.DialogContanetClose{
+    display: none;
+    transition: all 2s ease-in-out;
+
 }
 
 .DialogContanet::backdrop {
@@ -230,7 +243,6 @@
 
 .conImage {
     width: 100%;
-    height: 20rem;
     overflow: hidden;
     position: relative;
     display: flex;
@@ -268,10 +280,12 @@
 .ContanetDialog {
     padding: 1rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem;
     margin: 1rem auto;
-    width: 95%;
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: space-around;
 }
 
 .ContanetDialog h4 {
@@ -316,4 +330,20 @@
     position: absolute;
     bottom: 0;
     right: 0;
+}
+.profileinput{
+    color: #000 !important;
+    width: 100%;
+}
+.profilelabel{
+    color: #000 !important;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.profileform{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    /* width: 60%; */
+    align-items: center;
 }

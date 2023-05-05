@@ -45,7 +45,7 @@ product.post('/productcreate',
             const checkproduct = await query(sqlcheck, value);
             if (checkproduct[0]) {
                 error.push({ msg: "Product Already Exists!" })
-                return res.status(404).json({ msg: error});
+                return res.status(404).json({ msg: error });
             }
 
             const productData = {
@@ -126,7 +126,7 @@ product.get('/',
             let search = "";
             let filter = "";
             if (req.query.search) {
-                search = `where product.product_name LIKE '%${req.query.search}%' OR product.description LIKE '%${req.query.search}%'`;
+                search = `where product.product_name LIKE '%${req.query.search}%'`;
             }
             if (req.query.filter) {
                 filter = `where product.category_id = ${req.query.filter}`;
@@ -160,6 +160,7 @@ product.get('/productshow/:id',
         }
 
     });
+
 
 product.delete("/productdelete/:id",
     admin,
@@ -220,65 +221,6 @@ product.post('/productfeedback',
 );
 
 
-product.post('/productorder',
-    user,
-    body("product_id").notEmpty().withMessage("Product Id is required"),
-    async (req, res) => {
-        try {
-            const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                return res.status(400).json({ errors: errors.array() });
-            }
-
-
-            const sqlSelect = "select * from product where product_id = ?";
-            const values = [req.body.product_id];
-            const order = await query(sqlSelect, values);
-            if (!order[0]) {
-                res.status(404).json({ ms: "Product not found !" });
-            }
-
-            const orderData = {
-                user_id: req.authUserid,
-                product_id: req.body.product_id,
-                order_date: new Date(),
-            };
-
-            await query("insert into orders set ?", orderData);
-            res.status(200).json({
-                msg: "Your Order Is added successfully !",
-            });
-        } catch (err) {
-            res.status(500).json(err);
-        }
-    }
-);
-
-product.get('/productallorder',
-    admin,
-    async (req, res) => {
-        try {
-            const sqlSelect = "select orders.order_id, orders.order_date, product.product_name,product.image , user.user_name from orders inner join product on orders.product_id = product.product_id inner join user on orders.user_id = user.user_id";
-            const orderdetails = await query(sqlSelect);
-            res.status(200).json(orderdetails);
-        } catch (err) {
-            return res.status(500).json(err);
-        }
-    }
-);
-product.get('/productUserOrder',
-    user,
-    async (req, res) => {
-        try {
-            const sqlSelect = "select orders.order_id, orders.order_date,orders.waiting ,product.product_name,product.image , user.user_name from orders inner join product on orders.product_id = product.product_id inner join user on orders.user_id = user.user_id where orders.user_id = ?";
-            const values = [req.authUserid];
-            const orderdetails = await query(sqlSelect, values);
-            res.status(200).json(orderdetails);
-        } catch (err) {
-            return res.status(500).json(err);
-        }
-    }
-);
 
 
 product.get('/productallfeedback',
@@ -295,18 +237,7 @@ product.get('/productallfeedback',
 );
 
 
-product.get('/productallfeedback',
-    admin,
-    async (req, res) => {
-        try {
-            const sqlSelect = "select feedback.feedback_id, feedback.comment, product.product_name, user.user_name from feedback inner join product on feedback.product_id = product.product_id inner join user on feedback.user_id = user.user_id";
-            const orderdetails = await query(sqlSelect);
-            res.status(200).json(orderdetails);
-        } catch (err) {
-            return res.status(500).json(err);
-        }
-    }
-);
+
 
 
 export default product;

@@ -27,31 +27,37 @@ import Buy from "./pages/user/Buy/Buy";
 import Products from "./pages/user/products/Products";
 import Profile from "./pages/user/profile/Profile.jsx";
 import About from "./pages/user/about/About.jsx";
+import Category from "./pages/user/products/Category.jsx";
+import RequsetList from "./pages/Dash/List/RequsetList";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children:[
+    children: [
       {
-        path:"",
-        element: <Customerhome/>
+        path: "",
+        element: <Customerhome />
       },
       {
-        path:"/buy/:id",
-        element: <Buy/>
+        path: "/buy/:id",
+        element: <Buy />
       },
       {
-        path:"/products",
-        element: <Products/>
+        path: "/products",
+        element: <Products />
       },
       {
-        path:"/profile",
-        element: <Profile/>
+        path: "/category/:id",
+        element: <Category />
       },
       {
-        path:"/about",
-        element: <About/>
+        path: "/profile",
+        element: <Profile />
+      },
+      {
+        path: "/about",
+        element: <About />
       },
     ]
   },
@@ -82,6 +88,10 @@ const Router = createBrowserRouter([
       {
         path: "/dashboard/manageOrders",
         element: <OrderList />,
+      },
+      {
+        path: "/dashboard/manageRequests",
+        element: <RequsetList />,
       },
       {
         path: "/dashboard/manageProducts/:id",

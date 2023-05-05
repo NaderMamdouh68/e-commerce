@@ -1,15 +1,16 @@
 import React, { useEffect , useState} from 'react'
 import {Link} from 'react-router-dom'
 import './userlist.css'
+import { DeleteOutline } from '@mui/icons-material'
 
 import axios from 'axios';
 
 const OrderList = () => {
   const [data, setData] =useState([])
   useEffect(()=>{
-      axios.get('http://localhost:5000/product/productallorder',{
+      axios.get('http://localhost:5000/order/orderall',{
         headers: {
-        authorization : localStorage.getItem('token'),
+          authorization : localStorage.getItem('token'),
       },
     })
       .then(res => setData(res.data))
@@ -17,6 +18,19 @@ const OrderList = () => {
   },
  []
   )
+  const handleAccept = (id) => {
+    axios.put(`http://localhost:5000/order/acceptorder/${id}`,id,{
+      headers: {
+        authorization : localStorage.getItem('token'),
+
+      },
+    })
+    .then(res => 
+      window.location.reload(alert('Order Accepted!')),
+      )
+    .catch(err => console.log(err))
+  }
+  
 
 
   return (
@@ -33,25 +47,23 @@ const OrderList = () => {
           <th>user_name</th>
           <th>product_name</th>
           <th>date</th>
-          {/* <th>action</th> */}
         </tr>
       </thead>
       <tbody>
         {data.map((order, index) =>{
+          const dateorder = order.order_date.split('T')[0]
+          if(order.waiting === 1){
           return(
             <tr key={index}>
               <td>{order.order_id}</td>
               <td>{order.quantity}</td>
               <td>{order.user_name}</td>
               <td>{order.product_name}</td> 
-              <td>{order.order_date}</td>
-              {/* <td className='actions'>
-                <Link  to={`/dashboard/manageorder/reado/${order.order_id}`} className='editbtn'>show</Link>
-                <Link  to={`/dashboard/manageorder/editorder/${order.order_id}`} className='editbtn'>Edit</Link>
-                <DeleteOutline onClick={() => handleDelete (order.order_id)} className='delete'/>
-              </td> */}
+              <td>{dateorder}</td>
+              
             </tr>
           )
+        }
         }
         )}
       </tbody>
