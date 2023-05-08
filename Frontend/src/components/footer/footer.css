@@ -3,10 +3,13 @@ footer{
     grid-template-areas: 'left  center right';
     text-align: center;
     margin-top: 10px;
+    background-color: black;
+    color: white;
+    padding: 1rem 0;
 }
 a{
     display: block;
-    color: black;
+    color: white;
     margin: .5rem 0;
 }
 .logo{
@@ -19,8 +22,8 @@ a{
 }
 .left,
 .right{
-    border-top: 1px solid black;
-    padding-top: 5rem ;
+    /* border-top: 1px solid white; */
+    padding-top: 2rem ;
     margin: 0 1.5rem;
 }
 .social-icon{
@@ -28,7 +31,7 @@ a{
     margin: .5rem 1rem;
 }
 .butn{
-    border: 1px solid black;
+    border: 1px solid white;
     /* width: 60%; */
     margin: auto;
     padding: .3rem 0;
@@ -36,7 +39,7 @@ a{
     text-align: center;
 }
 .butn:hover{
-    background-color: black;
+    background-color: var(--maincolor);
     color: white;
 }
 p{

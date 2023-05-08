@@ -5,7 +5,9 @@ import Product from '../../../components/product/Product'
 import Category from '../../../components/product/Category'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-import { FaShippingFast } from 'react-icons/fa'
+import { FaShippingFast , FaNapster ,FaHotjar ,FaLinux ,FaMailchimp} from 'react-icons/fa'
+
+import { AiFillDollarCircle } from 'react-icons/ai'
 function Customerhome() {
 
   const [products, setProducts] = useState([])
@@ -153,35 +155,35 @@ function Customerhome() {
           </div>
           <div class="cards">
             <div class="contentt">
-              <div class="icon"><FaShippingFast className='i' /></div>
+              <div class="icon"><AiFillDollarCircle className='i' /></div>
               <div class="title">Web Development</div>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, reprehenderit.</p>
             </div>
           </div>
           <div class="cards">
             <div class="contentt">
-              <div class="icon"><FaShippingFast className='i' /></div>
+              <div class="icon"><FaHotjar className='i' /></div>
               <div class="title">Web Development</div>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, reprehenderit.</p>
             </div>
           </div>
           <div class="cards">
             <div class="contentt">
-              <div class="icon"><FaShippingFast className='i' /></div>
+              <div class="icon"><FaLinux className='i' /></div>
               <div class="title">Web Development</div>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, reprehenderit.</p>
             </div>
           </div>
           <div class="cards">
             <div class="contentt">
-              <div class="icon"><FaShippingFast className='i' /></div>
+              <div class="icon"><FaMailchimp className='i' /></div>
               <div class="title">Web Development</div>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, reprehenderit.</p>
             </div>
           </div>
           <div class="cards">
             <div class="contentt">
-              <div class="icon"><FaShippingFast className='i' /></div>
+              <div class="icon"><FaNapster className='i' /></div>
               <div class="title">Web Development</div>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, reprehenderit.</p>
             </div>

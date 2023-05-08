@@ -144,6 +144,7 @@ nav {
 .nav-icons li .link-header {
     position: relative;
     padding: 0 0 0.2rem;
+    color: black;
 }
 
 .nav-icons li .link-header::after {
@@ -210,7 +211,7 @@ nav {
 
 .headericon {
     font-size: 2rem;
-    color: var(--whitecolor);
+    color: var(--whitecolor) !important;
 }
 
 .sticky {

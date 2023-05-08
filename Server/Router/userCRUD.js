@@ -3,8 +3,6 @@ import query from '../Database/DB_Con.js';
 import user from '../middleware/checkuser.js';
 import admin from '../middleware/checkadmin.js';
 import { body, validationResult } from 'express-validator';
-import upload from '../middleware/uploadimageuser.js';
-import fs from 'fs';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
 
@@ -129,8 +127,7 @@ userlist.put('/userupdate/:id',admin,
         }
     });
 
-userlist.get('/',
-    admin,
+userlist.get('/',admin,
     async (req, res) => {
         try {
             let search = "";
@@ -165,8 +162,7 @@ userlist.get('/usershow/:id',
         }
 
     });
-userlist.get('/userProfile',
-    user,
+userlist.get('/userProfile',user,
     async (req, res) => {
         try {
             const sqlShow = "SELECT * FROM user WHERE user_id = ?";
@@ -188,8 +184,7 @@ userlist.get('/userProfile',
 
     });
 
-userlist.delete("/userdelete/:id",
-    admin,
+userlist.delete("/userdelete/:id", admin,
     async (req, res) => {
         try {
             const userdetails = await query("SELECT * FROM user WHERE user_id = ?", [req.params.id]);

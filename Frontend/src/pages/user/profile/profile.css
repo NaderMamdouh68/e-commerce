@@ -157,7 +157,7 @@
 }
 .pp{
     font-size: 30px;
-    color: var(--maincolor);
+    color: var(--maincolor) !important;
 }
 .cc{
     color: var(--maincolor);
